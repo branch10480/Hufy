@@ -12,11 +12,13 @@ import RxSwift
 
 final class AccountManagerMock: AccountManagerProtocol {
 
+    static private var userSelf: User?
+
     func isLiggedIn() -> Bool {
         return false
     }
     
-    func login() -> Observable<Void> {
+    func firebaseAuthAnonymousLogin() -> Observable<Void> {
         return Observable.create { observer -> Disposable in
             DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                 if true {
@@ -25,6 +27,30 @@ final class AccountManagerMock: AccountManagerProtocol {
                 } else {
                     observer.onError(AccountManagerError.unknown)
                 }
+            }
+            return Disposables.create()
+        }
+    }
+    
+    func createUser() -> Observable<Void> {
+        return Observable.create { observer -> Disposable in
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                if true {
+                    observer.onNext(())
+                    observer.onCompleted()
+                } else {
+                    observer.onError(AccountManagerError.unknown)
+                }
+            }
+            return Disposables.create()
+        }
+    }
+    
+    func fetchUserSelf() -> Observable<User> {
+        return Observable<User>.create { observer -> Disposable in
+            DispatchQueue.global().asyncAfter(deadline: .now() + 2) {
+                observer.onNext(User())
+                observer.onCompleted()
             }
             return Disposables.create()
         }

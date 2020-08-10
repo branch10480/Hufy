@@ -10,8 +10,11 @@ import UIKit
 import MBProgressHUD
 
 class ProgressViewService: ProgressViewServiceProtocol {
+
+    private var progressView: MBProgressHUD?
+
     func show(view: UIView) {
-        MBProgressHUD.showAdded(to: view, animated: true)
+        progressView = MBProgressHUD.showAdded(to: view, animated: true)
     }
     
     func dismiss(view: UIView) {

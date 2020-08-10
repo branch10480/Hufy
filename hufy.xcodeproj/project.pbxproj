@@ -26,6 +26,11 @@
 		490565C224E144F00082B42B /* AccountManagerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490565C124E144F00082B42B /* AccountManagerMock.swift */; };
 		490565C524E146930082B42B /* ProgressViewService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490565C424E146930082B42B /* ProgressViewService.swift */; };
 		490565C824E146A90082B42B /* ProgressViewServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490565C724E146A90082B42B /* ProgressViewServiceProtocol.swift */; };
+		490565CB24E152FF0082B42B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490565CA24E152FF0082B42B /* User.swift */; };
+		490565CF24E194290082B42B /* Tutorial2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490565CD24E194290082B42B /* Tutorial2ViewController.swift */; };
+		490565D024E194290082B42B /* Tutorial2ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 490565CE24E194290082B42B /* Tutorial2ViewController.xib */; };
+		490565D224E194370082B42B /* Tutorial2ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490565D124E194370082B42B /* Tutorial2ViewModel.swift */; };
+		490565D424E194F60082B42B /* MyNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490565D324E194F60082B42B /* MyNavigationController.swift */; };
 		494126FD24DDA431008768F9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494126FC24DDA431008768F9 /* AppDelegate.swift */; };
 		494126FF24DDA431008768F9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494126FE24DDA431008768F9 /* SceneDelegate.swift */; };
 		4941270624DDA433008768F9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4941270524DDA433008768F9 /* Assets.xcassets */; };
@@ -64,6 +69,11 @@
 		490565C124E144F00082B42B /* AccountManagerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountManagerMock.swift; sourceTree = "<group>"; };
 		490565C424E146930082B42B /* ProgressViewService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressViewService.swift; sourceTree = "<group>"; };
 		490565C724E146A90082B42B /* ProgressViewServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressViewServiceProtocol.swift; sourceTree = "<group>"; };
+		490565CA24E152FF0082B42B /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		490565CD24E194290082B42B /* Tutorial2ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tutorial2ViewController.swift; sourceTree = "<group>"; };
+		490565CE24E194290082B42B /* Tutorial2ViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Tutorial2ViewController.xib; sourceTree = "<group>"; };
+		490565D124E194370082B42B /* Tutorial2ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tutorial2ViewModel.swift; sourceTree = "<group>"; };
+		490565D324E194F60082B42B /* MyNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyNavigationController.swift; sourceTree = "<group>"; };
 		494126F924DDA431008768F9 /* hufy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = hufy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		494126FC24DDA431008768F9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		494126FE24DDA431008768F9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -186,6 +196,24 @@
 			path = ProgressView;
 			sourceTree = "<group>";
 		};
+		490565C924E152D90082B42B /* DataObjects */ = {
+			isa = PBXGroup;
+			children = (
+				490565CA24E152FF0082B42B /* User.swift */,
+			);
+			path = DataObjects;
+			sourceTree = "<group>";
+		};
+		490565CC24E194110082B42B /* Tutorial2 */ = {
+			isa = PBXGroup;
+			children = (
+				490565CD24E194290082B42B /* Tutorial2ViewController.swift */,
+				490565CE24E194290082B42B /* Tutorial2ViewController.xib */,
+				490565D124E194370082B42B /* Tutorial2ViewModel.swift */,
+			);
+			path = Tutorial2;
+			sourceTree = "<group>";
+		};
 		494126F024DDA431008768F9 = {
 			isa = PBXGroup;
 			children = (
@@ -253,6 +281,7 @@
 		4941271724DDA7E5008768F9 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				490565CC24E194110082B42B /* Tutorial2 */,
 				4905659D24E121F80082B42B /* Tutorial */,
 				4905659824E121D70082B42B /* TabBar */,
 				4941271824DDA7F6008768F9 /* Entry */,
@@ -293,6 +322,7 @@
 			children = (
 				49A3BDDE24E0FF3D0025F38F /* BaseViewModel.swift */,
 				490565AC24E128130082B42B /* BaseViewController.swift */,
+				490565D324E194F60082B42B /* MyNavigationController.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -309,6 +339,7 @@
 		49A3BDF124E117F70025F38F /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				490565C924E152D90082B42B /* DataObjects */,
 				490565A424E123D20082B42B /* Firebase */,
 				49A3BDF824E11F2E0025F38F /* Account */,
 			);
@@ -389,6 +420,7 @@
 			files = (
 				490565A124E122110082B42B /* TutorialViewController.xib in Resources */,
 				4941271C24DDA84E008768F9 /* Main.storyboard in Resources */,
+				490565D024E194290082B42B /* Tutorial2ViewController.xib in Resources */,
 				4941272024DDA958008768F9 /* GoogleService-Info.plist in Resources */,
 				490565B624E130120082B42B /* Pacifico-Regular.ttf in Resources */,
 				4941270924DDA433008768F9 /* LaunchScreen.storyboard in Resources */,
@@ -468,6 +500,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				490565A624E123DF0082B42B /* FirebaseManager.swift in Sources */,
+				490565CF24E194290082B42B /* Tutorial2ViewController.swift in Sources */,
 				490565A324E1226D0082B42B /* TutorialViewModel.swift in Sources */,
 				490565C024E132120082B42B /* String+.swift in Sources */,
 				49A3BDF524E11CDF0025F38F /* AccuntManager.swift in Sources */,
@@ -487,7 +520,10 @@
 				49A3BDF324E118F20025F38F /* EntryViewModel.swift in Sources */,
 				49A3BDF724E11D6A0025F38F /* AccountManagerProtocol.swift in Sources */,
 				494126FD24DDA431008768F9 /* AppDelegate.swift in Sources */,
+				490565D424E194F60082B42B /* MyNavigationController.swift in Sources */,
+				490565CB24E152FF0082B42B /* User.swift in Sources */,
 				490565C224E144F00082B42B /* AccountManagerMock.swift in Sources */,
+				490565D224E194370082B42B /* Tutorial2ViewModel.swift in Sources */,
 				494126FF24DDA431008768F9 /* SceneDelegate.swift in Sources */,
 				490565B024E129330082B42B /* UIButton+.swift in Sources */,
 			);

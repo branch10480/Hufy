@@ -20,7 +20,7 @@ class TutorialViewController: BaseViewController {
     private let disposeBag: DisposeBag = DisposeBag()
     private lazy var viewModel: TutorialViewModel = TutorialViewModel(
         tapObservable: self.startButton.rx.tap.asObservable(),
-        manager: AccountManagerMock()
+        manager: AccountManager()
     )
 
     override func viewDidLoad() {
@@ -56,14 +56,18 @@ class TutorialViewController: BaseViewController {
             }
         }).disposed(by: disposeBag)
         
-        viewModel.loginSuccess.asDriver().drive(onNext: { [weak self] result in
-            guard result else { return }
+        viewModel.loginSuccess.asDriver().drive(onNext: { [weak self] user in
+            guard let user = user else {
+                return
+            }
+            dump(user)
             self?.goToTutorial2()
         }).disposed(by: disposeBag)
     }
     
     private func goToTutorial2() {
-        
+        let vc = Tutorial2ViewController()
+        navigationController?.pushViewController(vc, animated: true)
     }
 
 }

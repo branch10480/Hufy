@@ -34,20 +34,24 @@ class EntryViewController: BaseViewController {
             case .notLoggedIn:
                 self?.goToStart()
             }
-            }).disposed(by: disposeBag)
+        }).disposed(by: disposeBag)
     }
     
     private func goToTop() {
         let vc = TabBarViewController()
-        vc.modalPresentationStyle = .fullScreen
-        vc.modalTransitionStyle = .crossDissolve
-        present(vc, animated: true, completion: nil)
+        let nc = MyNavigationController(rootViewController: vc)
+        nc.setNavigationBarHidden(true, animated: false)
+        nc.modalPresentationStyle = .fullScreen
+        nc.modalTransitionStyle = .crossDissolve
+        present(nc, animated: true, completion: nil)
     }
     
     private func goToStart() {
         let vc = TutorialViewController()
-        vc.modalPresentationStyle = .fullScreen
-        vc.modalTransitionStyle = .crossDissolve
-        present(vc, animated: true, completion: nil)
+        let nc = MyNavigationController(rootViewController: vc)
+        nc.setNavigationBarHidden(true, animated: false)
+        nc.modalPresentationStyle = .fullScreen
+        nc.modalTransitionStyle = .crossDissolve
+        present(nc, animated: true, completion: nil)
     }
 }

@@ -11,9 +11,12 @@ import RxSwift
 
 enum AccountManagerError: Error {
     case unknown
+    case failToGetFirebaseAuthUser
 }
 
 protocol AccountManagerProtocol {
     func isLiggedIn() -> Bool
-    func login() -> Observable<Void>
+    func firebaseAuthAnonymousLogin() -> Observable<Void>
+    func createUser() -> Observable<Void>
+    func fetchUserSelf() -> Observable<User>
 }

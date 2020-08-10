@@ -12,7 +12,7 @@ import RxRelay
 
 class TutorialViewModel: BaseViewModel {
     
-    let loginSuccess: BehaviorRelay<Bool> = .init(value: false)
+    let loginSuccess: BehaviorRelay<User?> = .init(value: nil)
     
     private let manager: AccountManagerProtocol
     
@@ -22,18 +22,39 @@ class TutorialViewModel: BaseViewModel {
         tapObservable.subscribe(onNext: { [weak self] in
             guard let self = self else { return }
             self.isLoading.accept(true)
-            // 始めるボタンを押したとき
-            self.manager.login().subscribe(onNext: { [weak self] in
-                self?.loginSuccess.accept(true)
-            }, onError: { error in
+            // 使ってみるボタンを押したとき
+            self.manager.firebaseAuthAnonymousLogin().subscribe(onNext: { [weak self] in
+                self?.isLoading.accept(false)
+                self?.createUserToFirestore()
+            }, onError: { [weak self] error in
                 print("++ Firebase Auth Error ++")
                 print(error.localizedDescription)
-            }, onCompleted: { [weak self] in
                 self?.isLoading.accept(false)
             }).disposed(by: self.disposeBag)
             
         }).disposed(by: disposeBag)
     }
     
+    private func createUserToFirestore() {
+        isLoading.accept(true)
+        manager.createUser().subscribe(onNext: { [weak self] in
+            self?.isLoading.accept(false)
+            self?.fetchUserSelf()
+        }, onError: { [weak self] error in
+            print(error.localizedDescription)
+            self?.isLoading.accept(false)
+        }).disposed(by: disposeBag)
+    }
+    
+    private func fetchUserSelf() {
+        isLoading.accept(true)
+        manager.fetchUserSelf().subscribe(onNext: { [weak self] user in
+            self?.loginSuccess.accept(user)
+            self?.isLoading.accept(false)
+        }, onError: { [weak self] error in
+            print(error.localizedDescription)
+            self?.isLoading.accept(false)
+        }).disposed(by: disposeBag)
+    }
     
 }
