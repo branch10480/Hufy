@@ -17,4 +17,5 @@ extension UIColor {
     static let buttonCancelBackground: UIColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
     static let buttonCancelText: UIColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
     static let other1: UIColor = #colorLiteral(red: 0.7284123898, green: 0.9111635685, blue: 0.9082647562, alpha: 1)
+    static let other2: UIColor = #colorLiteral(red: 0.8666666667, green: 0.8666666667, blue: 0.8666666667, alpha: 1)
 }

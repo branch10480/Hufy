@@ -1,2 +1,4 @@
 github "ReactiveX/RxSwift" ~> 5.0
 github "tristanhimmelman/ObjectMapper" ~> 3.5
+github "onevcat/Kingfisher" ~> 5.0
+

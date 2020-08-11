@@ -19,6 +19,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseApp.configure()
         let db = Firestore.firestore()
         print(db)
+        
+        RxImagePickerDelegateProxy.register { parent -> RxImagePickerDelegateProxy in
+            return RxImagePickerDelegateProxy(imagePicker: parent)
+        }
+        
         return true
     }
 

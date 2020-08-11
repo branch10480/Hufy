@@ -11,7 +11,6 @@ import RxSwift
 
 class EntryViewController: BaseViewController {
     
-    private let disposeBag: DisposeBag = DisposeBag()
     private lazy var viewModel: EntryViewModel = EntryViewModel(accountManager: AccountManagerMock())
 
     override func viewDidLoad() {

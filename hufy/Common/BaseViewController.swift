@@ -7,10 +7,12 @@
 //
 
 import UIKit
+import RxSwift
 
 class BaseViewController: UIViewController {
     
     var progressViewService: ProgressViewServiceProtocol = ProgressViewService()
+    let disposeBag = DisposeBag()
 
     override func viewDidLoad() {
         super.viewDidLoad()

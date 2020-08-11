@@ -16,8 +16,7 @@ class TutorialViewController: BaseViewController {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var imageView: UIImageView!
-    
-    private let disposeBag: DisposeBag = DisposeBag()
+
     private lazy var viewModel: TutorialViewModel = TutorialViewModel(
         tapObservable: self.startButton.rx.tap.asObservable(),
         manager: AccountManager()
