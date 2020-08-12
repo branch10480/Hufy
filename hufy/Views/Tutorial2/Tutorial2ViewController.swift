@@ -17,11 +17,23 @@ class Tutorial2ViewController: BaseViewController {
     @IBOutlet weak var mainImageView: UIImageView!
     @IBOutlet weak var mainImageButton: UIButton!
     @IBOutlet var imageButtons: [UIButton]!
+    @IBOutlet var imageViews: [UIImageView]!
     @IBOutlet weak var stackViewWithSubPhotosAtFirst: UIStackView!
     @IBOutlet weak var pickFromLibraryButton: UIButton!
     
     private let sideMargin: CGFloat = 32
     private let separativeMargin: CGFloat = 16
+    
+    let images: [UIImage?] = [
+        UIImage(named: "pose_pien_uruuru_man"),
+        UIImage(named: "pose_pien_uruuru_woman"),
+        UIImage(named: "beads_cushion_man"),
+        UIImage(named: "beads_cushion_woman"),
+        UIImage(named: "megane_hikaru_man"),
+        UIImage(named: "megane_hikaru_woman"),
+        UIImage(named: "video_cooking_man"),
+        UIImage(named: "video_cooking_woman")
+    ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,6 +54,36 @@ class Tutorial2ViewController: BaseViewController {
         
         setImageDesign(view: mainImageView, isMain: true)
         
+        // set sub photos
+        for i in 0..<min(images.count, imageViews.count) {
+            let imageView = imageViews[i]
+            imageView.image = images[i]
+            setImageDesign(view: imageView, isMain: false)
+        }
+        var buttonObservables: [Observable<UIImage?>] = []
+        for i in 0..<min(images.count, imageButtons.count) {
+            let observable = imageButtons[i].rx.tap.flatMap {
+                return Observable<Int>.create { observer -> Disposable in
+                    observer.onNext(i)
+                    observer.onCompleted()
+                    return Disposables.create()
+                }
+            }.flatMap { tag in
+                Observable<UIImage?>.create { observer in
+                    observer.onNext(self.images[tag])
+                    observer.onCompleted()
+                    return Disposables.create()
+                }
+            }
+            buttonObservables.append(observable)
+        }
+
+        buttonObservables.forEach { observable in
+            observable.subscribe(onNext: { [weak self] image in
+                self?.mainImageView.image = image
+            }).disposed(by: disposeBag)
+        }
+        
     }
     
     private func setImageDesign(view: UIView, isMain: Bool) {
@@ -52,7 +94,7 @@ class Tutorial2ViewController: BaseViewController {
         } else {
             let numberOfRow = stackViewWithSubPhotosAtFirst.arrangedSubviews.count
             let displayableSize: CGFloat = screenSize.width - sideMargin * 2 - CGFloat(numberOfRow - 1) * separativeMargin
-            view.layer.cornerRadius = displayableSize / CGFloat(numberOfRow)
+            view.layer.cornerRadius = displayableSize / CGFloat(numberOfRow) / 2
             view.layer.borderWidth = 2
         }
         view.layer.masksToBounds = true
@@ -69,17 +111,13 @@ class Tutorial2ViewController: BaseViewController {
                 picker.sourceType = .photoLibrary
                 picker.allowsEditing = true
             }
-        }
-        .flatMap { (imagePicker: UIImagePickerController) in
+        }.flatMap { (imagePicker: UIImagePickerController) in
             return imagePicker.rx.didFinishPickingMediaWithInfo
-        }
-        .do(onNext: { [weak self] dic in
+        }.do(onNext: { [weak self] dic in
             self?.presentedViewController?.dismiss(animated: true, completion: nil)
-        })
-        .map { info in
+        }).map { info in
             return info[UIImagePickerController.InfoKey.editedImage.rawValue] as? UIImage
-        }
-        .bind(to: mainImageView.rx.image)
+        }.bind(to: mainImageView.rx.image)
         .disposed(by: disposeBag)
     }
 
