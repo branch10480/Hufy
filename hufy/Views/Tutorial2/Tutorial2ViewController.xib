@@ -12,17 +12,11 @@
             <connections>
                 <outlet property="mainImageButton" destination="Alj-Jk-rOC" id="a5z-7f-mk5"/>
                 <outlet property="mainImageView" destination="T3I-kO-DNa" id="vHh-7N-rdi"/>
+                <outlet property="nextButton" destination="41E-Dx-yF1" id="iKc-D5-hJR"/>
+                <outlet property="nextButtonWrapperView" destination="BVJ-cd-HgY" id="Fk7-5H-3wL"/>
                 <outlet property="pickFromLibraryButton" destination="CD5-Gq-GY7" id="FFq-75-ayN"/>
                 <outlet property="stackViewWithSubPhotosAtFirst" destination="Iql-tV-LrT" id="12x-Xo-P5L"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
-                <outletCollection property="imageButtons" destination="wIC-gu-M8b" collectionClass="NSMutableArray" id="0Q6-Ic-MFr"/>
-                <outletCollection property="imageButtons" destination="yyS-Xe-4wi" collectionClass="NSMutableArray" id="OLY-Mi-7k5"/>
-                <outletCollection property="imageButtons" destination="SQa-9H-xBJ" collectionClass="NSMutableArray" id="PXs-Ry-VAn"/>
-                <outletCollection property="imageButtons" destination="mJ1-vx-sGP" collectionClass="NSMutableArray" id="dxM-0s-6cG"/>
-                <outletCollection property="imageButtons" destination="uqC-UB-O4o" collectionClass="NSMutableArray" id="jwW-b6-QXu"/>
-                <outletCollection property="imageButtons" destination="NYB-tC-AsX" collectionClass="NSMutableArray" id="fG3-dI-W4A"/>
-                <outletCollection property="imageButtons" destination="nAk-TV-rtq" collectionClass="NSMutableArray" id="JRU-tl-RqX"/>
-                <outletCollection property="imageButtons" destination="4vn-Nf-J30" collectionClass="NSMutableArray" id="dI5-E5-tam"/>
                 <outletCollection property="imageViews" destination="447-sH-ZXc" collectionClass="NSMutableArray" id="8nE-eG-nDA"/>
                 <outletCollection property="imageViews" destination="Tsh-E1-GZR" collectionClass="NSMutableArray" id="9SC-FO-oKo"/>
                 <outletCollection property="imageViews" destination="AQl-3Y-bhR" collectionClass="NSMutableArray" id="lyD-y3-KzL"/>
@@ -31,6 +25,14 @@
                 <outletCollection property="imageViews" destination="6xA-tO-pwK" collectionClass="NSMutableArray" id="fhL-gk-ZPm"/>
                 <outletCollection property="imageViews" destination="srM-EW-4NG" collectionClass="NSMutableArray" id="oOj-5i-wWh"/>
                 <outletCollection property="imageViews" destination="QAJ-yP-52b" collectionClass="NSMutableArray" id="ruQ-Y8-u3E"/>
+                <outletCollection property="imageButtons" destination="SQa-9H-xBJ" collectionClass="NSMutableArray" id="9wr-Ha-6VL"/>
+                <outletCollection property="imageButtons" destination="yyS-Xe-4wi" collectionClass="NSMutableArray" id="f0a-fI-SyQ"/>
+                <outletCollection property="imageButtons" destination="mJ1-vx-sGP" collectionClass="NSMutableArray" id="itN-1k-QEx"/>
+                <outletCollection property="imageButtons" destination="wIC-gu-M8b" collectionClass="NSMutableArray" id="IHx-7Z-qWF"/>
+                <outletCollection property="imageButtons" destination="4vn-Nf-J30" collectionClass="NSMutableArray" id="Eh8-Gf-EAb"/>
+                <outletCollection property="imageButtons" destination="uqC-UB-O4o" collectionClass="NSMutableArray" id="bTP-3f-cRR"/>
+                <outletCollection property="imageButtons" destination="NYB-tC-AsX" collectionClass="NSMutableArray" id="4RJ-VO-hsp"/>
+                <outletCollection property="imageButtons" destination="nAk-TV-rtq" collectionClass="NSMutableArray" id="Bo4-tj-XXi"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -39,7 +41,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gEd-tE-CpO">
-                    <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                    <rect key="frame" x="0.0" y="88" width="414" height="678"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IS4-2N-VxT">
                             <rect key="frame" x="0.0" y="0.0" width="414" height="481"/>
@@ -71,7 +73,7 @@
                                                 <constraint firstAttribute="bottom" secondItem="T3I-kO-DNa" secondAttribute="bottom" id="z2u-ih-qB0"/>
                                             </constraints>
                                         </view>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CD5-Gq-GY7">
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CD5-Gq-GY7" customClass="BaseButton" customModule="hufy" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="170" width="350" height="48"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="48" id="Umj-hd-Twl"/>
@@ -313,18 +315,40 @@
                         <constraint firstItem="IS4-2N-VxT" firstAttribute="width" secondItem="gEd-tE-CpO" secondAttribute="width" id="hKm-Fi-VIZ"/>
                     </constraints>
                 </scrollView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BVJ-cd-HgY">
+                    <rect key="frame" x="0.0" y="766" width="414" height="130"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="41E-Dx-yF1" customClass="BaseButton" customModule="hufy" customModuleProvider="target">
+                            <rect key="frame" x="32" y="24" width="350" height="48"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="48" id="xJ7-Zo-KFf"/>
+                            </constraints>
+                            <state key="normal" title="Button"/>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    <constraints>
+                        <constraint firstItem="41E-Dx-yF1" firstAttribute="leading" secondItem="BVJ-cd-HgY" secondAttribute="leading" constant="32" id="Iba-1o-tGH"/>
+                        <constraint firstItem="41E-Dx-yF1" firstAttribute="top" secondItem="BVJ-cd-HgY" secondAttribute="top" constant="24" id="fNI-8I-QrX"/>
+                        <constraint firstAttribute="trailing" secondItem="41E-Dx-yF1" secondAttribute="trailing" constant="32" id="ppn-pa-8Ex"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
             <constraints>
+                <constraint firstItem="BVJ-cd-HgY" firstAttribute="bottom" secondItem="i5M-Pr-FkT" secondAttribute="bottom" id="5zz-BQ-Ovt"/>
+                <constraint firstItem="BVJ-cd-HgY" firstAttribute="top" secondItem="gEd-tE-CpO" secondAttribute="bottom" id="6ma-0q-daY"/>
                 <constraint firstItem="T3I-kO-DNa" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" multiplier="1:3" id="8Lm-oy-2ut"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="gEd-tE-CpO" secondAttribute="trailing" id="NOk-hf-QBq"/>
                 <constraint firstItem="gEd-tE-CpO" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="No4-5E-39J"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="gEd-tE-CpO" secondAttribute="bottom" id="YiK-AW-jJH"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="BVJ-cd-HgY" secondAttribute="trailing" id="SI7-ba-aga"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="41E-Dx-yF1" secondAttribute="bottom" constant="24" id="XNa-G2-lSI"/>
                 <constraint firstItem="gEd-tE-CpO" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Zqr-Nr-NDS"/>
+                <constraint firstItem="BVJ-cd-HgY" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="vBj-K1-R69"/>
             </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
-            <point key="canvasLocation" x="132" y="133"/>
+            <point key="canvasLocation" x="131.8840579710145" y="132.58928571428572"/>
         </view>
     </objects>
 </document>

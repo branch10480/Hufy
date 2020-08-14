@@ -16,6 +16,8 @@ extension UIButton {
         layer.cornerRadius = radius
         layer.masksToBounds = true
         titleLabel?.font = .systemFont(ofSize: 16, weight: .bold)
+        
+        setDisabledDesign(radius: radius)
     }
     
     func setCancelDesign(radius: CGFloat) {
@@ -24,5 +26,12 @@ extension UIButton {
         layer.cornerRadius = radius
         layer.masksToBounds = true
         titleLabel?.font = .systemFont(ofSize: 16, weight: .bold)
+        
+        setDisabledDesign(radius: radius)
+    }
+    
+    private func setDisabledDesign(radius: CGFloat) {
+        setTitleColor(.buttonDisabledText, for: .disabled)
+        setBackgroundImage(UIImage.create(withColor: .buttonDisabledBackground), for: .disabled)
     }
 }

@@ -6,7 +6,7 @@
 //  Copyright © 2020 Toshiharu Imaeda. All rights reserved.
 //
 
-import Foundation
+import UIKit
 import RxSwift
 
 enum AccountManagerError: Error {
@@ -19,4 +19,5 @@ protocol AccountManagerProtocol {
     func firebaseAuthAnonymousLogin() -> Observable<Void>
     func createUser() -> Observable<Void>
     func fetchUserSelf() -> Observable<User>
+    func registerProfileImage(image: UIImage) -> Observable<Void>
 }

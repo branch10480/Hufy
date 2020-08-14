@@ -12,15 +12,17 @@ import RxCocoa
 
 class Tutorial2ViewController: BaseViewController {
     
-    lazy var viewModel: Tutorial2ViewModel = Tutorial2ViewModel()
+    var viewModel: Tutorial2ViewModel!
     
     @IBOutlet weak var mainImageView: UIImageView!
-    @IBOutlet weak var mainImageButton: UIButton!
+    @IBOutlet weak var mainImageButton: BaseButton!
     @IBOutlet var imageButtons: [UIButton]!
     @IBOutlet var imageViews: [UIImageView]!
     @IBOutlet weak var stackViewWithSubPhotosAtFirst: UIStackView!
-    @IBOutlet weak var pickFromLibraryButton: UIButton!
-    
+    @IBOutlet weak var pickFromLibraryButton: BaseButton!
+    @IBOutlet weak var nextButtonWrapperView: UIView!
+    @IBOutlet weak var nextButton: BaseButton!
+
     private let sideMargin: CGFloat = 32
     private let separativeMargin: CGFloat = 16
     
@@ -50,9 +52,31 @@ class Tutorial2ViewController: BaseViewController {
         super.setup()
         title = "Tutorial2VC.title".localized
         pickFromLibraryButton.setTitle("Tutorial2VC.pickFromLibraryButton.title".localized, for: .normal)
-        pickFromLibraryButton.setDefaultDesign(radius: 24)
+        pickFromLibraryButton.type = .defaultDesign
+        nextButton.setTitle("Tutorial2VC.nextButton.title".localized, for: .normal)
+        nextButton.type = .defaultDesign
         
         setImageDesign(view: mainImageView, isMain: true)
+        
+        nextButtonWrapperView.backgroundColor = .other2
+        
+        // pickingFromLibraryObservable
+        let imagePickerStream = Observable.merge([
+            mainImageButton.rx.tap.asObservable(),
+            pickFromLibraryButton.rx.tap.asObservable()
+        ])
+        let pickingFromLibraryObservable = imagePickerStream.flatMap { [weak self] (Void) in
+            return UIImagePickerController.rx.createWithParent(self, animated: true) { picker in
+                picker.sourceType = .photoLibrary
+                picker.allowsEditing = true
+            }
+        }.flatMap { (imagePicker: UIImagePickerController) in
+            return imagePicker.rx.didFinishPickingMediaWithInfo
+        }.do(onNext: { [weak self] dic in
+            self?.presentedViewController?.dismiss(animated: true, completion: nil)
+        }).map { info in
+            return info[UIImagePickerController.InfoKey.editedImage.rawValue] as? UIImage
+        }
         
         // set sub photos
         for i in 0..<min(images.count, imageViews.count) {
@@ -62,28 +86,22 @@ class Tutorial2ViewController: BaseViewController {
         }
         var buttonObservables: [Observable<UIImage?>] = []
         for i in 0..<min(images.count, imageButtons.count) {
+            let image = self.images[i]
             let observable = imageButtons[i].rx.tap.flatMap {
-                return Observable<Int>.create { observer -> Disposable in
-                    observer.onNext(i)
-                    observer.onCompleted()
-                    return Disposables.create()
-                }
-            }.flatMap { tag in
                 Observable<UIImage?>.create { observer in
-                    observer.onNext(self.images[tag])
+                    observer.onNext(image)
                     observer.onCompleted()
                     return Disposables.create()
                 }
             }
             buttonObservables.append(observable)
         }
-
-        buttonObservables.forEach { observable in
-            observable.subscribe(onNext: { [weak self] image in
-                self?.mainImageView.image = image
-            }).disposed(by: disposeBag)
-        }
         
+        viewModel = Tutorial2ViewModel(
+            pickingFromLibraryObservable: pickingFromLibraryObservable,
+            subPhotoButtonObservables: buttonObservables,
+            manager: AccountManager()
+        )
     }
     
     private func setImageDesign(view: UIView, isMain: Bool) {
@@ -102,23 +120,10 @@ class Tutorial2ViewController: BaseViewController {
     }
     
     private func bind() {
-        let imagePickerStream = Observable.merge([
-            mainImageButton.rx.tap.asObservable(),
-            pickFromLibraryButton.rx.tap.asObservable()
-        ])
-        imagePickerStream.flatMap { [weak self] (Void) in
-            return UIImagePickerController.rx.createWithParent(self, animated: true) { picker in
-                picker.sourceType = .photoLibrary
-                picker.allowsEditing = true
-            }
-        }.flatMap { (imagePicker: UIImagePickerController) in
-            return imagePicker.rx.didFinishPickingMediaWithInfo
-        }.do(onNext: { [weak self] dic in
-            self?.presentedViewController?.dismiss(animated: true, completion: nil)
-        }).map { info in
-            return info[UIImagePickerController.InfoKey.editedImage.rawValue] as? UIImage
-        }.bind(to: mainImageView.rx.image)
-        .disposed(by: disposeBag)
+        viewModel.mainPhoto.bind(to: mainImageView.rx.image)
+            .disposed(by: disposeBag)
+        viewModel.isNextButtonEnabled.bind(to: nextButton.rx.isEnabled)
+            .disposed(by: disposeBag)
     }
 
 }

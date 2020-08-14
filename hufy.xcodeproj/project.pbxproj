@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		48A558D624E6AECC00D37C61 /* BaseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A558D524E6AECC00D37C61 /* BaseButton.swift */; };
 		4905659B24E121F00082B42B /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4905659924E121F00082B42B /* TabBarViewController.swift */; };
 		4905659C24E121F00082B42B /* TabBarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4905659A24E121F00082B42B /* TabBarViewController.xib */; };
 		490565A024E122110082B42B /* TutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4905659E24E122110082B42B /* TutorialViewController.swift */; };
@@ -52,6 +53,7 @@
 /* Begin PBXFileReference section */
 		3D8497433C57FC67605D2E8D /* Pods-hufy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hufy.debug.xcconfig"; path = "Target Support Files/Pods-hufy/Pods-hufy.debug.xcconfig"; sourceTree = "<group>"; };
 		3F924CCDC972D1FE38942A57 /* Pods-hufy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hufy.release.xcconfig"; path = "Target Support Files/Pods-hufy/Pods-hufy.release.xcconfig"; sourceTree = "<group>"; };
+		48A558D524E6AECC00D37C61 /* BaseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseButton.swift; sourceTree = "<group>"; };
 		4905659924E121F00082B42B /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		4905659A24E121F00082B42B /* TabBarViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TabBarViewController.xib; sourceTree = "<group>"; };
 		4905659E24E122110082B42B /* TutorialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialViewController.swift; sourceTree = "<group>"; };
@@ -135,6 +137,14 @@
 				3F924CCDC972D1FE38942A57 /* Pods-hufy.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		48A558D424E6AEB400D37C61 /* Parts */ = {
+			isa = PBXGroup;
+			children = (
+				48A558D524E6AECC00D37C61 /* BaseButton.swift */,
+			);
+			path = Parts;
 			sourceTree = "<group>";
 		};
 		4905659824E121D70082B42B /* TabBar */ = {
@@ -252,8 +262,8 @@
 				490565A924E126400082B42B /* Constants */,
 				49A3BDDD24E0FF300025F38F /* Common */,
 				4941271724DDA7E5008768F9 /* Views */,
-				4941271E24DDA87E008768F9 /* Resources */,
 				49A3BDF124E117F70025F38F /* Models */,
+				4941271E24DDA87E008768F9 /* Resources */,
 				4941271D24DDA86F008768F9 /* Others */,
 				4941271024DDA749008768F9 /* Target */,
 				4941270724DDA433008768F9 /* LaunchScreen.storyboard */,
@@ -290,6 +300,7 @@
 		4941271724DDA7E5008768F9 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				48A558D424E6AEB400D37C61 /* Parts */,
 				490565CC24E194110082B42B /* Tutorial2 */,
 				4905659D24E121F80082B42B /* Tutorial */,
 				4905659824E121D70082B42B /* TabBar */,
@@ -512,6 +523,7 @@
 				490565CF24E194290082B42B /* Tutorial2ViewController.swift in Sources */,
 				499E7F1724E2EBD80005FFEF /* RxImagePickerDelegateProxy.swift in Sources */,
 				490565A324E1226D0082B42B /* TutorialViewModel.swift in Sources */,
+				48A558D624E6AECC00D37C61 /* BaseButton.swift in Sources */,
 				490565C024E132120082B42B /* String+.swift in Sources */,
 				49A3BDF524E11CDF0025F38F /* AccuntManager.swift in Sources */,
 				499E7F1624E2EBD80005FFEF /* UIImagePickerController+RxCreate.swift in Sources */,

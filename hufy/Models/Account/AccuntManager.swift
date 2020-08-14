@@ -87,4 +87,19 @@ final class AccountManager: AccountManagerProtocol {
             return Disposables.create()
         }
     }
+    
+    // TODO: Mock
+    func registerProfileImage(image: UIImage) -> Observable<Void> {
+        return Observable<Void>.create { observer in
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                if true {
+                    observer.onNext(())
+                    observer.onCompleted()
+                } else {
+                    observer.onError(AccountManagerError.unknown)
+                }
+            }
+            return Disposables.create()
+        }
+    }
 }
