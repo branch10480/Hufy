@@ -11,6 +11,7 @@ import FirebaseAuth
 import FirebaseFirestore
 import FirebaseFirestoreSwift
 import RxSwift
+import FirebaseStorage
 
 final class AccountManager: AccountManagerProtocol {
     
@@ -87,16 +88,36 @@ final class AccountManager: AccountManagerProtocol {
             return Disposables.create()
         }
     }
-    
-    // TODO: Mock
-    func registerProfileImage(image: UIImage) -> Observable<Void> {
-        return Observable<Void>.create { observer in
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                if true {
-                    observer.onNext(())
-                    observer.onCompleted()
-                } else {
+
+    // (Int64, Int64): (completedUnitCount, totalUnitCount)
+    func registerProfileImage(image: UIImage) -> Observable<(Int64, Int64)> {
+        return Observable<(Int64, Int64)>.create { observer in
+            guard let currentUser = Auth.auth().currentUser else {
+                observer.onError(AccountManagerError.failToGetFirebaseAuthUser)
+                return Disposables.create()
+            }
+            guard let data = image.jpegData(compressionQuality: 0.8) else {
+                observer.onError(AccountManagerError.failToGetConvertedData)
+                return Disposables.create()
+            }
+            let profileImageRef = Storage.storage().reference().child(currentUser.uid + "/myProfileImage.jpg")
+            
+            let uploadTask = profileImageRef.putData(data, metadata: nil) { metadata, error in
+                if let error = error {
+                    observer.onError(error)
+                    return
+                }
+            }
+            uploadTask.observe(.progress) { snapshot in
+                guard let progress = snapshot.progress else {
                     observer.onError(AccountManagerError.unknown)
+                    return
+                }
+                let completedUnitCount = progress.completedUnitCount
+                let totalUnitCount = progress.totalUnitCount
+                observer.onNext((completedUnitCount, totalUnitCount))
+                if totalUnitCount == completedUnitCount {
+                    observer.onCompleted()
                 }
             }
             return Disposables.create()

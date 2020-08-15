@@ -56,11 +56,11 @@ final class AccountManagerMock: AccountManagerProtocol {
         }
     }
     
-    func registerProfileImage(image: UIImage) -> Observable<Void> {
-        return Observable<Void>.create { observer in
+    func registerProfileImage(image: UIImage) -> Observable<(Int64, Int64)> {
+        return Observable<(Int64, Int64)>.create { observer in
             DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                 if true {
-                    observer.onNext(())
+                    observer.onNext((1, 1))
                     observer.onCompleted()
                 } else {
                     observer.onError(AccountManagerError.unknown)

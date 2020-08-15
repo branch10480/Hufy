@@ -13,6 +13,7 @@ target 'hufy' do
   pod 'Firebase/Auth'
   pod 'Firebase/Firestore'
   pod 'FirebaseFirestoreSwift'
+  pod 'Firebase/Storage'
   pod 'MBProgressHUD', '~> 1.2.0'
 
 end

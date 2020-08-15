@@ -12,6 +12,7 @@ import RxSwift
 enum AccountManagerError: Error {
     case unknown
     case failToGetFirebaseAuthUser
+    case failToGetConvertedData
 }
 
 protocol AccountManagerProtocol {
@@ -19,5 +20,5 @@ protocol AccountManagerProtocol {
     func firebaseAuthAnonymousLogin() -> Observable<Void>
     func createUser() -> Observable<Void>
     func fetchUserSelf() -> Observable<User>
-    func registerProfileImage(image: UIImage) -> Observable<Void>
+    func registerProfileImage(image: UIImage) -> Observable<(Int64, Int64)>
 }
