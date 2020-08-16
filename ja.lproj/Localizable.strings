@@ -11,3 +11,4 @@
 "Tutorial2VC.title" = "アイコンを登録しよう！";
 "Tutorial2VC.pickFromLibraryButton.title" = "ライブラリから選択";
 "Tutorial2VC.nextButton.title" = "次へ";
+"Tutorial3VC.title" = "名前を入力しよう！";

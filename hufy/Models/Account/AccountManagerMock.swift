@@ -60,8 +60,11 @@ final class AccountManagerMock: AccountManagerProtocol {
         return Observable<(Int64, Int64)>.create { observer in
             DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                 if true {
-                    observer.onNext((1, 1))
-                    observer.onCompleted()
+                    observer.onNext((0, 1))
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                        observer.onNext((1, 1))
+                        observer.onCompleted()
+                    }
                 } else {
                     observer.onError(AccountManagerError.unknown)
                 }

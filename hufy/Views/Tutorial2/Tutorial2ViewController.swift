@@ -100,7 +100,8 @@ class Tutorial2ViewController: BaseViewController {
         viewModel = Tutorial2ViewModel(
             pickingFromLibraryObservable: pickingFromLibraryObservable,
             subPhotoButtonObservables: buttonObservables,
-            manager: AccountManager()
+            nextButtonTap: nextButton.rx.tap.asObservable(),
+            manager: AccountManagerMock()
         )
     }
     
@@ -120,10 +121,26 @@ class Tutorial2ViewController: BaseViewController {
     }
     
     private func bind() {
+        viewModel.isLoading.asDriver().drive(onNext: { [weak self] isLoading in
+            guard let self = self else { return }
+            if isLoading {
+                self.progressViewService.show(view: self.view)
+            } else {
+                self.progressViewService.dismiss(view: self.view)
+            }
+        }).disposed(by: disposeBag)
+
         viewModel.mainPhoto.bind(to: mainImageView.rx.image)
             .disposed(by: disposeBag)
         viewModel.isNextButtonEnabled.bind(to: nextButton.rx.isEnabled)
             .disposed(by: disposeBag)
+        viewModel.imageUploadComplete.subscribe(onNext: { [weak self] result in
+            guard result else {
+                return
+            }
+            let vc = Tutorial3ViewController()
+            self?.navigationController?.pushViewController(vc, animated: true)
+        }).disposed(by: disposeBag)
     }
 
 }
