@@ -123,4 +123,23 @@ final class AccountManager: AccountManagerProtocol {
             return Disposables.create()
         }
     }
+    
+    func getProfileImageURL() -> Observable<URL?> {
+        return Observable<URL?>.create { observer in
+            guard let currentUser = Auth.auth().currentUser else {
+                observer.onError(AccountManagerError.failToGetFirebaseAuthUser)
+                return Disposables.create()
+            }
+            let profileImageRef = Storage.storage().reference().child(currentUser.uid + "/myProfileImage.jpg")
+            profileImageRef.downloadURL(completion: { url, error in
+                if let error = error {
+                    observer.onError(error)
+                    return
+                }
+                observer.onNext(url)
+                observer.onCompleted()
+            })
+            return Disposables.create()
+        }
+    }
 }

@@ -10,6 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="Tutorial3ViewController" customModule="hufy" customModuleProvider="target">
             <connections>
+                <outlet property="profileImageView" destination="0jd-8d-PHS" id="uyn-Aw-nMw"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -128,6 +129,7 @@
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="leading" secondItem="44I-zR-JqV" secondAttribute="leading" id="dvN-db-eQu"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="leading" secondItem="OvI-Uj-TYx" secondAttribute="leading" id="h68-Gx-hRP"/>
                 <constraint firstItem="44I-zR-JqV" firstAttribute="bottom" secondItem="i5M-Pr-FkT" secondAttribute="bottom" id="kTy-um-Zo1"/>
+                <constraint firstItem="0jd-8d-PHS" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" multiplier="0.333333" id="t1t-io-SSj"/>
             </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>

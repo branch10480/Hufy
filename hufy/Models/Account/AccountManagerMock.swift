@@ -72,4 +72,12 @@ final class AccountManagerMock: AccountManagerProtocol {
             return Disposables.create()
         }
     }
+    
+    func getProfileImageURL() -> Observable<URL?> {
+        return Observable<URL?>.create { observer -> Disposable in
+            observer.onNext(URL(string: ""))
+            observer.onCompleted()
+            return Disposables.create()
+        }
+    }
 }

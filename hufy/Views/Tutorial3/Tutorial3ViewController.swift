@@ -7,15 +7,21 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
+import Kingfisher
 
 class Tutorial3ViewController: BaseViewController {
     
-    lazy var viewModel: Tutorial3ViewModel = Tutorial3ViewModel()
+    @IBOutlet weak var profileImageView: UIImageView!
+
+    lazy var viewModel: Tutorial3ViewModel = Tutorial3ViewModel(
+        manager: AccountManager()
+    )
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        bind()
     }
     
     override func setup() {
@@ -24,6 +30,10 @@ class Tutorial3ViewController: BaseViewController {
     }
     
     private func bind() {
+        viewModel.profileImageURL
+        .subscribe(onNext: { [weak self] url in
+            self?.profileImageView.kf.setImage(with: url)
+        }).disposed(by: disposeBag)
     }
 
 }
