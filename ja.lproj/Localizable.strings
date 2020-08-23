@@ -12,3 +12,13 @@
 "Tutorial2VC.pickFromLibraryButton.title" = "ライブラリから選択";
 "Tutorial2VC.nextButton.title" = "次へ";
 "Tutorial3VC.title" = "名前を入力しよう！";
+"Tutorial3VC.nameLabel.text" = "あなたの名前";
+"Tutorial3VC.nextButton.title" = "次へ";
+"Tutorial3VC.nameTextField.placeholder" = "名前を1〜20文字で入力";
+"TabBarViewController.item1.title" = "ホーム";
+"TabBarViewController.item2.title" = "大事な日";
+"TabBarViewController.item3.title" = "TODO";
+"TabBarViewController.item4.title" = "設定";
+"AnniversaryVC.title" = "大事な日";
+"TodoVC.title" = "TODO";
+"SettingVC.title" = "設定";

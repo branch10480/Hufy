@@ -16,6 +16,9 @@ struct User: Mappable {
     var name: String?
     var iconURL: String?
     var partnerID: String?
+    var tutorial1Done: Bool = true
+    var tutorial2Done: Bool = false
+    var tutorial3Done: Bool = false
     var createdAt: Timestamp?
     var updatedAt: Timestamp?
     
@@ -29,6 +32,9 @@ struct User: Mappable {
         id <- map["id"]
         name <- map["name"]
         iconURL <- map["iconURL"]
+        tutorial1Done <- map["tutorial1Done"]
+        tutorial2Done <- map["tutorial2Done"]
+        tutorial3Done <- map["tutorial3Done"]
         partnerID <- map["partnerID"]
         createdAt <- map["createdAt"]
         updatedAt <- map["updatedAt"]
@@ -39,6 +45,9 @@ struct User: Mappable {
         if let name         = name { dic["name"] = name }
         if let iconURL      = iconURL { dic["iconURL"] = iconURL }
         if let partnerID    = partnerID { dic["partnerID"] = partnerID }
+        dic["tutorial1Done"] = tutorial1Done
+        dic["tutorial2Done"] = tutorial2Done
+        dic["tutorial3Done"] = tutorial3Done
         if let createdAt = createdAt {
             dic["createdAt"] = createdAt
         } else {

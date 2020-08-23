@@ -307,6 +307,7 @@
                             </constraints>
                         </view>
                     </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="bottom" secondItem="IS4-2N-VxT" secondAttribute="bottom" id="8LC-Zg-5Mz"/>
                         <constraint firstItem="IS4-2N-VxT" firstAttribute="top" secondItem="gEd-tE-CpO" secondAttribute="top" id="I31-wm-TAa"/>

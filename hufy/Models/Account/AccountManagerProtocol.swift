@@ -19,6 +19,7 @@ protocol AccountManagerProtocol {
     func isLiggedIn() -> Bool
     func firebaseAuthAnonymousLogin() -> Observable<Void>
     func createUser() -> Observable<Void>
+    func updateUser(user: User) -> Observable<Void>
     func fetchUserSelf() -> Observable<User>
     func registerProfileImage(image: UIImage) -> Observable<(Int64, Int64)>
     func getProfileImageURL() -> Observable<URL?>

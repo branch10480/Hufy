@@ -9,7 +9,13 @@
 import UIKit
 
 extension UIColor {
-    static let background: UIColor = #colorLiteral(red: 0.9998963475, green: 1, blue: 0.9955725074, alpha: 1)
+    static var background: UIColor {
+        if #available(iOS 13.0, *) {
+            return UIColor.systemBackground
+        } else {
+            return #colorLiteral(red: 0.9998963475, green: 1, blue: 0.9955725074, alpha: 1)
+        }
+    }
     static let headerText: UIColor = #colorLiteral(red: 0.1517620683, green: 0.1381035149, blue: 0.2631978393, alpha: 1)
     static let text: UIColor = #colorLiteral(red: 0.176538676, green: 0.1990855038, blue: 0.2893102467, alpha: 1)
     static let buttonBackground: UIColor = #colorLiteral(red: 1, green: 0.8468388915, blue: 0.02265504748, alpha: 1)

@@ -9,11 +9,13 @@
 import UIKit
 import RxSwift
 import RxRelay
+import Kingfisher
 
 class Tutorial2ViewModel: BaseViewModel {
     var mainPhoto: BehaviorRelay<UIImage?> = .init(value: nil)
     var isNextButtonEnabled: BehaviorRelay<Bool> = .init(value: false)
-    var imageUploadComplete: BehaviorRelay<Bool> = .init(value: false)
+    var allowGoingToNextView: Observable<URL?>!
+    private var imageUploadComplete: BehaviorRelay<Bool> = .init(value: false)
     private var manager: AccountManagerProtocol!
     
     override init() {
@@ -72,5 +74,41 @@ class Tutorial2ViewModel: BaseViewModel {
             print(error.localizedDescription)
             self?.isLoading.accept(false)
         }).disposed(by: disposeBag)
+        
+        self.allowGoingToNextView = imageUploadComplete
+            .filter { $0 }
+            .flatMap { _ in
+                return manager.getProfileImageURL()
+            }.filter { url -> Bool in
+                return url != nil
+            }
+            // Firebase Storageのアップロードが反映されるまでに間隔があるようなので遅延させる
+            .do(onNext: { [weak self] _ in
+                self?.isLoading.accept(true)
+            })
+            .delay(.seconds(1), scheduler: MainScheduler.instance)
+            .flatMap { url in
+                return Observable<URL?>.create { [weak self] observer -> Disposable in
+                    ImageCache.default.clearMemoryCache()
+                    let prefetcher = ImagePrefetcher(urls: [url!]) {
+                        skippedResources, failedResources, completedResources in
+
+                        if completedResources.count > 0 {
+                            observer.onNext(url)
+                            observer.onCompleted()
+                        }
+                        self?.isLoading.accept(false)
+                    }
+                    prefetcher.start()
+                    return Disposables.create()
+                }
+            }.do(onNext: { [weak self] _ in
+                guard let self = self else { return }
+                manager.fetchUserSelf().flatMapLatest { user -> Observable<Void> in
+                    var user = user
+                    user.tutorial2Done = true
+                    return manager.updateUser(user: user)
+                }.subscribe().disposed(by: self.disposeBag)
+            })
     }
 }

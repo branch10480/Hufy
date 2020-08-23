@@ -11,7 +11,7 @@ import RxSwift
 
 class EntryViewController: BaseViewController {
     
-    private lazy var viewModel: EntryViewModel = EntryViewModel(accountManager: AccountManagerMock())
+    private lazy var viewModel: EntryViewModel = EntryViewModel(accountManager: AccountManager())
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,14 +26,22 @@ class EntryViewController: BaseViewController {
     
     private func bind() {
         
-        viewModel.loginState.asObservable().subscribe(onNext: { [weak self] status in
-            switch status {
-            case .loggedIn:
-                self?.goToTop()
-            case .notLoggedIn:
-                self?.goToStart()
-            }
-        }).disposed(by: disposeBag)
+        viewModel.accountState.asObservable()
+            .skip(1)
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { [weak self] status in
+                switch status {
+                case .notCreated:
+                    self?.goToTutorial1()
+                case .tutorial1Done:
+                    self?.goToTutorial2()
+                case .tutorial2Done:
+                    self?.goToTutorial3()
+                case .tutorial3Done:
+                    self?.goToTop()
+                }
+            })
+            .disposed(by: disposeBag)
     }
     
     private func goToTop() {
@@ -45,8 +53,26 @@ class EntryViewController: BaseViewController {
         present(nc, animated: true, completion: nil)
     }
     
-    private func goToStart() {
+    private func goToTutorial1() {
         let vc = TutorialViewController()
+        let nc = MyNavigationController(rootViewController: vc)
+        nc.setNavigationBarHidden(true, animated: false)
+        nc.modalPresentationStyle = .fullScreen
+        nc.modalTransitionStyle = .crossDissolve
+        present(nc, animated: true, completion: nil)
+    }
+    
+    private func goToTutorial2() {
+        let vc = Tutorial2ViewController()
+        let nc = MyNavigationController(rootViewController: vc)
+        nc.setNavigationBarHidden(true, animated: false)
+        nc.modalPresentationStyle = .fullScreen
+        nc.modalTransitionStyle = .crossDissolve
+        present(nc, animated: true, completion: nil)
+    }
+    
+    private func goToTutorial3() {
+        let vc = Tutorial3ViewController()
         let nc = MyNavigationController(rootViewController: vc)
         nc.setNavigationBarHidden(true, animated: false)
         nc.modalPresentationStyle = .fullScreen

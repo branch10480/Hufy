@@ -9,6 +9,7 @@
 import UIKit
 import FirebaseCore
 import FirebaseFirestore
+import IQKeyboardManagerSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -22,7 +23,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         RxImagePickerDelegateProxy.register { parent -> RxImagePickerDelegateProxy in
             return RxImagePickerDelegateProxy(imagePicker: parent)
+            
         }
+        
+        IQKeyboardManager.shared.enable = true
         
         return true
     }

@@ -66,6 +66,23 @@ final class AccountManager: AccountManagerProtocol {
         }
     }
     
+    func updateUser(user: User) -> Observable<Void> {
+        return Observable<Void>.create { observer in
+            
+            // Request Firestore update
+            let userRef = self.userDB.document(user.id)
+            userRef.setData(user.dictionary, merge: true) { error in
+                if let error = error {
+                    observer.onError(error)
+                } else {
+                    observer.onNext(())
+                    observer.onCompleted()
+                }
+            }
+            return Disposables.create()
+        }
+    }
+    
     func fetchUserSelf() -> Observable<User> {
         return Observable<User>.create { [weak self] observer -> Disposable in
             guard let self = self,

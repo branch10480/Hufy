@@ -12,3 +12,4 @@ $(SRCROOT)/Carthage/Build/iOS/RxRelay.framework
 $(SRCROOT)/Carthage/Build/iOS/RxSwift.framework
 $(SRCROOT)/Carthage/Build/iOS/ObjectMapper.framework
 $(SRCROOT)/Carthage/Build/iOS/Kingfisher.framework
+$(SRCROOT)/Carthage/Build/iOS/IQKeyboardManagerSwift.framework

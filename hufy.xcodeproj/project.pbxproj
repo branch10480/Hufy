@@ -11,6 +11,16 @@
 		4888085A24E8E9F3001257A4 /* Tutorial3ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4888085824E8E9F3001257A4 /* Tutorial3ViewController.xib */; };
 		4888085C24E8EA05001257A4 /* Tutorial3ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4888085B24E8EA05001257A4 /* Tutorial3ViewModel.swift */; };
 		48A558D624E6AECC00D37C61 /* BaseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A558D524E6AECC00D37C61 /* BaseButton.swift */; };
+		48FE669424F10A80003B2B87 /* Design.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48FE669324F10A80003B2B87 /* Design.swift */; };
+		48FE669624F111DF003B2B87 /* UITextField+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48FE669524F111DF003B2B87 /* UITextField+.swift */; };
+		48FE669D24F11CE2003B2B87 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48FE669B24F11CE2003B2B87 /* HomeViewController.swift */; };
+		48FE669E24F11CE2003B2B87 /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48FE669C24F11CE2003B2B87 /* HomeViewController.xib */; };
+		48FE66A124F11CF1003B2B87 /* AnniversaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48FE669F24F11CF1003B2B87 /* AnniversaryViewController.swift */; };
+		48FE66A224F11CF1003B2B87 /* AnniversaryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48FE66A024F11CF1003B2B87 /* AnniversaryViewController.xib */; };
+		48FE66A624F11D0A003B2B87 /* TodoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48FE66A424F11D0A003B2B87 /* TodoViewController.swift */; };
+		48FE66A724F11D0A003B2B87 /* TodoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48FE66A524F11D0A003B2B87 /* TodoViewController.xib */; };
+		48FE66AA24F11D19003B2B87 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48FE66A824F11D19003B2B87 /* SettingViewController.swift */; };
+		48FE66AB24F11D19003B2B87 /* SettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48FE66A924F11D19003B2B87 /* SettingViewController.xib */; };
 		4905659B24E121F00082B42B /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4905659924E121F00082B42B /* TabBarViewController.swift */; };
 		4905659C24E121F00082B42B /* TabBarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4905659A24E121F00082B42B /* TabBarViewController.xib */; };
 		490565A024E122110082B42B /* TutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4905659E24E122110082B42B /* TutorialViewController.swift */; };
@@ -60,6 +70,16 @@
 		4888085824E8E9F3001257A4 /* Tutorial3ViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Tutorial3ViewController.xib; sourceTree = "<group>"; };
 		4888085B24E8EA05001257A4 /* Tutorial3ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tutorial3ViewModel.swift; sourceTree = "<group>"; };
 		48A558D524E6AECC00D37C61 /* BaseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseButton.swift; sourceTree = "<group>"; };
+		48FE669324F10A80003B2B87 /* Design.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Design.swift; sourceTree = "<group>"; };
+		48FE669524F111DF003B2B87 /* UITextField+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+.swift"; sourceTree = "<group>"; };
+		48FE669B24F11CE2003B2B87 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		48FE669C24F11CE2003B2B87 /* HomeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeViewController.xib; sourceTree = "<group>"; };
+		48FE669F24F11CF1003B2B87 /* AnniversaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnniversaryViewController.swift; sourceTree = "<group>"; };
+		48FE66A024F11CF1003B2B87 /* AnniversaryViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AnniversaryViewController.xib; sourceTree = "<group>"; };
+		48FE66A424F11D0A003B2B87 /* TodoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoViewController.swift; sourceTree = "<group>"; };
+		48FE66A524F11D0A003B2B87 /* TodoViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TodoViewController.xib; sourceTree = "<group>"; };
+		48FE66A824F11D19003B2B87 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		48FE66A924F11D19003B2B87 /* SettingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingViewController.xib; sourceTree = "<group>"; };
 		4905659924E121F00082B42B /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		4905659A24E121F00082B42B /* TabBarViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TabBarViewController.xib; sourceTree = "<group>"; };
 		4905659E24E122110082B42B /* TutorialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialViewController.swift; sourceTree = "<group>"; };
@@ -163,9 +183,49 @@
 			path = Parts;
 			sourceTree = "<group>";
 		};
+		48FE669724F11C7C003B2B87 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				48FE669B24F11CE2003B2B87 /* HomeViewController.swift */,
+				48FE669C24F11CE2003B2B87 /* HomeViewController.xib */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		48FE669824F11C87003B2B87 /* Anniversary */ = {
+			isa = PBXGroup;
+			children = (
+				48FE669F24F11CF1003B2B87 /* AnniversaryViewController.swift */,
+				48FE66A024F11CF1003B2B87 /* AnniversaryViewController.xib */,
+			);
+			path = Anniversary;
+			sourceTree = "<group>";
+		};
+		48FE669924F11CA7003B2B87 /* Todo */ = {
+			isa = PBXGroup;
+			children = (
+				48FE66A424F11D0A003B2B87 /* TodoViewController.swift */,
+				48FE66A524F11D0A003B2B87 /* TodoViewController.xib */,
+			);
+			path = Todo;
+			sourceTree = "<group>";
+		};
+		48FE669A24F11CB1003B2B87 /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				48FE66A824F11D19003B2B87 /* SettingViewController.swift */,
+				48FE66A924F11D19003B2B87 /* SettingViewController.xib */,
+			);
+			path = Setting;
+			sourceTree = "<group>";
+		};
 		4905659824E121D70082B42B /* TabBar */ = {
 			isa = PBXGroup;
 			children = (
+				48FE669724F11C7C003B2B87 /* Home */,
+				48FE669824F11C87003B2B87 /* Anniversary */,
+				48FE669924F11CA7003B2B87 /* Todo */,
+				48FE669A24F11CB1003B2B87 /* Setting */,
 				4905659924E121F00082B42B /* TabBarViewController.swift */,
 				4905659A24E121F00082B42B /* TabBarViewController.xib */,
 			);
@@ -210,6 +270,8 @@
 				490565AF24E129330082B42B /* UIButton+.swift */,
 				490565B124E129B60082B42B /* UIImage+.swift */,
 				490565BF24E132120082B42B /* String+.swift */,
+				48FE669324F10A80003B2B87 /* Design.swift */,
+				48FE669524F111DF003B2B87 /* UITextField+.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -433,10 +495,9 @@
 			};
 			buildConfigurationList = 494126F424DDA431008768F9 /* Build configuration list for PBXProject "hufy" */;
 			compatibilityVersion = "Xcode 9.3";
-			developmentRegion = en;
+			developmentRegion = ja;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				en,
 				Base,
 				ja,
 			);
@@ -458,13 +519,17 @@
 				490565A124E122110082B42B /* TutorialViewController.xib in Resources */,
 				4941271C24DDA84E008768F9 /* Main.storyboard in Resources */,
 				4888085A24E8E9F3001257A4 /* Tutorial3ViewController.xib in Resources */,
+				48FE66A724F11D0A003B2B87 /* TodoViewController.xib in Resources */,
+				48FE66A224F11CF1003B2B87 /* AnniversaryViewController.xib in Resources */,
 				490565D024E194290082B42B /* Tutorial2ViewController.xib in Resources */,
 				4941272024DDA958008768F9 /* GoogleService-Info.plist in Resources */,
+				48FE66AB24F11D19003B2B87 /* SettingViewController.xib in Resources */,
 				490565B624E130120082B42B /* Pacifico-Regular.ttf in Resources */,
 				4941270924DDA433008768F9 /* LaunchScreen.storyboard in Resources */,
 				490565BC24E131B50082B42B /* Localizable.strings in Resources */,
 				4941270624DDA433008768F9 /* Assets.xcassets in Resources */,
 				4905659C24E121F00082B42B /* TabBarViewController.xib in Resources */,
+				48FE669E24F11CE2003B2B87 /* HomeViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -553,18 +618,24 @@
 				490565AD24E128130082B42B /* BaseViewController.swift in Sources */,
 				490565B824E131090082B42B /* Constant.swift in Sources */,
 				490565A824E123F30082B42B /* FirebaseManagerProtocol.swift in Sources */,
+				48FE669624F111DF003B2B87 /* UITextField+.swift in Sources */,
 				4941271624DDA7B5008768F9 /* AppConfig.swift in Sources */,
+				48FE66A124F11CF1003B2B87 /* AnniversaryViewController.swift in Sources */,
 				49A3BDDF24E0FF3D0025F38F /* BaseViewModel.swift in Sources */,
 				490565C524E146930082B42B /* ProgressViewService.swift in Sources */,
 				490565C824E146A90082B42B /* ProgressViewServiceProtocol.swift in Sources */,
+				48FE66A624F11D0A003B2B87 /* TodoViewController.swift in Sources */,
 				499E7F1824E2EBD80005FFEF /* UIImagePickerController+Rx.swift in Sources */,
 				4941271A24DDA836008768F9 /* EntryViewController.swift in Sources */,
+				48FE669D24F11CE2003B2B87 /* HomeViewController.swift in Sources */,
 				490565AB24E1264F0082B42B /* Color.swift in Sources */,
 				49A3BDF324E118F20025F38F /* EntryViewModel.swift in Sources */,
 				49A3BDF724E11D6A0025F38F /* AccountManagerProtocol.swift in Sources */,
+				48FE66AA24F11D19003B2B87 /* SettingViewController.swift in Sources */,
 				494126FD24DDA431008768F9 /* AppDelegate.swift in Sources */,
 				490565D424E194F60082B42B /* MyNavigationController.swift in Sources */,
 				490565CB24E152FF0082B42B /* User.swift in Sources */,
+				48FE669424F10A80003B2B87 /* Design.swift in Sources */,
 				490565C224E144F00082B42B /* AccountManagerMock.swift in Sources */,
 				490565D224E194370082B42B /* Tutorial2ViewModel.swift in Sources */,
 				494126FF24DDA431008768F9 /* SceneDelegate.swift in Sources */,

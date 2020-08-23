@@ -19,20 +19,21 @@ class TutorialViewModel: BaseViewModel {
     init(tapObservable: Observable<Void>, manager: AccountManagerProtocol) {
         self.manager = manager
         super.init()
-        tapObservable.subscribe(onNext: { [weak self] in
-            guard let self = self else { return }
-            self.isLoading.accept(true)
-            // 使ってみるボタンを押したとき
-            self.manager.firebaseAuthAnonymousLogin().subscribe(onNext: { [weak self] in
-                self?.isLoading.accept(false)
-                self?.createUserToFirestore()
-            }, onError: { [weak self] error in
-                print("++ Firebase Auth Error ++")
-                print(error.localizedDescription)
-                self?.isLoading.accept(false)
-            }).disposed(by: self.disposeBag)
-            
-        }).disposed(by: disposeBag)
+        tapObservable
+            .do { [weak self] in
+                self?.isLoading.accept(true)
+            }
+            .flatMapLatest({ _ in
+                return self.manager.firebaseAuthAnonymousLogin()
+            })
+            .subscribe(onNext: { [weak self] in
+                    self?.isLoading.accept(false)
+                    self?.createUserToFirestore()
+                }, onError: { [weak self] error in
+                    print("++ Firebase Auth Error ++")
+                    print(error.localizedDescription)
+                    self?.isLoading.accept(false)
+            }).disposed(by: disposeBag)
     }
     
     private func createUserToFirestore() {

@@ -46,6 +46,20 @@ final class AccountManagerMock: AccountManagerProtocol {
         }
     }
     
+    func updateUser(user: User) -> Observable<Void> {
+        return Observable.create { observer -> Disposable in
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                if true {
+                    observer.onNext(())
+                    observer.onCompleted()
+                } else {
+                    observer.onError(AccountManagerError.unknown)
+                }
+            }
+            return Disposables.create()
+        }
+    }
+    
     func fetchUserSelf() -> Observable<User> {
         return Observable<User>.create { observer -> Disposable in
             DispatchQueue.global().asyncAfter(deadline: .now() + 2) {

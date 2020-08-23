@@ -9,6 +9,8 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import RxRelay
+import Kingfisher
 
 class Tutorial2ViewController: BaseViewController {
     
@@ -134,13 +136,11 @@ class Tutorial2ViewController: BaseViewController {
             .disposed(by: disposeBag)
         viewModel.isNextButtonEnabled.bind(to: nextButton.rx.isEnabled)
             .disposed(by: disposeBag)
-        viewModel.imageUploadComplete.subscribe(onNext: { [weak self] result in
-            guard result else {
-                return
-            }
-            let vc = Tutorial3ViewController()
-            self?.navigationController?.pushViewController(vc, animated: true)
-        }).disposed(by: disposeBag)
+        viewModel.allowGoingToNextView
+            .subscribe(onNext: { [weak self] url in
+                let vc = Tutorial3ViewController()
+                vc.profileImageURL = url
+                self?.navigationController?.pushViewController(vc, animated: true)
+            }).disposed(by: disposeBag)
     }
-
 }
