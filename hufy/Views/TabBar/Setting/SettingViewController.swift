@@ -68,10 +68,10 @@ class SettingViewController: BaseViewController {
             switch item {
             case .editName:
                 let vc = Tutorial3ViewController()
-                self?.tabBarController?.navigationController?.pushViewController(vc, animated: true)
+                self?.navigationController?.pushViewController(vc, animated: true)
             case .editIcon:
                 let vc = Tutorial2ViewController()
-                self?.tabBarController?.navigationController?.pushViewController(vc, animated: true)
+                self?.navigationController?.pushViewController(vc, animated: true)
             case .logout:
                 break
             case .contact:
