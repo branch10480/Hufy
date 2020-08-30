@@ -1,0 +1,29 @@
+users:
+  documentId: Auth.id
+
+  id: Auth.id
+  name: String
+  tutorial1Done: Bool
+  tutorial2Done: Bool
+  tutorial3Done: Bool
+  createdAt: Timestamp
+  updatedAt: Timestamp
+  
+  belongingGroups:
+    documentId: todoGroup.id
+
+todoGroups:
+  doumentId: auto
+
+  name: String
+  groupUsers:
+    documentId: user.id
+
+  todos:
+    documentId: auto
+    
+    title: String
+    isDone: Bool
+    doneBy: user.id
+    postedBy: user.id
+

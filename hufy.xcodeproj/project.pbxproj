@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		481B4CC524FA0D5000793E2E /* TodoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 481B4CC424FA0D5000793E2E /* TodoViewModel.swift */; };
+		481B4CC824FA0D9500793E2E /* TodoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 481B4CC724FA0D9500793E2E /* TodoManager.swift */; };
+		481B4CCA24FA0DCF00793E2E /* TodoManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 481B4CC924FA0DCF00793E2E /* TodoManagerProtocol.swift */; };
+		481B4CCC24FA101E00793E2E /* Todo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 481B4CCB24FA101E00793E2E /* Todo.swift */; };
+		481B4CCF24FA19F500793E2E /* TodoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 481B4CCD24FA19F500793E2E /* TodoTableViewCell.swift */; };
+		481B4CD024FA19F500793E2E /* TodoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 481B4CCE24FA19F500793E2E /* TodoTableViewCell.xib */; };
 		4888085924E8E9F3001257A4 /* Tutorial3ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4888085724E8E9F3001257A4 /* Tutorial3ViewController.swift */; };
 		4888085A24E8E9F3001257A4 /* Tutorial3ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4888085824E8E9F3001257A4 /* Tutorial3ViewController.xib */; };
 		4888085C24E8EA05001257A4 /* Tutorial3ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4888085B24E8EA05001257A4 /* Tutorial3ViewModel.swift */; };
@@ -66,6 +72,12 @@
 /* Begin PBXFileReference section */
 		3D8497433C57FC67605D2E8D /* Pods-hufy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hufy.debug.xcconfig"; path = "Target Support Files/Pods-hufy/Pods-hufy.debug.xcconfig"; sourceTree = "<group>"; };
 		3F924CCDC972D1FE38942A57 /* Pods-hufy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hufy.release.xcconfig"; path = "Target Support Files/Pods-hufy/Pods-hufy.release.xcconfig"; sourceTree = "<group>"; };
+		481B4CC424FA0D5000793E2E /* TodoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoViewModel.swift; sourceTree = "<group>"; };
+		481B4CC724FA0D9500793E2E /* TodoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoManager.swift; sourceTree = "<group>"; };
+		481B4CC924FA0DCF00793E2E /* TodoManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoManagerProtocol.swift; sourceTree = "<group>"; };
+		481B4CCB24FA101E00793E2E /* Todo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Todo.swift; sourceTree = "<group>"; };
+		481B4CCD24FA19F500793E2E /* TodoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoTableViewCell.swift; sourceTree = "<group>"; };
+		481B4CCE24FA19F500793E2E /* TodoTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TodoTableViewCell.xib; sourceTree = "<group>"; };
 		4888085724E8E9F3001257A4 /* Tutorial3ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tutorial3ViewController.swift; sourceTree = "<group>"; };
 		4888085824E8E9F3001257A4 /* Tutorial3ViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Tutorial3ViewController.xib; sourceTree = "<group>"; };
 		4888085B24E8EA05001257A4 /* Tutorial3ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tutorial3ViewModel.swift; sourceTree = "<group>"; };
@@ -165,6 +177,15 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		481B4CC624FA0D8900793E2E /* Todo */ = {
+			isa = PBXGroup;
+			children = (
+				481B4CC724FA0D9500793E2E /* TodoManager.swift */,
+				481B4CC924FA0DCF00793E2E /* TodoManagerProtocol.swift */,
+			);
+			path = Todo;
+			sourceTree = "<group>";
+		};
 		4888085624E8E9C9001257A4 /* Tutorial3 */ = {
 			isa = PBXGroup;
 			children = (
@@ -206,6 +227,9 @@
 			children = (
 				48FE66A424F11D0A003B2B87 /* TodoViewController.swift */,
 				48FE66A524F11D0A003B2B87 /* TodoViewController.xib */,
+				481B4CC424FA0D5000793E2E /* TodoViewModel.swift */,
+				481B4CCD24FA19F500793E2E /* TodoTableViewCell.swift */,
+				481B4CCE24FA19F500793E2E /* TodoTableViewCell.xib */,
 			);
 			path = Todo;
 			sourceTree = "<group>";
@@ -297,6 +321,7 @@
 			isa = PBXGroup;
 			children = (
 				490565CA24E152FF0082B42B /* User.swift */,
+				481B4CCB24FA101E00793E2E /* Todo.swift */,
 			);
 			path = DataObjects;
 			sourceTree = "<group>";
@@ -438,6 +463,7 @@
 		49A3BDF124E117F70025F38F /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				481B4CC624FA0D8900793E2E /* Todo */,
 				490565C924E152D90082B42B /* DataObjects */,
 				490565A424E123D20082B42B /* Firebase */,
 				49A3BDF824E11F2E0025F38F /* Account */,
@@ -524,6 +550,7 @@
 				490565D024E194290082B42B /* Tutorial2ViewController.xib in Resources */,
 				4941272024DDA958008768F9 /* GoogleService-Info.plist in Resources */,
 				48FE66AB24F11D19003B2B87 /* SettingViewController.xib in Resources */,
+				481B4CD024FA19F500793E2E /* TodoTableViewCell.xib in Resources */,
 				490565B624E130120082B42B /* Pacifico-Regular.ttf in Resources */,
 				4941270924DDA433008768F9 /* LaunchScreen.storyboard in Resources */,
 				490565BC24E131B50082B42B /* Localizable.strings in Resources */,
@@ -607,10 +634,15 @@
 				499E7F1724E2EBD80005FFEF /* RxImagePickerDelegateProxy.swift in Sources */,
 				490565A324E1226D0082B42B /* TutorialViewModel.swift in Sources */,
 				48A558D624E6AECC00D37C61 /* BaseButton.swift in Sources */,
+				481B4CCC24FA101E00793E2E /* Todo.swift in Sources */,
+				481B4CCA24FA0DCF00793E2E /* TodoManagerProtocol.swift in Sources */,
+				481B4CCF24FA19F500793E2E /* TodoTableViewCell.swift in Sources */,
 				490565C024E132120082B42B /* String+.swift in Sources */,
 				49A3BDF524E11CDF0025F38F /* AccuntManager.swift in Sources */,
 				499E7F1624E2EBD80005FFEF /* UIImagePickerController+RxCreate.swift in Sources */,
+				481B4CC524FA0D5000793E2E /* TodoViewModel.swift in Sources */,
 				4888085C24E8EA05001257A4 /* Tutorial3ViewModel.swift in Sources */,
+				481B4CC824FA0D9500793E2E /* TodoManager.swift in Sources */,
 				490565B224E129B60082B42B /* UIImage+.swift in Sources */,
 				490565B424E12E680082B42B /* Size.swift in Sources */,
 				4905659B24E121F00082B42B /* TabBarViewController.swift in Sources */,
