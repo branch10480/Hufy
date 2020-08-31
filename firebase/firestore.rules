@@ -28,30 +28,20 @@ service cloud.firestore {
   }
 
     match /users/{userID} {
-      allow create: if isUserAuthenticated(userID)
-        && (!('name' in request.resource.data) || (request.resource.data.name is string && request.resource.data.name.size() <= 20))
-        && (!('iconURL' in request.resource.data) || (request.resource.data.iconURL is string && request.resource.data.iconURL.size() <= 1000))
-      ;
+      allow create: if isUserAuthenticated(userID);
       allow update: if isUserAuthenticated(userID);
       allow get: if isUserAuthenticated(userID);
     }
 
     match /todoGroups/{groupID} {
-      allow create: if isAnyAuthenticated()
-        && (request.resource.data.title is string && request.resource.data.title.size() <= 20)
-        && request.resource.data.createdAt == request.time
-        && request.resource.data.updatedAt == request.time
-      ;
+      allow create: if isAnyAuthenticated();
       allow update: if isAnyAuthenticated();
       allow get: if isAnyAuthenticated();
 
       match /todos/{todoID} {
-        allow create: if isAnyAuthenticated()
-          && (request.resource.data.title is string && request.resource.data.title.size() <= 1000)
-          && request.resource.data.createdAt == request.time
-          && request.resource.data.updatedAt == request.time
+        allow create: if isAnyAuthenticated();
         allow update: if isAnyAuthenticated();
-        allow get: if isAnyAuthenticated();
+        allow get, list: if isAnyAuthenticated();
         allow delete: if isAnyAuthenticated();
       }
     }
@@ -62,6 +52,7 @@ service cloud.firestore {
         && request.resource.data.date is timestamp
         && request.resource.data.createdAt == request.time
         && request.resource.data.updatedAt == request.time
+      ;
       allow update: if isAnyAuthenticated();
       allow get: if isAnyAuthenticated();
     }

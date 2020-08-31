@@ -1,8 +1,10 @@
 const admin = require('firebase-admin');
+const { firestore } = require('firebase-admin');
 const myRegion = "asia-northeast1";
 admin.initializeApp();
 const functions = require('firebase-functions').region(myRegion);
 const db = admin.firestore();
+const FieldValue = admin.firestore.FieldValue;
 
 // // Add Message
 // exports.addMessage = functions.https.onRequest(async (req, res) => {
@@ -42,7 +44,9 @@ exports.createTodoGroup = functions.firestore
         const userId = snap.id;
         const todoGroupRef = db.collection('todoGroups').doc();
         const res = todoGroupRef.set({
-            name: "チュートリアル"
+            name: "チュートリアル",
+            craetedAt: FieldValue.serverTimestamp(),
+            updatedAt: FieldValue.serverTimestamp()
         });
         console.log('documentID is', userId);
         // Todoドキュメントに所属ユーザーを登録する

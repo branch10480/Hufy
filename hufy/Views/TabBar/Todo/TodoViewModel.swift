@@ -15,20 +15,7 @@ import FirebaseAuth
 class TodoViewModel: BaseViewModel {
 
     let todos: BehaviorRelay<[TodoSectionModel]> = .init(value: [
-        .init(model: .todo, items: [
-            .row(data: Todo()),
-            .row(data: Todo()),
-            .row(data: Todo()),
-            .row(data: Todo()),
-            .row(data: Todo()),
-            .row(data: Todo()),
-            .row(data: Todo()),
-            .row(data: Todo()),
-            .row(data: Todo()),
-            .row(data: Todo()),
-            .row(data: Todo()),
-            .row(data: Todo())
-        ]),
+        .init(model: .todo, items: []),
         .init(model: .done, items: [])
     ])
     
@@ -43,7 +30,7 @@ class TodoViewModel: BaseViewModel {
         self.accountManager = accountManager
         self.todoManager = todoManager
         super.init()
-        self.setTodoGroupIdToManager()
+        self.bind()
     }
     
     func textFieldDidEndEditing(todo: Todo, text: String) {
@@ -52,10 +39,40 @@ class TodoViewModel: BaseViewModel {
         print("Edited text is '\(text)'")
     }
     
-    private func setTodoGroupIdToManager() {
+    private func bind() {
+        
+        todoManager.todos.subscribe(onNext: { [weak self] todos in
+                self?.setupSectionModels(todos: todos)
+            })
+            .disposed(by: disposeBag)
+        
         accountManager.getTodoGroupId().subscribe(onNext: { [weak self] groupId in
-            self?.todoManager.removeTodoListener()
-            self?.todoManager.setTodoListener(todoGroupId: groupId)
-        }).disposed(by: disposeBag)
+                self?.todoManager.removeTodoListener()
+                self?.todoManager.setTodoListener(todoGroupId: groupId)
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    private func setupSectionModels(todos: [Todo]) {
+        let completed: [Todo] = todos
+            .filter { $0.isDone }
+            .sorted { (todo1, todo2) -> Bool in
+                guard let timestamp1 = todo1.createdAt,
+                      let timestamp2 = todo2.createdAt else { return true }
+                return timestamp1.compare(timestamp2) != .orderedDescending
+            }
+        let incompleted: [Todo] = todos
+            .filter { !$0.isDone }
+            .sorted { (todo1, todo2) -> Bool in
+                guard let timestamp1 = todo1.createdAt,
+                      let timestamp2 = todo2.createdAt else { return true }
+                return timestamp1.compare(timestamp2) != .orderedDescending
+            }
+        let todoSection = TodoSectionModel(model: .todo, items: incompleted.map{ TodoSectionItem.row(data: $0) })
+        let completedSection = TodoSectionModel(model: .todo, items: completed.map{ TodoSectionItem.row(data: $0) })
+        self.todos.accept([
+            todoSection,
+            completedSection
+        ])
     }
 }
