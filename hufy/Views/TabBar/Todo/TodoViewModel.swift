@@ -43,11 +43,19 @@ class TodoViewModel: BaseViewModel {
         self.accountManager = accountManager
         self.todoManager = todoManager
         super.init()
+        self.setTodoGroupIdToManager()
     }
     
     func textFieldDidEndEditing(todo: Todo, text: String) {
         print("== Text editing is finished ==")
         print(todo.dictionary)
         print("Edited text is '\(text)'")
+    }
+    
+    private func setTodoGroupIdToManager() {
+        accountManager.getTodoGroupId().subscribe(onNext: { [weak self] groupId in
+            self?.todoManager.removeTodoListener()
+            self?.todoManager.setTodoListener(todoGroupId: groupId)
+        }).disposed(by: disposeBag)
     }
 }

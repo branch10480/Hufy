@@ -35,7 +35,6 @@ class Tutorial3ViewModel: BaseViewModel {
         // プロフィール写真URLをフェッチ
         if profileImageURL.value == nil {
             manager.getProfileImageURL()
-                .observeOn(MainScheduler.instance)
                 .subscribe(onNext: { [weak self] url in
                     guard let self = self else { return }
                     self.profileImageURL.accept(url)

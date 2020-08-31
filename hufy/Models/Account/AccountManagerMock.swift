@@ -94,4 +94,12 @@ final class AccountManagerMock: AccountManagerProtocol {
             return Disposables.create()
         }
     }
+    
+    func getTodoGroupId() -> Observable<String> {
+        return Observable<String>.create { observer -> Disposable in
+            observer.onNext("")
+            observer.onCompleted()
+            return Disposables.create()
+        }
+    }
 }

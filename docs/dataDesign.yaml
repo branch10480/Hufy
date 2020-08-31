@@ -8,9 +8,7 @@ users:
   tutorial3Done: Bool
   createdAt: Timestamp
   updatedAt: Timestamp
-  
-  belongingGroups:
-    documentId: todoGroup.id
+  belongingGroupId: String
 
 todoGroups:
   doumentId: auto

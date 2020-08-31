@@ -27,7 +27,6 @@ class EntryViewController: BaseViewController {
     private func bind() {
         
         viewModel.accountState.asObservable()
-            .skip(1)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] status in
                 switch status {
@@ -39,6 +38,8 @@ class EntryViewController: BaseViewController {
                     self?.goToTutorial3()
                 case .tutorial3Done:
                     self?.goToTop()
+                case .none:
+                    break
                 }
             })
             .disposed(by: disposeBag)

@@ -13,7 +13,7 @@ import FirebaseAuth
 
 class EntryViewModel: BaseViewModel {
     
-    let accountState: BehaviorRelay<AccountState> = .init(value: .notCreated)
+    let accountState: BehaviorRelay<AccountState?> = .init(value: nil)
     private let accountManager: AccountManagerProtocol
     
     enum AccountState {
@@ -26,7 +26,7 @@ class EntryViewModel: BaseViewModel {
     init(accountManager: AccountManagerProtocol) {
         self.accountManager = accountManager
         super.init()
-        guard let _ = Auth.auth().currentUser else {
+        if Auth.auth().currentUser == nil {
             accountState.accept(.notCreated)
             return
         }
@@ -39,6 +39,9 @@ class EntryViewModel: BaseViewModel {
             } else {
                 self?.accountState.accept(.tutorial1Done)
             }
+        }, onError: { [weak self] error in
+            try? Auth.auth().signOut()
+            self?.accountState.accept(.notCreated)
         }).disposed(by: disposeBag)
     }
 }

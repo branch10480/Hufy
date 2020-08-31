@@ -19,6 +19,7 @@ struct User: Mappable {
     var tutorial1Done: Bool = true
     var tutorial2Done: Bool = false
     var tutorial3Done: Bool = false
+    var belongingGroupId: String = ""
     var createdAt: Timestamp?
     var updatedAt: Timestamp?
     
@@ -35,6 +36,7 @@ struct User: Mappable {
         tutorial1Done <- map["tutorial1Done"]
         tutorial2Done <- map["tutorial2Done"]
         tutorial3Done <- map["tutorial3Done"]
+        belongingGroupId <- map["belongingGroupId"]
         partnerID <- map["partnerID"]
         createdAt <- map["createdAt"]
         updatedAt <- map["updatedAt"]

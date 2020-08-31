@@ -20,9 +20,9 @@ class TutorialViewModel: BaseViewModel {
         self.manager = manager
         super.init()
         tapObservable
-            .do { [weak self] in
+            .do(onNext: { [weak self] in
                 self?.isLoading.accept(true)
-            }
+            })
             .flatMapLatest({ _ in
                 return self.manager.firebaseAuthAnonymousLogin()
             })

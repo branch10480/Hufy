@@ -88,6 +88,7 @@ final class AccountManager: AccountManagerProtocol {
             guard let self = self,
                   let authUser = Auth.auth().currentUser else
             {
+                observer.onError(AccountManagerError.failToGetFirebaseAuthUser)
                 return Disposables.create()
             }
             
@@ -100,6 +101,8 @@ final class AccountManager: AccountManagerProtocol {
                     AccountManager.userSelf = user
                     observer.onNext(user)
                     observer.onCompleted()
+                } else {
+                    observer.onError(AccountManagerError.failToGetFirebaseAuthUser)
                 }
             }
             return Disposables.create()
@@ -118,14 +121,28 @@ final class AccountManager: AccountManagerProtocol {
                 return Disposables.create()
             }
             let profileImageRef = Storage.storage().reference().child(currentUser.uid + "/myProfileImage.jpg")
+            let metadata = StorageMetadata()
+            metadata.contentType = "image/jpeg"
             
-            let uploadTask = profileImageRef.putData(data, metadata: nil) { metadata, error in
+            let uploadTask = profileImageRef.putData(data, metadata: metadata) { metadata, error in
                 if let error = error {
                     observer.onError(error)
                     return
                 }
             }
-            uploadTask.observe(.progress) { snapshot in
+//            uploadTask.observe(.progress) { snapshot in
+//                guard let progress = snapshot.progress else {
+//                    observer.onError(AccountManagerError.unknown)
+//                    return
+//                }
+//                let completedUnitCount = progress.completedUnitCount
+//                let totalUnitCount = progress.totalUnitCount
+//                observer.onNext((completedUnitCount, totalUnitCount))
+//                if totalUnitCount == completedUnitCount {
+//                    observer.onCompleted()
+//                }
+//            }
+            uploadTask.observe(.success) { snapshot in
                 guard let progress = snapshot.progress else {
                     observer.onError(AccountManagerError.unknown)
                     return
@@ -156,6 +173,32 @@ final class AccountManager: AccountManagerProtocol {
                 observer.onNext(url)
                 observer.onCompleted()
             })
+            return Disposables.create()
+        }
+    }
+    
+    func getTodoGroupId() -> Observable<String> {
+        return Observable<String>.create { [weak self] observer -> Disposable in
+            guard let self = self,
+                  let authUser = Auth.auth().currentUser else
+            {
+                observer.onError(AccountManagerError.failToGetFirebaseAuthUser)
+                return Disposables.create()
+            }
+            
+            self.userDB.document(authUser.uid).getDocument { (snapshot, error) in
+                if let error = error {
+                    observer.onError(error)
+                    return
+                }
+                if let data = snapshot?.data(), let user = User(JSON: data) {
+                    AccountManager.userSelf = user
+                    observer.onNext(user.belongingGroupId)
+                    observer.onCompleted()
+                } else {
+                    observer.onError(AccountManagerError.failToGetFirebaseAuthUser)
+                }
+            }
             return Disposables.create()
         }
     }

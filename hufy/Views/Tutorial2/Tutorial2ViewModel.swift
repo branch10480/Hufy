@@ -77,15 +77,13 @@ class Tutorial2ViewModel: BaseViewModel {
         
         self.allowGoingToNextView = imageUploadComplete
             .filter { $0 }
-            .flatMap { _ in
-                return manager.getProfileImageURL()
-            }.filter { url -> Bool in
-                return url != nil
-            }
             // Firebase Storageのアップロードが反映されるまでに間隔があるようなので遅延させる
             .do(onNext: { [weak self] _ in
                 self?.isLoading.accept(true)
             })
+            .flatMap { _ in
+                return manager.getProfileImageURL()
+            }
             .delay(.seconds(1), scheduler: MainScheduler.instance)
             .flatMap { url in
                 return Observable<URL?>.create { [weak self] observer -> Disposable in
@@ -93,10 +91,9 @@ class Tutorial2ViewModel: BaseViewModel {
                     let prefetcher = ImagePrefetcher(urls: [url!]) {
                         skippedResources, failedResources, completedResources in
 
-                        if completedResources.count > 0 {
-                            observer.onNext(url)
-                            observer.onCompleted()
-                        }
+                        observer.onNext(url)
+                        observer.onCompleted()
+                        
                         self?.isLoading.accept(false)
                     }
                     prefetcher.start()

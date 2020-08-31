@@ -8,11 +8,16 @@
 
 import UIKit
 import RxSwift
+import RxRelay
 
 enum TodoManagerError: Error {
     case unknown
 }
 
 protocol TodoManagerProtocol {
+    var todos: BehaviorRelay<[Todo]> { get }
+    
+    func setTodoListener(todoGroupId: String)
+    func removeTodoListener()
     func save(_ todo: Todo)
 }
