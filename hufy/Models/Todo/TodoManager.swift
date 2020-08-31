@@ -17,19 +17,25 @@ final class TodoManager: TodoManagerProtocol {
     private(set) var todos: BehaviorRelay<[Todo]> = .init(value: [])
     
     private let db = Firestore.firestore()
-    private let todoGroupId: String? = nil
+    private var todoGroupId: String!
     private var listener: ListenerRegistration?
+    private var todoCollectioinRef: CollectionReference {
+        return db.collection("todoGroups")
+            .document(self.todoGroupId ?? "")
+            .collection("todos")
+    }
     
     deinit {
         listener?.remove()
     }
     
-    func setTodoListener(todoGroupId: String) {
+    func set(todoGroupId: String) {
+        self.todoGroupId = todoGroupId
+    }
+    
+    func setTodoListener() {
         // Subscribe
-        self.listener = db.collection("todoGroups")
-            .document(todoGroupId)
-            .collection("todos")
-            .addSnapshotListener { snap, error in
+        self.listener = todoCollectioinRef.addSnapshotListener { [weak self] snap, error in
                 
                 if let error = error {
                     print(error.localizedDescription)
@@ -40,12 +46,27 @@ final class TodoManager: TodoManagerProtocol {
                 }
                 
                 snap.documentChanges.forEach { change in
+                    guard let self = self else { return }
+                    var original = self.todos.value
                     switch change.type {
-                    case .added:
-                        print("New todo was created!")
-                    case .modified:
-                        print("Todo was updated!")
+                    case .added, .modified:
+                        guard let todo = Todo(JSON: change.document.data()) else {
+                            return
+                        }
+                        original.removeAll { tmpTodo -> Bool in
+                            tmpTodo.id == todo.id
+                        }
+                        original.append(todo)
+                        self.todos.accept(original)
+                        print("New todo was updated!")
                     case .removed:
+                        guard let todo = Todo(JSON: change.document.data()) else {
+                            return
+                        }
+                        original.removeAll { tmpTodo -> Bool in
+                            tmpTodo.id == todo.id
+                        }
+                        self.todos.accept(original)
                         print("Todo was removed!")
                     }
                 }
@@ -55,8 +76,35 @@ final class TodoManager: TodoManagerProtocol {
     func removeTodoListener() {
         listener?.remove()
     }
-
-    func save(_ todo: Todo) {
+    
+    func addTodo() {
+        var original = todos.value
+        guard !original.contains(where: { todo -> Bool in
+            todo.title.isEmpty
+        }) else {
+            return
+        }
         
+        original.append(Todo())
+        todos.accept(original)
+    }
+
+    func save(_ todo: Todo) -> Observable<Void> {
+        return Observable<Void>.create { [weak self] observer -> Disposable in
+            
+            guard let self = self else {
+                return Disposables.create()
+            }
+            
+            let ref = self.todoCollectioinRef.document(todo.id)
+            ref.setData(todo.dictionary, merge: true) { error in
+                if let error = error {
+                    observer.onError(error)
+                }
+                observer.onNext(())
+                observer.onCompleted()
+            }
+            return Disposables.create()
+        }
     }
 }

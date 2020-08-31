@@ -17,7 +17,9 @@ enum TodoManagerError: Error {
 protocol TodoManagerProtocol {
     var todos: BehaviorRelay<[Todo]> { get }
     
-    func setTodoListener(todoGroupId: String)
+    func set(todoGroupId: String)
+    func setTodoListener()
     func removeTodoListener()
-    func save(_ todo: Todo)
+    func addTodo()
+    func save(_ todo: Todo) -> Observable<Void>
 }

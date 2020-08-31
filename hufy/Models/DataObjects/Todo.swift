@@ -12,16 +12,21 @@ import FirebaseFirestoreSwift
 import ObjectMapper
 
 struct Todo: Mappable {
+
     var id: String = UUID().uuidString
     var title: String = ""
     var isDone: Bool = false
-    var createdAt: Timestamp?
-    var updatedAt: Timestamp?
+    var createdAt: Timestamp
+    var updatedAt: Timestamp
     
     init() {
+        self.createdAt = Timestamp(date: Date())
+        self.updatedAt = self.createdAt
     }
     
     public init?(map: Map) {
+        self.createdAt = Timestamp(date: Date())
+        self.updatedAt = self.createdAt
     }
     
     mutating public func mapping(map: Map) {
@@ -36,11 +41,7 @@ struct Todo: Mappable {
         var dic: [String: Any] = ["id": id]
         dic["title"] = title
         dic["isDone"] = isDone
-        if let createdAt = createdAt {
-            dic["createdAt"] = createdAt
-        } else {
-            dic["createdAt"] = FirebaseFirestore.FieldValue.serverTimestamp()
-        }
+        dic["createdAt"] = createdAt
         dic["updatedAt"] = FirebaseFirestore.FieldValue.serverTimestamp()
         return dic
     }

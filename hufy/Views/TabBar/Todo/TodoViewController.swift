@@ -24,7 +24,7 @@ class TodoViewController: BaseViewController {
         addButtonTap: self.addButton.rx.tap.asObservable()
     )
     lazy var dataSource = RxTableViewSectionedAnimatedDataSource<TodoSectionModel>(
-        animationConfiguration: AnimationConfiguration(insertAnimation: .top, reloadAnimation: .automatic, deleteAnimation: .left),
+        animationConfiguration: AnimationConfiguration(insertAnimation: .automatic, reloadAnimation: .automatic, deleteAnimation: .automatic),
         configureCell: { [weak self] (dataSource, tableView, indexPath, item) -> UITableViewCell in
             switch item {
             case .row(let todo):
