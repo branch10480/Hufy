@@ -107,4 +107,23 @@ final class TodoManager: TodoManagerProtocol {
             return Disposables.create()
         }
     }
+    
+    func removeTodo(_ todo: Todo) -> Observable<Void> {
+        return Observable<Void>.create { [weak self] observer -> Disposable in
+            
+            guard let self = self else {
+                return Disposables.create()
+            }
+            
+            let ref = self.todoCollectioinRef.document(todo.id)
+            ref.delete { error in
+                if let error = error {
+                    observer.onError(error)
+                }
+                observer.onNext(())
+                observer.onCompleted()
+            }
+            return Disposables.create()
+        }
+    }
 }

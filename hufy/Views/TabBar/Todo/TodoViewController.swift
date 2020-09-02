@@ -21,7 +21,15 @@ class TodoViewController: BaseViewController {
     lazy var viewModel: TodoViewModel = .init(
         accountManager: AccountManager(),
         todoManager: TodoManager(),
-        addButtonTap: self.addButton.rx.tap.asObservable()
+        addButtonTap: self.addButton.rx.tap.asObservable(),
+        tableViewItemDeleted: self.tableView.rx.itemDeleted.asObservable()
+                                .map({ indexPath -> Todo in
+                                    let item = self.dataSource[indexPath]
+                                    switch item {
+                                    case .row(let todo):
+                                        return todo
+                                    }
+                                })
     )
     lazy var dataSource = RxTableViewSectionedAnimatedDataSource<TodoSectionModel>(
         animationConfiguration: AnimationConfiguration(insertAnimation: .automatic, reloadAnimation: .automatic, deleteAnimation: .automatic),
@@ -38,13 +46,13 @@ class TodoViewController: BaseViewController {
                             tableView.beginUpdates()
                             tableView.endUpdates()
                         })
-                        .disposed(by: self.disposeBag)
+                        .disposed(by: cell.disposeBag)
 
                     cell.textView.rx.didBeginEditing.asObservable()
                         .subscribe(onNext: { [weak self] in
                             self?.tableView.isScrollEnabled = false
                         })
-                        .disposed(by: self.disposeBag)
+                        .disposed(by: cell.disposeBag)
                     cell.textView.rx.didEndEditing.asObservable()
                         .subscribe(onNext: { [weak cell, todo, weak self] _ in
                             guard let cell = cell else { return }
@@ -52,13 +60,13 @@ class TodoViewController: BaseViewController {
                             self?.viewModel.textFieldDidEndEditing(todo: todo, text: cell.textView.text)
                             self?.tableView.isScrollEnabled = true
                         })
-                        .disposed(by: self.disposeBag)
+                        .disposed(by: cell.disposeBag)
                 }
                 return cell
             }
         },
         canEditRowAtIndexPath: { (dataSource, indexPath) -> Bool in
-            return false
+            return true
         },
         canMoveRowAtIndexPath: { (dataSource, indexPath) -> Bool in
             return true
@@ -84,7 +92,7 @@ class TodoViewController: BaseViewController {
         title = "TodoVC.title".localized
         tableView.register(UINib(nibName: "TodoTableViewCell", bundle: nil), forCellReuseIdentifier: TodoViewController.cellId)
         tableView.rowHeight = UITableView.automaticDimension
-        tableView.estimatedRowHeight = 1000
+        tableView.estimatedRowHeight = 100
         tableView.tableFooterView = UIView()
         
         // add button
@@ -139,6 +147,20 @@ enum TodoSectionItem: IdentifiableType, Equatable {
     }
     
     static func == (lhs: TodoSectionItem, rhs: TodoSectionItem) -> Bool {
-        return lhs.identity == rhs.identity
+        let lTodo: Todo
+        let rTodo: Todo
+        switch lhs {
+        case .row(let todo):
+            lTodo = todo
+        }
+        switch rhs {
+        case .row(let todo):
+            rTodo = todo
+        }
+        
+        // TODO 残りの他フィールドも条件に加える
+        
+        return lhs.identity == rhs.identity &&
+            lTodo.title == rTodo.title
     }
 }

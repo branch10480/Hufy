@@ -22,4 +22,5 @@ protocol TodoManagerProtocol {
     func removeTodoListener()
     func addTodo()
     func save(_ todo: Todo) -> Observable<Void>
+    func removeTodo(_ todo: Todo) -> Observable<Void>
 }

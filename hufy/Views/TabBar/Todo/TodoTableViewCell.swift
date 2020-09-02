@@ -7,16 +7,25 @@
 //
 
 import UIKit
+import RxSwift
 
 class TodoTableViewCell: UITableViewCell {
     
     @IBOutlet weak var checkboxView: UIView!
     @IBOutlet weak var checkImageView: UIImageView!
     @IBOutlet weak var textView: UITextView!
+    var disposeBag = DisposeBag()
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()
         setup()
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        // 再利用時にもともと購読されていたものを破棄するため、新オブジェクトで置き換える
+        disposeBag = DisposeBag()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

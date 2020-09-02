@@ -25,12 +25,16 @@ class TodoViewModel: BaseViewModel {
     init(
         accountManager: AccountManagerProtocol,
         todoManager: TodoManagerProtocol,
-        addButtonTap: Observable<Void>
+        addButtonTap: Observable<Void>,
+        tableViewItemDeleted: Observable<Todo>
     ) {
         self.accountManager = accountManager
         self.todoManager = todoManager
         super.init()
-        self.subscribe(addButtonTap: addButtonTap)
+        self.subscribe(
+            addButtonTap: addButtonTap,
+            tableViewItemDeleted: tableViewItemDeleted
+        )
     }
     
     func textFieldDidEndEditing(todo: Todo, text: String) {
@@ -39,6 +43,8 @@ class TodoViewModel: BaseViewModel {
         print("Edited text is '\(text)'")
         var todo = todo
         todo.title = text
+        print("Todo to send is ...")
+        print(todo)
         todoManager.save(todo).subscribe(onNext: { _ in
             print("Todo was saved!")
         }, onError: { error in
@@ -47,7 +53,10 @@ class TodoViewModel: BaseViewModel {
         .disposed(by: disposeBag)
     }
     
-    private func subscribe(addButtonTap: Observable<Void>) {
+    private func subscribe(
+        addButtonTap: Observable<Void>,
+        tableViewItemDeleted: Observable<Todo>
+    ) {
         
         todoManager.todos.subscribe(onNext: { [weak self] todos in
                 self?.setupSectionModels(todos: todos)
@@ -64,6 +73,14 @@ class TodoViewModel: BaseViewModel {
         addButtonTap.subscribe(onNext: { [weak self] _ in
                 self?.todoManager.addTodo()
             })
+            .disposed(by: disposeBag)
+        
+        tableViewItemDeleted
+            .flatMapLatest { [weak self] todo -> Observable<Void> in
+                guard let self = self else { return Observable<Void>.just(()) }
+                return self.todoManager.removeTodo(todo)
+            }
+            .subscribe()
             .disposed(by: disposeBag)
     }
     
