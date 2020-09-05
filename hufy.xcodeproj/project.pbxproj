@@ -13,6 +13,8 @@
 		481B4CCC24FA101E00793E2E /* Todo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 481B4CCB24FA101E00793E2E /* Todo.swift */; };
 		481B4CCF24FA19F500793E2E /* TodoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 481B4CCD24FA19F500793E2E /* TodoTableViewCell.swift */; };
 		481B4CD024FA19F500793E2E /* TodoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 481B4CCE24FA19F500793E2E /* TodoTableViewCell.xib */; };
+		487B45D725032E800050117A /* HapticFeedbackService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 487B45D625032E800050117A /* HapticFeedbackService.swift */; };
+		487B45D925032E8F0050117A /* HapticFeedbackServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 487B45D825032E8F0050117A /* HapticFeedbackServiceProtocol.swift */; };
 		4888085924E8E9F3001257A4 /* Tutorial3ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4888085724E8E9F3001257A4 /* Tutorial3ViewController.swift */; };
 		4888085A24E8E9F3001257A4 /* Tutorial3ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4888085824E8E9F3001257A4 /* Tutorial3ViewController.xib */; };
 		4888085C24E8EA05001257A4 /* Tutorial3ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4888085B24E8EA05001257A4 /* Tutorial3ViewModel.swift */; };
@@ -78,6 +80,8 @@
 		481B4CCB24FA101E00793E2E /* Todo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Todo.swift; sourceTree = "<group>"; };
 		481B4CCD24FA19F500793E2E /* TodoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoTableViewCell.swift; sourceTree = "<group>"; };
 		481B4CCE24FA19F500793E2E /* TodoTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TodoTableViewCell.xib; sourceTree = "<group>"; };
+		487B45D625032E800050117A /* HapticFeedbackService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticFeedbackService.swift; sourceTree = "<group>"; };
+		487B45D825032E8F0050117A /* HapticFeedbackServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticFeedbackServiceProtocol.swift; sourceTree = "<group>"; };
 		4888085724E8E9F3001257A4 /* Tutorial3ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tutorial3ViewController.swift; sourceTree = "<group>"; };
 		4888085824E8E9F3001257A4 /* Tutorial3ViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Tutorial3ViewController.xib; sourceTree = "<group>"; };
 		4888085B24E8EA05001257A4 /* Tutorial3ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tutorial3ViewModel.swift; sourceTree = "<group>"; };
@@ -184,6 +188,15 @@
 				481B4CC924FA0DCF00793E2E /* TodoManagerProtocol.swift */,
 			);
 			path = Todo;
+			sourceTree = "<group>";
+		};
+		487B45D525032E4E0050117A /* HapticFeedback */ = {
+			isa = PBXGroup;
+			children = (
+				487B45D625032E800050117A /* HapticFeedbackService.swift */,
+				487B45D825032E8F0050117A /* HapticFeedbackServiceProtocol.swift */,
+			);
+			path = HapticFeedback;
 			sourceTree = "<group>";
 		};
 		4888085624E8E9C9001257A4 /* Tutorial3 */ = {
@@ -303,6 +316,7 @@
 		490565C324E1467F0082B42B /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				487B45D525032E4E0050117A /* HapticFeedback */,
 				490565C624E146980082B42B /* ProgressView */,
 			);
 			path = Services;
@@ -638,6 +652,8 @@
 				481B4CCA24FA0DCF00793E2E /* TodoManagerProtocol.swift in Sources */,
 				481B4CCF24FA19F500793E2E /* TodoTableViewCell.swift in Sources */,
 				490565C024E132120082B42B /* String+.swift in Sources */,
+				487B45D925032E8F0050117A /* HapticFeedbackServiceProtocol.swift in Sources */,
+				487B45D725032E800050117A /* HapticFeedbackService.swift in Sources */,
 				49A3BDF524E11CDF0025F38F /* AccuntManager.swift in Sources */,
 				499E7F1624E2EBD80005FFEF /* UIImagePickerController+RxCreate.swift in Sources */,
 				481B4CC524FA0D5000793E2E /* TodoViewModel.swift in Sources */,

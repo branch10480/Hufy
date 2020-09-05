@@ -14,6 +14,9 @@ import FirebaseFirestoreSwift
 
 final class TodoManager: TodoManagerProtocol {
     
+    static let shared = TodoManager()
+    private init() {}
+    
     private(set) var todos: BehaviorRelay<[Todo]> = .init(value: [])
     
     private let db = Firestore.firestore()
@@ -109,6 +112,11 @@ final class TodoManager: TodoManagerProtocol {
     }
     
     func removeTodo(_ todo: Todo) -> Observable<Void> {
+        var todos = self.todos.value
+        todos.removeAll { tmpTodo -> Bool in
+            tmpTodo.id == todo.id
+        }
+        self.todos.accept(todos)
         return Observable<Void>.create { [weak self] observer -> Disposable in
             
             guard let self = self else {

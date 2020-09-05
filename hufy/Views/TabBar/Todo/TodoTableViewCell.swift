@@ -14,6 +14,8 @@ class TodoTableViewCell: UITableViewCell {
     @IBOutlet weak var checkboxView: UIView!
     @IBOutlet weak var checkImageView: UIImageView!
     @IBOutlet weak var textView: UITextView!
+    @IBOutlet weak var checkButton: UIButton!
+    
     var disposeBag = DisposeBag()
     
     

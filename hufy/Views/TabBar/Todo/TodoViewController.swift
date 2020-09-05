@@ -9,6 +9,7 @@
 import UIKit
 import RxSwift
 import RxDataSources
+import IQKeyboardManagerSwift
 
 class TodoViewController: BaseViewController {
     
@@ -20,7 +21,7 @@ class TodoViewController: BaseViewController {
 
     lazy var viewModel: TodoViewModel = .init(
         accountManager: AccountManager(),
-        todoManager: TodoManager(),
+        todoManager: TodoManager.shared,
         addButtonTap: self.addButton.rx.tap.asObservable(),
         tableViewItemDeleted: self.tableView.rx.itemDeleted.asObservable()
                                 .map({ indexPath -> Todo in
@@ -31,6 +32,9 @@ class TodoViewController: BaseViewController {
                                     }
                                 })
     )
+    
+    var hapticFeedbackService: HapticFeedbackServiceProtocol = HapticFeedbackService()
+    
     lazy var dataSource = RxTableViewSectionedAnimatedDataSource<TodoSectionModel>(
         animationConfiguration: AnimationConfiguration(insertAnimation: .automatic, reloadAnimation: .automatic, deleteAnimation: .automatic),
         configureCell: { [weak self] (dataSource, tableView, indexPath, item) -> UITableViewCell in
@@ -45,6 +49,7 @@ class TodoViewController: BaseViewController {
                         .subscribe(onNext: { _ in
                             tableView.beginUpdates()
                             tableView.endUpdates()
+                            IQKeyboardManager.shared.reloadLayoutIfNeeded()
                         })
                         .disposed(by: cell.disposeBag)
 
@@ -53,6 +58,7 @@ class TodoViewController: BaseViewController {
                             self?.tableView.isScrollEnabled = false
                         })
                         .disposed(by: cell.disposeBag)
+                    
                     cell.textView.rx.didEndEditing.asObservable()
                         .subscribe(onNext: { [weak cell, todo, weak self] _ in
                             guard let cell = cell else { return }
@@ -61,9 +67,31 @@ class TodoViewController: BaseViewController {
                             self?.tableView.isScrollEnabled = true
                         })
                         .disposed(by: cell.disposeBag)
+                    
+                    cell.checkButton.rx.tap.bind { [weak self, todo] in
+                        self?.viewModel.checkButtonTap(todo: todo)
+                        self?.hapticFeedbackService.prepareImpactFeedback(style: .medium)
+                        self?.hapticFeedbackService.impactFeedback()
+                    }
+                    .disposed(by: cell.disposeBag)
                 }
                 return cell
             }
+        },
+        titleForHeaderInSection: { dataSource, section in
+            switch section {
+            case 0:
+                return "TodoViewController.sec0.headerTitle".localized
+            case 1:
+                if dataSource[section].items.isEmpty {
+                    return nil
+                } else {
+                    return "TodoViewController.sec1.headerTitle".localized
+                }
+            default:
+                return nil
+            }
+            
         },
         canEditRowAtIndexPath: { (dataSource, indexPath) -> Bool in
             return true
@@ -80,7 +108,7 @@ class TodoViewController: BaseViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        tableView.contentInset.bottom = viewForTableViewInsetBottom.bounds.height
+        tableView.contentInset.bottom = viewForTableViewInsetBottom.bounds.height - 32
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -160,7 +188,8 @@ enum TodoSectionItem: IdentifiableType, Equatable {
         
         // TODO 残りの他フィールドも条件に加える
         
-        return lhs.identity == rhs.identity &&
-            lTodo.title == rTodo.title
+        return  lhs.identity == rhs.identity &&
+                lTodo.title == rTodo.title &&
+                lTodo.isDone == rTodo.isDone
     }
 }

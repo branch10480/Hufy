@@ -32,4 +32,5 @@
 "SettingVC.sectionItem.privacyPolicy" = "プライバシーポリシー";
 "SettingVC.sectionItem.termsOfUse" = "利用規約";
 "SettingVC.sectionItem.appVersion" = "バージョン";
-
+"TodoViewController.sec0.headerTitle" = "TODO";
+"TodoViewController.sec1.headerTitle" = "完了したもの";

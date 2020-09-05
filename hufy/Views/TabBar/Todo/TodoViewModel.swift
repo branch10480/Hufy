@@ -53,6 +53,17 @@ class TodoViewModel: BaseViewModel {
         .disposed(by: disposeBag)
     }
     
+    func checkButtonTap(todo: Todo) {
+        var todo = todo
+        todo.isDone = !todo.isDone
+        todoManager.save(todo).subscribe(onNext: {
+            print("Todo was saved!")
+        }, onError: { error in
+            print(error.localizedDescription)
+        })
+        .disposed(by: disposeBag)
+    }
+    
     private func subscribe(
         addButtonTap: Observable<Void>,
         tableViewItemDeleted: Observable<Todo>
