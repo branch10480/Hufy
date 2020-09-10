@@ -58,7 +58,7 @@ class Tutorial3ViewModel: BaseViewModel {
                 self?.isLoading.accept(false)
                 self?.userUpdateSuccess.accept(true)
             }, onError: { [weak self] error in
-                print(error.localizedDescription)
+                Logger.default.debug(error.localizedDescription)
                 self?.isLoading.accept(false)
             }).disposed(by: disposeBag)
     }

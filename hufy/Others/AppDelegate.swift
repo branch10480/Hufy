@@ -10,11 +10,16 @@ import UIKit
 import FirebaseCore
 import FirebaseFirestore
 import IQKeyboardManagerSwift
+import FirebaseDynamicLinks
+import XCGLogger
+
+typealias Logger = XCGLogger
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    var deepLinkHandleService: DeepLinkHandleServiceProtocol = DeepLinkHandleService(service: AppFlowService())
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure()
@@ -29,6 +34,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         IQKeyboardManager.shared.enable = true
+        
+        // Logger
+        Logger.default.setup(
+            level: .verbose,                // 出力するログレベル
+            showThreadName: false,          // スレッド名表示フラグ
+            showLevel: false,               // レベル表示フラグ
+            showFileNames: false,           // ファイル名表示フラグ
+            showLineNumbers: true,          // 行番号表示フラグ
+            showDate: false                 // 日付表示フラグ
+//            writeToFile: "path/to/file",    // ログファイルパス
+//            fileLevel: .debug               // ファイル出力のログレベル
+        )
         
         return true
     }
@@ -47,6 +64,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the user discards a scene session.
         // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
+    }
+    
+    func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
+        let handled = DynamicLinks.dynamicLinks().handleUniversalLink(userActivity.webpageURL!) { [weak self] (dynamiclink, error) in
+            if let error = error {
+                Logger.default.debug(error)
+                return
+            }
+            self?.deepLinkHandleService.handle(deepLink: dynamiclink?.url)
+        }
+
+        return handled
+    }
+    
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+        if let dynamicLink = DynamicLinks.dynamicLinks().dynamicLink(fromCustomSchemeURL: url) {
+            deepLinkHandleService.handle(deepLink: dynamicLink.url)
+            return true
+        }
+        return false
     }
 
 

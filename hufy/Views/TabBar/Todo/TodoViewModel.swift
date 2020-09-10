@@ -38,17 +38,17 @@ class TodoViewModel: BaseViewModel {
     }
     
     func textFieldDidEndEditing(todo: Todo, text: String) {
-        print("== Text editing is finished ==")
-        print(todo.dictionary)
-        print("Edited text is '\(text)'")
+        Logger.default.debug("== Text editing is finished ==")
+        Logger.default.debug(todo.dictionary)
+        Logger.default.debug("Edited text is '\(text)'")
         var todo = todo
         todo.title = text
-        print("Todo to send is ...")
-        print(todo)
+        Logger.default.debug("Todo to send is ...")
+        Logger.default.debug(todo)
         todoManager.save(todo).subscribe(onNext: { _ in
-            print("Todo was saved!")
+            Logger.default.debug("Todo was saved!")
         }, onError: { error in
-            print(error.localizedDescription)
+            Logger.default.debug(error.localizedDescription)
         })
         .disposed(by: disposeBag)
     }
@@ -57,9 +57,9 @@ class TodoViewModel: BaseViewModel {
         var todo = todo
         todo.isDone = !todo.isDone
         todoManager.save(todo).subscribe(onNext: {
-            print("Todo was saved!")
+            Logger.default.debug("Todo was saved!")
         }, onError: { error in
-            print(error.localizedDescription)
+            Logger.default.debug(error.localizedDescription)
         })
         .disposed(by: disposeBag)
     }

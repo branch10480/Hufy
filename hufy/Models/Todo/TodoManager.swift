@@ -41,7 +41,7 @@ final class TodoManager: TodoManagerProtocol {
         self.listener = todoCollectioinRef.addSnapshotListener { [weak self] snap, error in
                 
                 if let error = error {
-                    print(error.localizedDescription)
+                    Logger.default.debug(error.localizedDescription)
                 }
                 
                 guard let snap = snap else {
@@ -61,7 +61,7 @@ final class TodoManager: TodoManagerProtocol {
                         }
                         original.append(todo)
                         self.todos.accept(original)
-                        print("New todo was updated!")
+                        Logger.default.debug("New todo was updated!")
                     case .removed:
                         guard let todo = Todo(JSON: change.document.data()) else {
                             return
@@ -70,7 +70,7 @@ final class TodoManager: TodoManagerProtocol {
                             tmpTodo.id == todo.id
                         }
                         self.todos.accept(original)
-                        print("Todo was removed!")
+                        Logger.default.debug("Todo was removed!")
                     }
                 }
             }

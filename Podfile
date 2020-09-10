@@ -14,6 +14,7 @@ target 'hufy' do
   pod 'Firebase/Firestore'
   pod 'FirebaseFirestoreSwift'
   pod 'Firebase/Storage'
+  pod 'Firebase/DynamicLinks'
   pod 'MBProgressHUD', '~> 1.2.0'
 
 end

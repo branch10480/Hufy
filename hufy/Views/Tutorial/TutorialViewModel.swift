@@ -30,8 +30,8 @@ class TutorialViewModel: BaseViewModel {
                     self?.isLoading.accept(false)
                     self?.createUserToFirestore()
                 }, onError: { [weak self] error in
-                    print("++ Firebase Auth Error ++")
-                    print(error.localizedDescription)
+                    Logger.default.debug("++ Firebase Auth Error ++")
+                    Logger.default.debug(error.localizedDescription)
                     self?.isLoading.accept(false)
             }).disposed(by: disposeBag)
     }
@@ -42,7 +42,7 @@ class TutorialViewModel: BaseViewModel {
             self?.isLoading.accept(false)
             self?.fetchUserSelf()
         }, onError: { [weak self] error in
-            print(error.localizedDescription)
+            Logger.default.debug(error.localizedDescription)
             self?.isLoading.accept(false)
         }).disposed(by: disposeBag)
     }
@@ -53,7 +53,7 @@ class TutorialViewModel: BaseViewModel {
             self?.loginSuccess.accept(user)
             self?.isLoading.accept(false)
         }, onError: { [weak self] error in
-            print(error.localizedDescription)
+            Logger.default.debug(error.localizedDescription)
             self?.isLoading.accept(false)
         }).disposed(by: disposeBag)
     }

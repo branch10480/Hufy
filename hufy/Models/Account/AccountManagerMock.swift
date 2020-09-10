@@ -102,4 +102,12 @@ final class AccountManagerMock: AccountManagerProtocol {
             return Disposables.create()
         }
     }
+    
+    func invite(partnerId: String) -> Observable<Void> {
+        return Observable<Void>.create { observer -> Disposable in
+            observer.onNext(())
+            observer.onCompleted()
+            return Disposables.create()
+        }
+    }
 }

@@ -51,7 +51,7 @@ final class AccountManager: AccountManagerProtocol {
             }
             var user = User()
             user.id = authUser.uid
-            print(user.dictionary)
+            Logger.default.debug(user.dictionary)
             
             let userRef = self.userDB.document(authUser.uid)
             userRef.setData(user.dictionary, merge: true) { error in
@@ -199,6 +199,15 @@ final class AccountManager: AccountManagerProtocol {
                     observer.onError(AccountManagerError.failToGetFirebaseAuthUser)
                 }
             }
+            return Disposables.create()
+        }
+    }
+    
+    func invite(partnerId: String) -> Observable<Void> {
+        return Observable<Void>.create { [weak self] observer -> Disposable in
+            
+            // TODO: パートナーとして登録する処理 (Function)
+            
             return Disposables.create()
         }
     }

@@ -62,7 +62,7 @@ class TodoViewController: BaseViewController {
                     cell.textView.rx.didEndEditing.asObservable()
                         .subscribe(onNext: { [weak cell, todo, weak self] _ in
                             guard let cell = cell else { return }
-                            print(cell.textView.text ?? "")
+                            Logger.default.debug(cell.textView.text ?? "")
                             self?.viewModel.textFieldDidEndEditing(todo: todo, text: cell.textView.text)
                             self?.tableView.isScrollEnabled = true
                         })

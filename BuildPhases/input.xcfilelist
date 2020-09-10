@@ -15,3 +15,5 @@ $(SRCROOT)/Carthage/Build/iOS/Differentiator.framework
 $(SRCROOT)/Carthage/Build/iOS/ObjectMapper.framework
 $(SRCROOT)/Carthage/Build/iOS/Kingfisher.framework
 $(SRCROOT)/Carthage/Build/iOS/IQKeyboardManagerSwift.framework
+$(SRCROOT)/Carthage/Build/iOS/XCGLogger.framework
+$(SRCROOT)/Carthage/Build/iOS/ObjcExceptionBridging.framework

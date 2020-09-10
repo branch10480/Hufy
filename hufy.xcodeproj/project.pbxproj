@@ -13,6 +13,10 @@
 		481B4CCC24FA101E00793E2E /* Todo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 481B4CCB24FA101E00793E2E /* Todo.swift */; };
 		481B4CCF24FA19F500793E2E /* TodoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 481B4CCD24FA19F500793E2E /* TodoTableViewCell.swift */; };
 		481B4CD024FA19F500793E2E /* TodoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 481B4CCE24FA19F500793E2E /* TodoTableViewCell.xib */; };
+		481D57FF250A4C2E008DA16C /* DeepLinkHandleService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 481D57FE250A4C2E008DA16C /* DeepLinkHandleService.swift */; };
+		481D5801250A4C38008DA16C /* DeepLinkHandleServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 481D5800250A4C38008DA16C /* DeepLinkHandleServiceProtocol.swift */; };
+		481D5804250A4D0E008DA16C /* AppFlowService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 481D5803250A4D0E008DA16C /* AppFlowService.swift */; };
+		481D5806250A4D18008DA16C /* AppFlowServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 481D5805250A4D18008DA16C /* AppFlowServiceProtocol.swift */; };
 		487B45D725032E800050117A /* HapticFeedbackService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 487B45D625032E800050117A /* HapticFeedbackService.swift */; };
 		487B45D925032E8F0050117A /* HapticFeedbackServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 487B45D825032E8F0050117A /* HapticFeedbackServiceProtocol.swift */; };
 		4888085924E8E9F3001257A4 /* Tutorial3ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4888085724E8E9F3001257A4 /* Tutorial3ViewController.swift */; };
@@ -80,6 +84,11 @@
 		481B4CCB24FA101E00793E2E /* Todo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Todo.swift; sourceTree = "<group>"; };
 		481B4CCD24FA19F500793E2E /* TodoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoTableViewCell.swift; sourceTree = "<group>"; };
 		481B4CCE24FA19F500793E2E /* TodoTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TodoTableViewCell.xib; sourceTree = "<group>"; };
+		481D57FC250A4615008DA16C /* hufy.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = hufy.entitlements; sourceTree = "<group>"; };
+		481D57FE250A4C2E008DA16C /* DeepLinkHandleService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeepLinkHandleService.swift; sourceTree = "<group>"; };
+		481D5800250A4C38008DA16C /* DeepLinkHandleServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeepLinkHandleServiceProtocol.swift; sourceTree = "<group>"; };
+		481D5803250A4D0E008DA16C /* AppFlowService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFlowService.swift; sourceTree = "<group>"; };
+		481D5805250A4D18008DA16C /* AppFlowServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFlowServiceProtocol.swift; sourceTree = "<group>"; };
 		487B45D625032E800050117A /* HapticFeedbackService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticFeedbackService.swift; sourceTree = "<group>"; };
 		487B45D825032E8F0050117A /* HapticFeedbackServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticFeedbackServiceProtocol.swift; sourceTree = "<group>"; };
 		4888085724E8E9F3001257A4 /* Tutorial3ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tutorial3ViewController.swift; sourceTree = "<group>"; };
@@ -188,6 +197,24 @@
 				481B4CC924FA0DCF00793E2E /* TodoManagerProtocol.swift */,
 			);
 			path = Todo;
+			sourceTree = "<group>";
+		};
+		481D57FD250A4C07008DA16C /* DeepLinkHandle */ = {
+			isa = PBXGroup;
+			children = (
+				481D57FE250A4C2E008DA16C /* DeepLinkHandleService.swift */,
+				481D5800250A4C38008DA16C /* DeepLinkHandleServiceProtocol.swift */,
+			);
+			path = DeepLinkHandle;
+			sourceTree = "<group>";
+		};
+		481D5802250A4CF4008DA16C /* AppFlow */ = {
+			isa = PBXGroup;
+			children = (
+				481D5803250A4D0E008DA16C /* AppFlowService.swift */,
+				481D5805250A4D18008DA16C /* AppFlowServiceProtocol.swift */,
+			);
+			path = AppFlow;
 			sourceTree = "<group>";
 		};
 		487B45D525032E4E0050117A /* HapticFeedback */ = {
@@ -316,6 +343,8 @@
 		490565C324E1467F0082B42B /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				481D5802250A4CF4008DA16C /* AppFlow */,
+				481D57FD250A4C07008DA16C /* DeepLinkHandle */,
 				487B45D525032E4E0050117A /* HapticFeedback */,
 				490565C624E146980082B42B /* ProgressView */,
 			);
@@ -374,6 +403,7 @@
 		494126FB24DDA431008768F9 /* hufy */ = {
 			isa = PBXGroup;
 			children = (
+				481D57FC250A4615008DA16C /* hufy.entitlements */,
 				490565C324E1467F0082B42B /* Services */,
 				490565AE24E129220082B42B /* Extensions */,
 				490565A924E126400082B42B /* Constants */,
@@ -644,6 +674,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				490565A624E123DF0082B42B /* FirebaseManager.swift in Sources */,
+				481D5804250A4D0E008DA16C /* AppFlowService.swift in Sources */,
 				490565CF24E194290082B42B /* Tutorial2ViewController.swift in Sources */,
 				499E7F1724E2EBD80005FFEF /* RxImagePickerDelegateProxy.swift in Sources */,
 				490565A324E1226D0082B42B /* TutorialViewModel.swift in Sources */,
@@ -660,6 +691,8 @@
 				4888085C24E8EA05001257A4 /* Tutorial3ViewModel.swift in Sources */,
 				481B4CC824FA0D9500793E2E /* TodoManager.swift in Sources */,
 				490565B224E129B60082B42B /* UIImage+.swift in Sources */,
+				481D5801250A4C38008DA16C /* DeepLinkHandleServiceProtocol.swift in Sources */,
+				481D57FF250A4C2E008DA16C /* DeepLinkHandleService.swift in Sources */,
 				490565B424E12E680082B42B /* Size.swift in Sources */,
 				4905659B24E121F00082B42B /* TabBarViewController.swift in Sources */,
 				490565A024E122110082B42B /* TutorialViewController.swift in Sources */,
@@ -687,6 +720,7 @@
 				490565C224E144F00082B42B /* AccountManagerMock.swift in Sources */,
 				490565D224E194370082B42B /* Tutorial2ViewModel.swift in Sources */,
 				494126FF24DDA431008768F9 /* SceneDelegate.swift in Sources */,
+				481D5806250A4D18008DA16C /* AppFlowServiceProtocol.swift in Sources */,
 				4888085924E8E9F3001257A4 /* Tutorial3ViewController.swift in Sources */,
 				490565B024E129330082B42B /* UIButton+.swift in Sources */,
 			);
@@ -836,6 +870,7 @@
 			baseConfigurationReference = 3D8497433C57FC67605D2E8D /* Pods-hufy.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = hufy/hufy.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 67NJZVUMG3;
@@ -861,6 +896,7 @@
 			baseConfigurationReference = 3F924CCDC972D1FE38942A57 /* Pods-hufy.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = hufy/hufy.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 67NJZVUMG3;
