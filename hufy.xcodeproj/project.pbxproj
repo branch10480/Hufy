@@ -23,6 +23,7 @@
 		4888085A24E8E9F3001257A4 /* Tutorial3ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4888085824E8E9F3001257A4 /* Tutorial3ViewController.xib */; };
 		4888085C24E8EA05001257A4 /* Tutorial3ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4888085B24E8EA05001257A4 /* Tutorial3ViewModel.swift */; };
 		48A558D624E6AECC00D37C61 /* BaseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A558D524E6AECC00D37C61 /* BaseButton.swift */; };
+		48BE8B3C250E330F009B7D55 /* UIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48BE8B3B250E330F009B7D55 /* UIHelper.swift */; };
 		48FE669424F10A80003B2B87 /* Design.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48FE669324F10A80003B2B87 /* Design.swift */; };
 		48FE669624F111DF003B2B87 /* UITextField+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48FE669524F111DF003B2B87 /* UITextField+.swift */; };
 		48FE669D24F11CE2003B2B87 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48FE669B24F11CE2003B2B87 /* HomeViewController.swift */; };
@@ -95,6 +96,7 @@
 		4888085824E8E9F3001257A4 /* Tutorial3ViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Tutorial3ViewController.xib; sourceTree = "<group>"; };
 		4888085B24E8EA05001257A4 /* Tutorial3ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tutorial3ViewModel.swift; sourceTree = "<group>"; };
 		48A558D524E6AECC00D37C61 /* BaseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseButton.swift; sourceTree = "<group>"; };
+		48BE8B3B250E330F009B7D55 /* UIHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIHelper.swift; sourceTree = "<group>"; };
 		48FE669324F10A80003B2B87 /* Design.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Design.swift; sourceTree = "<group>"; };
 		48FE669524F111DF003B2B87 /* UITextField+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+.swift"; sourceTree = "<group>"; };
 		48FE669B24F11CE2003B2B87 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -244,6 +246,14 @@
 			path = Parts;
 			sourceTree = "<group>";
 		};
+		48BE8B3A250E3298009B7D55 /* UIHelper */ = {
+			isa = PBXGroup;
+			children = (
+				48BE8B3B250E330F009B7D55 /* UIHelper.swift */,
+			);
+			path = UIHelper;
+			sourceTree = "<group>";
+		};
 		48FE669724F11C7C003B2B87 /* Home */ = {
 			isa = PBXGroup;
 			children = (
@@ -343,6 +353,7 @@
 		490565C324E1467F0082B42B /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				48BE8B3A250E3298009B7D55 /* UIHelper */,
 				481D5802250A4CF4008DA16C /* AppFlow */,
 				481D57FD250A4C07008DA16C /* DeepLinkHandle */,
 				487B45D525032E4E0050117A /* HapticFeedback */,
@@ -702,6 +713,7 @@
 				48FE669624F111DF003B2B87 /* UITextField+.swift in Sources */,
 				4941271624DDA7B5008768F9 /* AppConfig.swift in Sources */,
 				48FE66A124F11CF1003B2B87 /* AnniversaryViewController.swift in Sources */,
+				48BE8B3C250E330F009B7D55 /* UIHelper.swift in Sources */,
 				49A3BDDF24E0FF3D0025F38F /* BaseViewModel.swift in Sources */,
 				490565C524E146930082B42B /* ProgressViewService.swift in Sources */,
 				490565C824E146A90082B42B /* ProgressViewServiceProtocol.swift in Sources */,

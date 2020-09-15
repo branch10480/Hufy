@@ -34,3 +34,8 @@
 "SettingVC.sectionItem.appVersion" = "バージョン";
 "TodoViewController.sec0.headerTitle" = "TODO";
 "TodoViewController.sec1.headerTitle" = "完了したもの";
+
+"SuccessMessage.Join" = "パートナーとの連携が完了しました！アプリを再起動します。";
+"ErrorMessage.failToJoin" = "パートナー設定に失敗しました。再度お試しください。";
+
+"OK" = "OK";

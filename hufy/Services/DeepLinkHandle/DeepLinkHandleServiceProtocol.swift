@@ -8,18 +8,22 @@
 
 import Foundation
 import FirebaseDynamicLinks
+import RxRelay
 
 protocol DeepLinkHandleServiceProtocol {
+    var isLoading: BehaviorRelay<Bool> { get }
+    var errorMessage: PublishRelay<String> { get }
+    var succeededToJoin: PublishRelay<Void> { get }
     func handle(deepLink: URL?)
 }
 
 enum DeepLinkType {
-    case invitation(userID: String)
+    case join(userId: String, todoGroupId: String)
     
     init?(url: URL) {
         let components = url.pathComponents
-        if components.count > 3, components[1] == "invitation" {
-            self = .invitation(userID: components[3])
+        if components.count > 5, components[1] == "join" {
+            self = .join(userId: components[3], todoGroupId: components[5])
         } else {
             return nil
         }

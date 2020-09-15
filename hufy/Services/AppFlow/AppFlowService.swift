@@ -10,6 +10,11 @@ import UIKit
 
 final class AppFlowService: AppFlowServiceProtocol {
     
-    func showInvitationFlow(userID: String) {
+    func relaunch() {
+        guard let keyWindow = UIApplication.shared.keyWindow else {
+            return
+        }
+        let vc = EntryViewController()
+        keyWindow.rootViewController = vc
     }
 }

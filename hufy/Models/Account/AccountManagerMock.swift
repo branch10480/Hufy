@@ -110,4 +110,12 @@ final class AccountManagerMock: AccountManagerProtocol {
             return Disposables.create()
         }
     }
+
+    func join(partnerId: String, partnerTodoGroupId: String) -> Observable<Void> {
+        return Observable<Void>.create { observer -> Disposable in
+            observer.onNext(())
+            observer.onCompleted()
+            return Disposables.create()
+        }
+    }
 }

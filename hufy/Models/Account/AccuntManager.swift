@@ -16,7 +16,7 @@ import FirebaseStorage
 final class AccountManager: AccountManagerProtocol {
     
     static private var userSelf: User?
-    private let userDB = Firestore.firestore().collection("users")
+    private lazy var userDB = Firestore.firestore().collection("users")
 
     func isLiggedIn() -> Bool {
         if let _ = Auth.auth().currentUser {
@@ -204,6 +204,15 @@ final class AccountManager: AccountManagerProtocol {
     }
     
     func invite(partnerId: String) -> Observable<Void> {
+        return Observable<Void>.create { [weak self] observer -> Disposable in
+            
+            // TODO: パートナーとして登録する処理 (Function)
+            
+            return Disposables.create()
+        }
+    }
+
+    func join(partnerId: String, partnerTodoGroupId: String) -> Observable<Void> {
         return Observable<Void>.create { [weak self] observer -> Disposable in
             
             // TODO: パートナーとして登録する処理 (Function)

@@ -9,5 +9,5 @@
 import UIKit
 
 protocol AppFlowServiceProtocol {
-    func showInvitationFlow(userID: String)
+    func relaunch()
 }

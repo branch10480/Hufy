@@ -8,13 +8,22 @@
 
 import Foundation
 import FirebaseDynamicLinks
+import RxSwift
+import RxRelay
 
 final class DeepLinkHandleService: DeepLinkHandleServiceProtocol {
     
-    private let appFlowService: AppFlowServiceProtocol
+    private let accountManager: AccountManagerProtocol
     
-    init(service: AppFlowServiceProtocol) {
-        self.appFlowService = service
+    private let disposeBag = DisposeBag()
+    let isLoading: BehaviorRelay<Bool> = .init(value: false)
+    let errorMessage: PublishRelay<String> = .init()
+    let succeededToJoin: PublishRelay<Void> = .init()
+    
+    init(
+        manager: AccountManagerProtocol
+    ) {
+        self.accountManager = manager
     }
 
     func handle(deepLink: URL?) {
@@ -22,8 +31,19 @@ final class DeepLinkHandleService: DeepLinkHandleServiceProtocol {
             return
         }
         switch type {
-        case .invitation(let userID):
-            appFlowService.showInvitationFlow(userID: userID)
+        case .join(let userId, let todoGroupId):
+            isLoading.accept(true)
+            accountManager
+                .join(partnerId: userId, partnerTodoGroupId: todoGroupId)
+                .observeOn(MainScheduler.instance)
+                .subscribe(onNext: { [weak self] in
+                    self?.isLoading.accept(false)
+                    self?.succeededToJoin.accept(())
+                }, onError: { [weak self] error in
+                    self?.isLoading.accept(false)
+                    self?.errorMessage.accept(error.localizedDescription)
+                })
+                .disposed(by: disposeBag)
         }
     }
 }

@@ -12,6 +12,7 @@ import FirebaseFirestore
 import IQKeyboardManagerSwift
 import FirebaseDynamicLinks
 import XCGLogger
+import RxSwift
 
 typealias Logger = XCGLogger
 
@@ -19,7 +20,10 @@ typealias Logger = XCGLogger
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    var deepLinkHandleService: DeepLinkHandleServiceProtocol = DeepLinkHandleService(service: AppFlowService())
+    var deepLinkHandleService: DeepLinkHandleServiceProtocol = DeepLinkHandleService(manager: AccountManager())
+    var progressViewService: ProgressViewServiceProtocol = ProgressViewService()
+    var appFlowService: AppFlowServiceProtocol = AppFlowService()
+    private let disposeBag = DisposeBag()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure()
@@ -48,6 +52,38 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         )
         
         return true
+    }
+    
+    private func bind() {
+        // Deep Link Handle Service
+        deepLinkHandleService.isLoading.bind { [weak self] loading in
+            guard let vc = self?.window?.rootViewController else {
+                return
+            }
+            if loading {
+                self?.progressViewService.show(view: vc.view)
+            } else {
+                self?.progressViewService.dismiss(view: vc.view)
+            }
+        }
+        .disposed(by: disposeBag)
+        
+        deepLinkHandleService.errorMessage
+            .observeOn(MainScheduler.instance)
+            .bind { message in
+                UIHelper.showAlert(message: message)
+            }
+            .disposed(by: disposeBag)
+        
+        deepLinkHandleService.succeededToJoin
+            .observeOn(MainScheduler.instance)
+            .flatMap {
+                return UIHelper.showAlertObservable(message: "SuccessMessage.Join".localized)
+            }
+            .bind { [weak self] in
+                self?.appFlowService.relaunch()
+            }
+            .disposed(by: disposeBag)
     }
 
     // MARK: UISceneSession Lifecycle
