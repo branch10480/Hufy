@@ -1,7 +1,7 @@
-github "ReactiveX/RxSwift" ~> 5.0
-github "tristanhimmelman/ObjectMapper" ~> 3.5
-github "onevcat/Kingfisher" ~> 5.0
-github "hackiftekhar/IQKeyboardManager"
-github "RxSwiftCommunity/RxDataSources" ~> 4.0
-github "DaveWoodCom/XCGLogger" ~> 7.0.1
+# github "ReactiveX/RxSwift" ~> 5.0
+# github "tristanhimmelman/ObjectMapper" ~> 3.5
+# github "onevcat/Kingfisher" ~> 5.0
+# github "hackiftekhar/IQKeyboardManager"
+# github "RxSwiftCommunity/RxDataSources" ~> 4.0
+# github "DaveWoodCom/XCGLogger" ~> 7.0.1
 

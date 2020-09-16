@@ -16,5 +16,11 @@ target 'hufy' do
   pod 'Firebase/Storage'
   pod 'Firebase/DynamicLinks'
   pod 'MBProgressHUD', '~> 1.2.0'
+  pod 'IQKeyboardManagerSwift'
+  pod 'Kingfisher', '~> 5.0'
+  pod 'ObjectMapper', '~> 3.5'
+  pod 'RxSwift'
+  pod 'RxDataSources'
+  pod 'XCGLogger', '~> 7.0.1'
 
 end
