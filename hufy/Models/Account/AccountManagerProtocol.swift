@@ -8,6 +8,7 @@
 
 import UIKit
 import RxSwift
+import RxRelay
 
 enum AccountManagerError: Error {
     case unknown
@@ -16,6 +17,7 @@ enum AccountManagerError: Error {
 }
 
 protocol AccountManagerProtocol {
+    var userSelf: BehaviorRelay<User?> { get }
     func isLiggedIn() -> Bool
     func firebaseAuthAnonymousLogin() -> Observable<Void>
     func createUser() -> Observable<Void>

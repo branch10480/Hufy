@@ -9,13 +9,23 @@
 import Foundation
 import FirebaseAuth
 import RxSwift
+import RxRelay
 
 final class AccountManagerMock: AccountManagerProtocol {
+    
+    static private let _userSelf: BehaviorRelay<User?> = .init(value: nil)
+    var userSelf: BehaviorRelay<User?> {
+        AccountManagerMock._userSelf
+    }
 
     static private var userSelf: User?
 
     func isLiggedIn() -> Bool {
         return false
+    }
+    
+    var cachedUserSelf: User? {
+        return nil
     }
     
     func firebaseAuthAnonymousLogin() -> Observable<Void> {

@@ -11,11 +11,12 @@ import FirebaseAuth
 import FirebaseFirestore
 import FirebaseFirestoreSwift
 import RxSwift
+import RxRelay
 import FirebaseStorage
 
 final class AccountManager: AccountManagerProtocol {
     
-    static private var userSelf: User?
+    static private var _userSelf: BehaviorRelay<User?> = .init(value: nil)
     private lazy var userDB = Firestore.firestore().collection("users")
 
     func isLiggedIn() -> Bool {
@@ -24,6 +25,10 @@ final class AccountManager: AccountManagerProtocol {
         } else {
             return false
         }
+    }
+    
+    var userSelf: BehaviorRelay<User?> {
+        AccountManager._userSelf
     }
     
     func firebaseAuthAnonymousLogin() -> Observable<Void> {
@@ -98,7 +103,7 @@ final class AccountManager: AccountManagerProtocol {
                     return
                 }
                 if let data = snapshot?.data(), let user = User(JSON: data) {
-                    AccountManager.userSelf = user
+                    AccountManager._userSelf.accept(user)
                     observer.onNext(user)
                     observer.onCompleted()
                 } else {
@@ -192,7 +197,7 @@ final class AccountManager: AccountManagerProtocol {
                     return
                 }
                 if let data = snapshot?.data(), let user = User(JSON: data) {
-                    AccountManager.userSelf = user
+                    AccountManager._userSelf .accept(user)
                     observer.onNext(user.belongingGroupId)
                     observer.onCompleted()
                 } else {

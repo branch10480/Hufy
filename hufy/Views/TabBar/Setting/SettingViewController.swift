@@ -19,6 +19,7 @@ class SettingViewController: BaseViewController {
         .init(header: "SettingVC.section.user".localized, items: [
             .editName,
             .editIcon,
+            .invitation,
             .logout
         ]),
         .init(header: "SettingVC.section.aboutApp".localized, items: [
@@ -72,6 +73,10 @@ class SettingViewController: BaseViewController {
             case .editIcon:
                 let vc = Tutorial2ViewController()
                 self?.navigationController?.pushViewController(vc, animated: true)
+            case .invitation:
+                let vc = InvitationViewController()
+                self?.navigationController?.pushViewController(vc, animated: true)
+                break
             case .logout:
                 break
             case .contact:
@@ -105,6 +110,7 @@ extension SectionOfSettingData: SectionModelType {
 enum SettingSectionItem {
     case editName
     case editIcon
+    case invitation
     case logout
     case contact
     case reviewApp
@@ -119,6 +125,8 @@ extension SettingSectionItem {
             return "SettingVC.sectionItem.editName".localized
         case .editIcon:
             return "SettingVC.sectionItem.editIcon".localized
+        case .invitation:
+            return "SettingVC.sectionItem.invitation".localized
         case .logout:
             return "SettingVC.sectionItem.logout".localized
         case .contact:

@@ -26,6 +26,7 @@
 "SettingVC.section.aboutApp" = "アプリについて";
 "SettingVC.sectionItem.editName" = "名前を変更する";
 "SettingVC.sectionItem.editIcon" = "アイコンを変更する";
+"SettingVC.sectionItem.invitation" = "パートナーを招待する";
 "SettingVC.sectionItem.logout" = "ログアウトする";
 "SettingVC.sectionItem.contact" = "ご要望・不具合のご連絡";
 "SettingVC.sectionItem.reviewApp" = "アプリをレビューする";
@@ -34,6 +35,8 @@
 "SettingVC.sectionItem.appVersion" = "バージョン";
 "TodoViewController.sec0.headerTitle" = "TODO";
 "TodoViewController.sec1.headerTitle" = "完了したもの";
+
+"InvitationViewController.title" = "パートナーを招待する";
 
 "SuccessMessage.Join" = "パートナーとの連携が完了しました！アプリを再起動します。";
 "ErrorMessage.failToJoin" = "パートナー設定に失敗しました。再度お試しください。";

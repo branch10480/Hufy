@@ -24,6 +24,11 @@
 		4888085C24E8EA05001257A4 /* Tutorial3ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4888085B24E8EA05001257A4 /* Tutorial3ViewModel.swift */; };
 		48A558D624E6AECC00D37C61 /* BaseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A558D524E6AECC00D37C61 /* BaseButton.swift */; };
 		48BE8B3C250E330F009B7D55 /* UIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48BE8B3B250E330F009B7D55 /* UIHelper.swift */; };
+		48D9F97725150DCA007BE173 /* InvitationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D9F97525150DCA007BE173 /* InvitationViewController.swift */; };
+		48D9F97825150DCA007BE173 /* InvitationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48D9F97625150DCA007BE173 /* InvitationViewController.xib */; };
+		48D9F97B25150DD8007BE173 /* InvitationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D9F97A25150DD8007BE173 /* InvitationViewModel.swift */; };
+		48D9F987251516C9007BE173 /* DynamicLinkGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D9F986251516C9007BE173 /* DynamicLinkGenerator.swift */; };
+		48D9F98A251516D4007BE173 /* DynamicLinkGeneratorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D9F989251516D4007BE173 /* DynamicLinkGeneratorProtocol.swift */; };
 		48FE669424F10A80003B2B87 /* Design.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48FE669324F10A80003B2B87 /* Design.swift */; };
 		48FE669624F111DF003B2B87 /* UITextField+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48FE669524F111DF003B2B87 /* UITextField+.swift */; };
 		48FE669D24F11CE2003B2B87 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48FE669B24F11CE2003B2B87 /* HomeViewController.swift */; };
@@ -97,6 +102,11 @@
 		4888085B24E8EA05001257A4 /* Tutorial3ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tutorial3ViewModel.swift; sourceTree = "<group>"; };
 		48A558D524E6AECC00D37C61 /* BaseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseButton.swift; sourceTree = "<group>"; };
 		48BE8B3B250E330F009B7D55 /* UIHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIHelper.swift; sourceTree = "<group>"; };
+		48D9F97525150DCA007BE173 /* InvitationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvitationViewController.swift; sourceTree = "<group>"; };
+		48D9F97625150DCA007BE173 /* InvitationViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InvitationViewController.xib; sourceTree = "<group>"; };
+		48D9F97A25150DD8007BE173 /* InvitationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvitationViewModel.swift; sourceTree = "<group>"; };
+		48D9F986251516C9007BE173 /* DynamicLinkGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicLinkGenerator.swift; sourceTree = "<group>"; };
+		48D9F989251516D4007BE173 /* DynamicLinkGeneratorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicLinkGeneratorProtocol.swift; sourceTree = "<group>"; };
 		48FE669324F10A80003B2B87 /* Design.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Design.swift; sourceTree = "<group>"; };
 		48FE669524F111DF003B2B87 /* UITextField+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+.swift"; sourceTree = "<group>"; };
 		48FE669B24F11CE2003B2B87 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -254,6 +264,25 @@
 			path = UIHelper;
 			sourceTree = "<group>";
 		};
+		48D9F97425150D78007BE173 /* Invitation */ = {
+			isa = PBXGroup;
+			children = (
+				48D9F97525150DCA007BE173 /* InvitationViewController.swift */,
+				48D9F97625150DCA007BE173 /* InvitationViewController.xib */,
+				48D9F97A25150DD8007BE173 /* InvitationViewModel.swift */,
+			);
+			path = Invitation;
+			sourceTree = "<group>";
+		};
+		48D9F985251516AF007BE173 /* DynamicLinkGenerator */ = {
+			isa = PBXGroup;
+			children = (
+				48D9F986251516C9007BE173 /* DynamicLinkGenerator.swift */,
+				48D9F989251516D4007BE173 /* DynamicLinkGeneratorProtocol.swift */,
+			);
+			path = DynamicLinkGenerator;
+			sourceTree = "<group>";
+		};
 		48FE669724F11C7C003B2B87 /* Home */ = {
 			isa = PBXGroup;
 			children = (
@@ -353,6 +382,7 @@
 		490565C324E1467F0082B42B /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				48D9F985251516AF007BE173 /* DynamicLinkGenerator */,
 				48BE8B3A250E3298009B7D55 /* UIHelper */,
 				481D5802250A4CF4008DA16C /* AppFlow */,
 				481D57FD250A4C07008DA16C /* DeepLinkHandle */,
@@ -458,6 +488,7 @@
 		4941271724DDA7E5008768F9 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				48D9F97425150D78007BE173 /* Invitation */,
 				4888085624E8E9C9001257A4 /* Tutorial3 */,
 				48A558D424E6AEB400D37C61 /* Parts */,
 				490565CC24E194110082B42B /* Tutorial2 */,
@@ -598,6 +629,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				490565A124E122110082B42B /* TutorialViewController.xib in Resources */,
+				48D9F97825150DCA007BE173 /* InvitationViewController.xib in Resources */,
 				4941271C24DDA84E008768F9 /* Main.storyboard in Resources */,
 				4888085A24E8E9F3001257A4 /* Tutorial3ViewController.xib in Resources */,
 				48FE66A724F11D0A003B2B87 /* TodoViewController.xib in Resources */,
@@ -700,11 +732,13 @@
 				499E7F1624E2EBD80005FFEF /* UIImagePickerController+RxCreate.swift in Sources */,
 				481B4CC524FA0D5000793E2E /* TodoViewModel.swift in Sources */,
 				4888085C24E8EA05001257A4 /* Tutorial3ViewModel.swift in Sources */,
+				48D9F97B25150DD8007BE173 /* InvitationViewModel.swift in Sources */,
 				481B4CC824FA0D9500793E2E /* TodoManager.swift in Sources */,
 				490565B224E129B60082B42B /* UIImage+.swift in Sources */,
 				481D5801250A4C38008DA16C /* DeepLinkHandleServiceProtocol.swift in Sources */,
 				481D57FF250A4C2E008DA16C /* DeepLinkHandleService.swift in Sources */,
 				490565B424E12E680082B42B /* Size.swift in Sources */,
+				48D9F98A251516D4007BE173 /* DynamicLinkGeneratorProtocol.swift in Sources */,
 				4905659B24E121F00082B42B /* TabBarViewController.swift in Sources */,
 				490565A024E122110082B42B /* TutorialViewController.swift in Sources */,
 				490565AD24E128130082B42B /* BaseViewController.swift in Sources */,
@@ -717,6 +751,7 @@
 				49A3BDDF24E0FF3D0025F38F /* BaseViewModel.swift in Sources */,
 				490565C524E146930082B42B /* ProgressViewService.swift in Sources */,
 				490565C824E146A90082B42B /* ProgressViewServiceProtocol.swift in Sources */,
+				48D9F97725150DCA007BE173 /* InvitationViewController.swift in Sources */,
 				48FE66A624F11D0A003B2B87 /* TodoViewController.swift in Sources */,
 				499E7F1824E2EBD80005FFEF /* UIImagePickerController+Rx.swift in Sources */,
 				4941271A24DDA836008768F9 /* EntryViewController.swift in Sources */,
@@ -725,6 +760,7 @@
 				49A3BDF324E118F20025F38F /* EntryViewModel.swift in Sources */,
 				49A3BDF724E11D6A0025F38F /* AccountManagerProtocol.swift in Sources */,
 				48FE66AA24F11D19003B2B87 /* SettingViewController.swift in Sources */,
+				48D9F987251516C9007BE173 /* DynamicLinkGenerator.swift in Sources */,
 				494126FD24DDA431008768F9 /* AppDelegate.swift in Sources */,
 				490565D424E194F60082B42B /* MyNavigationController.swift in Sources */,
 				490565CB24E152FF0082B42B /* User.swift in Sources */,
