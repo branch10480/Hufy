@@ -34,4 +34,15 @@ extension UIButton {
         setTitleColor(.buttonDisabledText, for: .disabled)
         setBackgroundImage(UIImage.create(withColor: .buttonDisabledBackground), for: .disabled)
     }
+    
+    func setLINEDesign() {
+        let radius: CGFloat = 5
+        setTitleColor(.white, for: .normal)
+        setBackgroundImage(UIImage.create(withColor: .LINE), for: .normal)
+        layer.cornerRadius = radius
+        layer.masksToBounds = true
+        titleLabel?.font = .systemFont(ofSize: 16, weight: .bold)
+        
+        setDisabledDesign(radius: radius)
+    }
 }

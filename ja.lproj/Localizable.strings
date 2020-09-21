@@ -37,8 +37,15 @@
 "TodoViewController.sec1.headerTitle" = "完了したもの";
 
 "InvitationViewController.title" = "パートナーを招待する";
+"InvitationViewController.invitationMenuButton.title" = "パートナーを招待する";
+"InvitationViewController.joinMenuButton.title" = "招待QRを読み込む";
+"InvitationViewController.invitationDescriptionLabel.text" = "パートナー側のアプリ、もしくはカメラでQRコードを読み取ってください！";
+"InvitationViewController.invitationByLineButton.title" = "LINEで招待する";
+
+"OR" = "または";
 
 "SuccessMessage.Join" = "パートナーとの連携が完了しました！アプリを再起動します。";
 "ErrorMessage.failToJoin" = "パートナー設定に失敗しました。再度お試しください。";
 
 "OK" = "OK";
+"OR" = "または";

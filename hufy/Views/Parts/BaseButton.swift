@@ -13,6 +13,7 @@ class BaseButton: UIButton {
     enum DesignType {
         case defaultDesign
         case cancelDesign
+        case LINEDesign
     }
     var type: DesignType = .defaultDesign {
         didSet {
@@ -37,6 +38,8 @@ class BaseButton: UIButton {
             setDefaultDesign(radius: radius)
         case .cancelDesign:
             setCancelDesign(radius: radius)
+        case .LINEDesign:
+            setLINEDesign()
         }
     }
 

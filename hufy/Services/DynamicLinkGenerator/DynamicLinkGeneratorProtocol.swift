@@ -7,7 +7,8 @@
 //
 
 import Foundation
+import RxSwift
 
 protocol DynamicLinkGeneratorProtocol {
-    func getInvitationLink() -> String
+    func getInvitationLink(userId: String, todoGroupId: String) -> Single<URL?>
 }
