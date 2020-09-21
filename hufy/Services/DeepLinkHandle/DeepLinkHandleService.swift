@@ -27,7 +27,9 @@ final class DeepLinkHandleService: DeepLinkHandleServiceProtocol {
     }
 
     func handle(deepLink: URL?) {
-        guard let url = deepLink, let type = DeepLinkType(url: url) else {
+        guard let url = deepLink,
+              let type = DeepLinkType(url: url) else
+        {
             return
         }
         switch type {

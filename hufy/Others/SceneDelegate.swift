@@ -7,9 +7,12 @@
 //
 
 import UIKit
+import FirebaseDynamicLinks
 
 @available(iOS 13.0, *)
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
+    
+    var deepLinkHandleService: DeepLinkHandleServiceProtocol = DeepLinkHandleService(manager: AccountManager())
 
     var window: UIWindow?
 
@@ -47,7 +50,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use this method to save data, release shared resources, and store enough scene-specific state information
         // to restore the scene back to its current state.
     }
-
-
+    
+    func scene(_ scene: UIScene, continue userActivity: NSUserActivity) {
+        DynamicLinks.dynamicLinks().handleUniversalLink(userActivity.webpageURL!) { [weak self] (dynamiclink, error) in
+            if let error = error {
+                Logger.default.debug(error)
+                return
+            }
+            self?.deepLinkHandleService.handle(deepLink: dynamiclink?.url)
+        }
+    }
 }
 

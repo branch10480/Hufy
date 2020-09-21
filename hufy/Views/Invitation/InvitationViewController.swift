@@ -64,6 +64,11 @@ class InvitationViewController: BaseViewController {
         viewModel.linkOfLineToOpen
             .observeOn(MainScheduler.instance)
             .bind { url in
+                
+                // Debug!
+                UIApplication.shared.open(url, completionHandler: nil)
+                return
+                
                 let invitationLink = url.absoluteString
                 /// details: https://developers.line.biz/ja/docs/line-login/using-line-url-scheme
                 guard let converted = invitationLink.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed),

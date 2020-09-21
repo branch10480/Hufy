@@ -22,8 +22,9 @@ enum DeepLinkType {
     
     init?(url: URL) {
         let components = url.pathComponents
-        if components.count > 5, components[1] == "join" {
-            self = .join(userId: components[3], todoGroupId: components[5])
+        let host = url.host
+        if components.count > 2, host == "invitation" {
+            self = .join(userId: components[1], todoGroupId: components[2])
         } else {
             return nil
         }
