@@ -12,7 +12,7 @@ import RxSwift
 final class UIHelper {
     
     static func showAlert(message: String) {
-        guard let vc = UIApplication.shared.keyWindow?.rootViewController else {
+        guard let vc = UIApplication.topViewController else {
             Logger.default.debug("UIApplication.shared.keyWindow?.rootViewController 取得失敗")
             return
         }
@@ -23,7 +23,7 @@ final class UIHelper {
     
     static func showAlertObservable(message: String) -> Observable<Void> {
         return Observable.create { observer in
-            if let vc = UIApplication.shared.keyWindow?.rootViewController {
+            if let vc = UIApplication.topViewController {
                 let ac = UIAlertController(title: "", message: message, preferredStyle: .alert)
                 ac.addAction(.init(title: "OK".localized, style: .default, handler: { _ in
                     observer.onNext(())

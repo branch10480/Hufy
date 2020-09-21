@@ -113,18 +113,20 @@ final class AccountManagerMock: AccountManagerProtocol {
         }
     }
     
-    func invite(partnerId: String) -> Observable<Void> {
-        return Observable<Void>.create { observer -> Disposable in
-            observer.onNext(())
-            observer.onCompleted()
+    func invite(partnerId: String) -> Single<Void> {
+        return Single.create { observer -> Disposable in
+            DispatchQueue.global().asyncAfter(deadline: .now() + 1) {
+                observer(.success(()))
+            }
             return Disposables.create()
         }
     }
 
-    func join(partnerId: String, partnerTodoGroupId: String) -> Observable<Void> {
-        return Observable<Void>.create { observer -> Disposable in
-            observer.onNext(())
-            observer.onCompleted()
+    func join(partnerId: String, partnerTodoGroupId: String) -> Single<Void> {
+        return Single.create { observer -> Disposable in
+            DispatchQueue.global().asyncAfter(deadline: .now() + 1) {
+                observer(.success(()))
+            }
             return Disposables.create()
         }
     }

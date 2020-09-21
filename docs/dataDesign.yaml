@@ -5,10 +5,11 @@ users:
   name: String
   tutorial1Done: Bool
   tutorial2Done: Bool
-  tutorial3Done: Bool
+  tutorial3Done: Bool 
   createdAt: Timestamp
   updatedAt: Timestamp
   belongingGroupId: String
+  partnerId: String
 
 todoGroups:
   doumentId: auto

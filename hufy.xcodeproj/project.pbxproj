@@ -22,6 +22,7 @@
 		4888085924E8E9F3001257A4 /* Tutorial3ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4888085724E8E9F3001257A4 /* Tutorial3ViewController.swift */; };
 		4888085A24E8E9F3001257A4 /* Tutorial3ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4888085824E8E9F3001257A4 /* Tutorial3ViewController.xib */; };
 		4888085C24E8EA05001257A4 /* Tutorial3ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4888085B24E8EA05001257A4 /* Tutorial3ViewModel.swift */; };
+		48A0FB672519081D0092458B /* UIApplication+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A0FB662519081D0092458B /* UIApplication+.swift */; };
 		48A558D624E6AECC00D37C61 /* BaseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A558D524E6AECC00D37C61 /* BaseButton.swift */; };
 		48BE8B3C250E330F009B7D55 /* UIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48BE8B3B250E330F009B7D55 /* UIHelper.swift */; };
 		48D9F97725150DCA007BE173 /* InvitationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D9F97525150DCA007BE173 /* InvitationViewController.swift */; };
@@ -100,6 +101,7 @@
 		4888085724E8E9F3001257A4 /* Tutorial3ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tutorial3ViewController.swift; sourceTree = "<group>"; };
 		4888085824E8E9F3001257A4 /* Tutorial3ViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Tutorial3ViewController.xib; sourceTree = "<group>"; };
 		4888085B24E8EA05001257A4 /* Tutorial3ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tutorial3ViewModel.swift; sourceTree = "<group>"; };
+		48A0FB662519081D0092458B /* UIApplication+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+.swift"; sourceTree = "<group>"; };
 		48A558D524E6AECC00D37C61 /* BaseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseButton.swift; sourceTree = "<group>"; };
 		48BE8B3B250E330F009B7D55 /* UIHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIHelper.swift; sourceTree = "<group>"; };
 		48D9F97525150DCA007BE173 /* InvitationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvitationViewController.swift; sourceTree = "<group>"; };
@@ -375,6 +377,7 @@
 				490565BF24E132120082B42B /* String+.swift */,
 				48FE669324F10A80003B2B87 /* Design.swift */,
 				48FE669524F111DF003B2B87 /* UITextField+.swift */,
+				48A0FB662519081D0092458B /* UIApplication+.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -760,6 +763,7 @@
 				49A3BDF324E118F20025F38F /* EntryViewModel.swift in Sources */,
 				49A3BDF724E11D6A0025F38F /* AccountManagerProtocol.swift in Sources */,
 				48FE66AA24F11D19003B2B87 /* SettingViewController.swift in Sources */,
+				48A0FB672519081D0092458B /* UIApplication+.swift in Sources */,
 				48D9F987251516C9007BE173 /* DynamicLinkGenerator.swift in Sources */,
 				494126FD24DDA431008768F9 /* AppDelegate.swift in Sources */,
 				490565D424E194F60082B42B /* MyNavigationController.swift in Sources */,

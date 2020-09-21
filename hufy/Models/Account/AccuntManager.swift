@@ -17,7 +17,8 @@ import FirebaseStorage
 final class AccountManager: AccountManagerProtocol {
     
     static private var _userSelf: BehaviorRelay<User?> = .init(value: nil)
-    private lazy var userDB = Firestore.firestore().collection("users")
+    private lazy var db = Firestore.firestore()
+    private lazy var userDB = self.db.userRef
 
     func isLiggedIn() -> Bool {
         if let _ = Auth.auth().currentUser {
@@ -208,8 +209,8 @@ final class AccountManager: AccountManagerProtocol {
         }
     }
     
-    func invite(partnerId: String) -> Observable<Void> {
-        return Observable<Void>.create { [weak self] observer -> Disposable in
+    func invite(partnerId: String) -> Single<Void> {
+        return Single.create { [weak self] observer -> Disposable in
             
             // TODO: パートナーとして登録する処理 (Function)
             
@@ -217,12 +218,47 @@ final class AccountManager: AccountManagerProtocol {
         }
     }
 
-    func join(partnerId: String, partnerTodoGroupId: String) -> Observable<Void> {
-        return Observable<Void>.create { [weak self] observer -> Disposable in
+    func join(partnerId: String, partnerTodoGroupId: String) -> Single<Void> {
+        return Single<Void>.create { [weak self] observer -> Disposable in
             
-            // TODO: パートナーとして登録する処理 (Function)
+            guard let self = self,
+                  let myId = AccountManager._userSelf.value?.id else
+            {
+                observer(.error(AccountManagerError.unknown))
+                return Disposables.create()
+            }
             
+            let batch = self.db.batch()
+            
+            // 自分にパートナーのID、新しいTODOグループIDを登録
+            let myRef = self.db.document(myId)
+            batch.updateData([
+                "partnerId": partnerId,
+                "belongingGroupId": partnerTodoGroupId
+            ], forDocument: myRef)
+            
+            // パートナーに自分のユーザーIDをパートナーIDとして登録する
+            let partnerRef = self.db.document(partnerId)
+            batch.updateData([
+                "partnerId": myId
+            ], forDocument: partnerRef)
+            
+            // バッチ書き込み
+            batch.commit { error in
+                if let error = error {
+                    observer(.error(error))
+                    return
+                }
+                observer(.success(()))
+            }
+
             return Disposables.create()
         }
+    }
+}
+
+fileprivate extension Firestore {
+    var userRef: CollectionReference {
+        return self.collection("users")
     }
 }

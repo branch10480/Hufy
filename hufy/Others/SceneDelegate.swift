@@ -12,7 +12,10 @@ import FirebaseDynamicLinks
 @available(iOS 13.0, *)
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
-    var deepLinkHandleService: DeepLinkHandleServiceProtocol = DeepLinkHandleService(manager: AccountManager())
+    var deepLinkHandleService: DeepLinkHandleServiceProtocol {
+        let app = UIApplication.shared.delegate as! AppDelegate
+        return app.deepLinkHandleService
+    }
 
     var window: UIWindow?
 

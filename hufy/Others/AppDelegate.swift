@@ -20,7 +20,7 @@ typealias Logger = XCGLogger
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    var deepLinkHandleService: DeepLinkHandleServiceProtocol = DeepLinkHandleService(manager: AccountManager())
+    var deepLinkHandleService: DeepLinkHandleServiceProtocol = DeepLinkHandleService(manager: AccountManagerMock())
     var progressViewService: ProgressViewServiceProtocol = ProgressViewService()
     var appFlowService: AppFlowServiceProtocol = AppFlowService()
     private let disposeBag = DisposeBag()
@@ -51,13 +51,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //            fileLevel: .debug               // ファイル出力のログレベル
         )
         
+        bind()
+        
         return true
     }
     
     private func bind() {
         // Deep Link Handle Service
         deepLinkHandleService.isLoading.bind { [weak self] loading in
-            guard let vc = self?.window?.rootViewController else {
+            guard let vc = UIApplication.topViewController else {
                 return
             }
             if loading {
