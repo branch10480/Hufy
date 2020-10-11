@@ -26,3 +26,13 @@ todoGroups:
     doneBy: user.id
     postedBy: user.id
 
+trashDays:
+  documentId: belongingGroupId
+
+  days:
+    id: Int
+    day: String        # sun, mon, tue, wed, thu, fri, sat
+    isOn: Bool
+    inChargeOf: String # Auth.id(me or partner) 
+    remark: String
+

@@ -45,6 +45,7 @@ class SettingViewController: BaseViewController {
         // TableView Data Source
         let dataSource = RxTableViewSectionedReloadDataSource<SectionOfSettingData>(configureCell: { dataSource, tableView, indexPath, item in
             let cell = UITableViewCell(style: .default, reuseIdentifier: "Cell")
+            cell.textLabel?.numberOfLines = 0
             let item = dataSource[indexPath]
             cell.textLabel?.text = item.title
             switch item {

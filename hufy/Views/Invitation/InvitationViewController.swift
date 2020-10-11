@@ -9,10 +9,10 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import MercariQRScanner
 
 class InvitationViewController: BaseViewController {
-    
-    @IBOutlet weak var invitationMenuButton: UIButton!
+
     @IBOutlet weak var joinMenuButton: UIButton!
     @IBOutlet weak var qrCodeImageView: UIImageView!
     @IBOutlet weak var invitationDescriptionLabel: UILabel!
@@ -25,6 +25,7 @@ class InvitationViewController: BaseViewController {
         linkGenerator: DynamicLinkGenerator(),
         accountManager: AccountManager()
     )
+    var qrCodeReader: QRCodeReaderProtocol = QRCodeReader()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,7 +35,6 @@ class InvitationViewController: BaseViewController {
     override func setup() {
         super.setup()
         title = "InvitationViewController.title".localized
-        invitationMenuButton.setTitle("InvitationViewController.invitationMenuButton.title".localized, for: .normal)
         joinMenuButton.setTitle("InvitationViewController.joinMenuButton.title".localized, for: .normal)
         invitationDescriptionLabel.text = "InvitationViewController.invitationDescriptionLabel.text".localized
         invitationByLineButton.setTitle("InvitationViewController.invitationByLineButton.title".localized, for: .normal)
@@ -42,6 +42,9 @@ class InvitationViewController: BaseViewController {
         invitationByLineButton.type = .LINEDesign
         orCenterLineView.backgroundColor = .buttonCancelBackground
         orLabel.text = "OR".localized
+        
+        joinMenuButton.backgroundColor = .other1
+        joinMenuButton.setTitleColor(.text, for: .normal)
     }
     
     private func bind() {
@@ -80,6 +83,17 @@ class InvitationViewController: BaseViewController {
                 UIApplication.shared.open(url, completionHandler: nil)
             }
             .disposed(by: disposeBag)
+        
+        joinMenuButton.rx.tap.asDriver().drive(onNext: { [weak self] in
+            guard let self = self else { return }
+            let qrCodeObservable = self.qrCodeReader.getReaderObservable(showFrom: self)
+            qrCodeObservable.subscribe(onSuccess: { code in
+                Logger.debug("📷 QRCode was converted to \(code)")
+            })
+            .disposed(by: self.disposeBag)
+        })
+        .disposed(by: disposeBag)
+
     }
 
 }

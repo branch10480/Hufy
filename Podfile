@@ -2,25 +2,26 @@
 platform :ios, '11.0'
 plugin 'cocoapods-binary'
 
-all_binary!
 target 'hufy' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
 
   # Pods for hufy
-  pod 'Firebase/Core'
-  pod 'Firebase/Analytics'
-  pod 'Firebase/Auth'
-  pod 'Firebase/Firestore'
-  pod 'FirebaseFirestoreSwift'
-  pod 'Firebase/Storage'
-  pod 'Firebase/DynamicLinks'
-  pod 'MBProgressHUD', '~> 1.2.0'
-  pod 'IQKeyboardManagerSwift'
-  pod 'Kingfisher', '~> 5.0'
-  pod 'ObjectMapper', '~> 3.5'
-  pod 'RxSwift'
-  pod 'RxDataSources'
-  pod 'XCGLogger', '~> 7.0.1'
+  pod 'Firebase/Core', :binary => true
+  pod 'Firebase/Analytics', :binary => true
+  pod 'Firebase/Auth', :binary => true
+  pod 'Firebase/Firestore', :binary => true
+  pod 'FirebaseFirestoreSwift', :binary => true
+  pod 'Firebase/Storage', :binary => true
+  pod 'Firebase/DynamicLinks', :binary => true
+  pod 'MBProgressHUD', '~> 1.2.0', :binary => true
+  pod 'IQKeyboardManagerSwift', :binary => true
+  pod 'Kingfisher', '~> 5.0', :binary => true
+  pod 'ObjectMapper', '~> 3.5', :binary => true
+  pod 'RxSwift', :binary => true
+  pod 'RxDataSources', :binary => true
+  pod 'XCGLogger', '~> 7.0.1', :binary => true
+  pod 'MercariQRScanner'
+  pod 'SnapKit', '~> 5.0.0', :binary => true
 
 end

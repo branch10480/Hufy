@@ -17,6 +17,12 @@
 		481D5801250A4C38008DA16C /* DeepLinkHandleServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 481D5800250A4C38008DA16C /* DeepLinkHandleServiceProtocol.swift */; };
 		481D5804250A4D0E008DA16C /* AppFlowService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 481D5803250A4D0E008DA16C /* AppFlowService.swift */; };
 		481D5806250A4D18008DA16C /* AppFlowServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 481D5805250A4D18008DA16C /* AppFlowServiceProtocol.swift */; };
+		48713A1A2531E562001991F6 /* QRCodeReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48713A192531E562001991F6 /* QRCodeReader.swift */; };
+		48713A1F2531EDCF001991F6 /* QRCodeReaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48713A1D2531EDCF001991F6 /* QRCodeReaderViewController.swift */; };
+		48713A202531EDCF001991F6 /* QRCodeReaderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48713A1E2531EDCF001991F6 /* QRCodeReaderViewController.xib */; };
+		48713A4925320A38001991F6 /* TrashDayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48713A4725320A38001991F6 /* TrashDayViewController.swift */; };
+		48713A4A25320A38001991F6 /* TrashDayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48713A4825320A38001991F6 /* TrashDayViewController.xib */; };
+		48713A4D25320A55001991F6 /* TrashDayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48713A4C25320A55001991F6 /* TrashDayViewModel.swift */; };
 		487B45D725032E800050117A /* HapticFeedbackService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 487B45D625032E800050117A /* HapticFeedbackService.swift */; };
 		487B45D925032E8F0050117A /* HapticFeedbackServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 487B45D825032E8F0050117A /* HapticFeedbackServiceProtocol.swift */; };
 		4888085924E8E9F3001257A4 /* Tutorial3ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4888085724E8E9F3001257A4 /* Tutorial3ViewController.swift */; };
@@ -40,6 +46,9 @@
 		48FE66A724F11D0A003B2B87 /* TodoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48FE66A524F11D0A003B2B87 /* TodoViewController.xib */; };
 		48FE66AA24F11D19003B2B87 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48FE66A824F11D19003B2B87 /* SettingViewController.swift */; };
 		48FE66AB24F11D19003B2B87 /* SettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48FE66A924F11D19003B2B87 /* SettingViewController.xib */; };
+		48FFF71C2532B02A00DCAB51 /* TrashDayEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48FFF71A2532B02A00DCAB51 /* TrashDayEditViewController.swift */; };
+		48FFF71D2532B02A00DCAB51 /* TrashDayEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48FFF71B2532B02A00DCAB51 /* TrashDayEditViewController.xib */; };
+		48FFF7202532B03F00DCAB51 /* TrashDayEditViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48FFF71F2532B03F00DCAB51 /* TrashDayEditViewModel.swift */; };
 		4905659B24E121F00082B42B /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4905659924E121F00082B42B /* TabBarViewController.swift */; };
 		4905659C24E121F00082B42B /* TabBarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4905659A24E121F00082B42B /* TabBarViewController.xib */; };
 		490565A024E122110082B42B /* TutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4905659E24E122110082B42B /* TutorialViewController.swift */; };
@@ -96,6 +105,12 @@
 		481D5800250A4C38008DA16C /* DeepLinkHandleServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeepLinkHandleServiceProtocol.swift; sourceTree = "<group>"; };
 		481D5803250A4D0E008DA16C /* AppFlowService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFlowService.swift; sourceTree = "<group>"; };
 		481D5805250A4D18008DA16C /* AppFlowServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFlowServiceProtocol.swift; sourceTree = "<group>"; };
+		48713A192531E562001991F6 /* QRCodeReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeReader.swift; sourceTree = "<group>"; };
+		48713A1D2531EDCF001991F6 /* QRCodeReaderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeReaderViewController.swift; sourceTree = "<group>"; };
+		48713A1E2531EDCF001991F6 /* QRCodeReaderViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QRCodeReaderViewController.xib; sourceTree = "<group>"; };
+		48713A4725320A38001991F6 /* TrashDayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrashDayViewController.swift; sourceTree = "<group>"; };
+		48713A4825320A38001991F6 /* TrashDayViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TrashDayViewController.xib; sourceTree = "<group>"; };
+		48713A4C25320A55001991F6 /* TrashDayViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrashDayViewModel.swift; sourceTree = "<group>"; };
 		487B45D625032E800050117A /* HapticFeedbackService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticFeedbackService.swift; sourceTree = "<group>"; };
 		487B45D825032E8F0050117A /* HapticFeedbackServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticFeedbackServiceProtocol.swift; sourceTree = "<group>"; };
 		4888085724E8E9F3001257A4 /* Tutorial3ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tutorial3ViewController.swift; sourceTree = "<group>"; };
@@ -119,6 +134,9 @@
 		48FE66A524F11D0A003B2B87 /* TodoViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TodoViewController.xib; sourceTree = "<group>"; };
 		48FE66A824F11D19003B2B87 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		48FE66A924F11D19003B2B87 /* SettingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingViewController.xib; sourceTree = "<group>"; };
+		48FFF71A2532B02A00DCAB51 /* TrashDayEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrashDayEditViewController.swift; sourceTree = "<group>"; };
+		48FFF71B2532B02A00DCAB51 /* TrashDayEditViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TrashDayEditViewController.xib; sourceTree = "<group>"; };
+		48FFF71F2532B03F00DCAB51 /* TrashDayEditViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrashDayEditViewModel.swift; sourceTree = "<group>"; };
 		4905659924E121F00082B42B /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		4905659A24E121F00082B42B /* TabBarViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TabBarViewController.xib; sourceTree = "<group>"; };
 		4905659E24E122110082B42B /* TutorialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialViewController.swift; sourceTree = "<group>"; };
@@ -229,6 +247,36 @@
 				481D5805250A4D18008DA16C /* AppFlowServiceProtocol.swift */,
 			);
 			path = AppFlow;
+			sourceTree = "<group>";
+		};
+		48713A182531E530001991F6 /* QRCodeReader */ = {
+			isa = PBXGroup;
+			children = (
+				48713A192531E562001991F6 /* QRCodeReader.swift */,
+			);
+			path = QRCodeReader;
+			sourceTree = "<group>";
+		};
+		48713A1C2531EDB6001991F6 /* QRCodeReader */ = {
+			isa = PBXGroup;
+			children = (
+				48713A1D2531EDCF001991F6 /* QRCodeReaderViewController.swift */,
+				48713A1E2531EDCF001991F6 /* QRCodeReaderViewController.xib */,
+			);
+			path = QRCodeReader;
+			sourceTree = "<group>";
+		};
+		48713A4625320A16001991F6 /* TrashDay */ = {
+			isa = PBXGroup;
+			children = (
+				48713A4725320A38001991F6 /* TrashDayViewController.swift */,
+				48713A4825320A38001991F6 /* TrashDayViewController.xib */,
+				48713A4C25320A55001991F6 /* TrashDayViewModel.swift */,
+				48FFF71A2532B02A00DCAB51 /* TrashDayEditViewController.swift */,
+				48FFF71B2532B02A00DCAB51 /* TrashDayEditViewController.xib */,
+				48FFF71F2532B03F00DCAB51 /* TrashDayEditViewModel.swift */,
+			);
+			path = TrashDay;
 			sourceTree = "<group>";
 		};
 		487B45D525032E4E0050117A /* HapticFeedback */ = {
@@ -385,6 +433,7 @@
 		490565C324E1467F0082B42B /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				48713A182531E530001991F6 /* QRCodeReader */,
 				48D9F985251516AF007BE173 /* DynamicLinkGenerator */,
 				48BE8B3A250E3298009B7D55 /* UIHelper */,
 				481D5802250A4CF4008DA16C /* AppFlow */,
@@ -491,6 +540,8 @@
 		4941271724DDA7E5008768F9 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				48713A4625320A16001991F6 /* TrashDay */,
+				48713A1C2531EDB6001991F6 /* QRCodeReader */,
 				48D9F97425150D78007BE173 /* Invitation */,
 				4888085624E8E9C9001257A4 /* Tutorial3 */,
 				48A558D424E6AEB400D37C61 /* Parts */,
@@ -637,12 +688,15 @@
 				4888085A24E8E9F3001257A4 /* Tutorial3ViewController.xib in Resources */,
 				48FE66A724F11D0A003B2B87 /* TodoViewController.xib in Resources */,
 				48FE66A224F11CF1003B2B87 /* AnniversaryViewController.xib in Resources */,
+				48713A4A25320A38001991F6 /* TrashDayViewController.xib in Resources */,
 				490565D024E194290082B42B /* Tutorial2ViewController.xib in Resources */,
 				4941272024DDA958008768F9 /* GoogleService-Info.plist in Resources */,
 				48FE66AB24F11D19003B2B87 /* SettingViewController.xib in Resources */,
+				48713A202531EDCF001991F6 /* QRCodeReaderViewController.xib in Resources */,
 				481B4CD024FA19F500793E2E /* TodoTableViewCell.xib in Resources */,
 				490565B624E130120082B42B /* Pacifico-Regular.ttf in Resources */,
 				4941270924DDA433008768F9 /* LaunchScreen.storyboard in Resources */,
+				48FFF71D2532B02A00DCAB51 /* TrashDayEditViewController.xib in Resources */,
 				490565BC24E131B50082B42B /* Localizable.strings in Resources */,
 				4941270624DDA433008768F9 /* Assets.xcassets in Resources */,
 				4905659C24E121F00082B42B /* TabBarViewController.xib in Resources */,
@@ -721,10 +775,12 @@
 			files = (
 				490565A624E123DF0082B42B /* FirebaseManager.swift in Sources */,
 				481D5804250A4D0E008DA16C /* AppFlowService.swift in Sources */,
+				48713A4D25320A55001991F6 /* TrashDayViewModel.swift in Sources */,
 				490565CF24E194290082B42B /* Tutorial2ViewController.swift in Sources */,
 				499E7F1724E2EBD80005FFEF /* RxImagePickerDelegateProxy.swift in Sources */,
 				490565A324E1226D0082B42B /* TutorialViewModel.swift in Sources */,
 				48A558D624E6AECC00D37C61 /* BaseButton.swift in Sources */,
+				48713A4925320A38001991F6 /* TrashDayViewController.swift in Sources */,
 				481B4CCC24FA101E00793E2E /* Todo.swift in Sources */,
 				481B4CCA24FA0DCF00793E2E /* TodoManagerProtocol.swift in Sources */,
 				481B4CCF24FA19F500793E2E /* TodoTableViewCell.swift in Sources */,
@@ -741,6 +797,8 @@
 				481D5801250A4C38008DA16C /* DeepLinkHandleServiceProtocol.swift in Sources */,
 				481D57FF250A4C2E008DA16C /* DeepLinkHandleService.swift in Sources */,
 				490565B424E12E680082B42B /* Size.swift in Sources */,
+				48713A1A2531E562001991F6 /* QRCodeReader.swift in Sources */,
+				48FFF71C2532B02A00DCAB51 /* TrashDayEditViewController.swift in Sources */,
 				48D9F98A251516D4007BE173 /* DynamicLinkGeneratorProtocol.swift in Sources */,
 				4905659B24E121F00082B42B /* TabBarViewController.swift in Sources */,
 				490565A024E122110082B42B /* TutorialViewController.swift in Sources */,
@@ -748,8 +806,10 @@
 				490565B824E131090082B42B /* Constant.swift in Sources */,
 				490565A824E123F30082B42B /* FirebaseManagerProtocol.swift in Sources */,
 				48FE669624F111DF003B2B87 /* UITextField+.swift in Sources */,
+				48713A1F2531EDCF001991F6 /* QRCodeReaderViewController.swift in Sources */,
 				4941271624DDA7B5008768F9 /* AppConfig.swift in Sources */,
 				48FE66A124F11CF1003B2B87 /* AnniversaryViewController.swift in Sources */,
+				48FFF7202532B03F00DCAB51 /* TrashDayEditViewModel.swift in Sources */,
 				48BE8B3C250E330F009B7D55 /* UIHelper.swift in Sources */,
 				49A3BDDF24E0FF3D0025F38F /* BaseViewModel.swift in Sources */,
 				490565C524E146930082B42B /* ProgressViewService.swift in Sources */,

@@ -14,10 +14,12 @@ class TabBarViewController: UITabBarController {
     private let anniversaryVC = AnniversaryViewController()
     private let todoVC = TodoViewController()
     private let settingVC = SettingViewController()
+    private let trashDayVC = TrashDayViewController()
     
     private lazy var anniversaryNC = MyNavigationController(rootViewController: anniversaryVC)
     private lazy var todoNC = MyNavigationController(rootViewController: todoVC)
     private lazy var settingNC = MyNavigationController(rootViewController: settingVC)
+    private lazy var trashDayNC = MyNavigationController(rootViewController: trashDayVC)
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,11 +38,13 @@ class TabBarViewController: UITabBarController {
         anniversaryNC.tabBarItem = UITabBarItem(title: "TabBarViewController.item2.title".localized, image: nil, tag: 1)
         todoNC.tabBarItem = UITabBarItem(title: "TabBarViewController.item3.title".localized, image: nil, tag: 2)
         settingNC.tabBarItem = UITabBarItem(title: "TabBarViewController.item4.title".localized, image: nil, tag: 3)
+        trashDayNC.tabBarItem = UITabBarItem(title: "TabBarViewController.item5.title".localized, image: nil, tag: 4)
         
         setViewControllers([
-            homeVC,
-            anniversaryNC,
+//            homeVC,
             todoNC,
+//            anniversaryNC,
+            trashDayNC,
             settingNC
         ], animated: true)
     }

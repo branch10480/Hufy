@@ -17,8 +17,7 @@ class TodoTableViewCell: UITableViewCell {
     @IBOutlet weak var checkButton: UIButton!
     
     var disposeBag = DisposeBag()
-    
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
         setup()
