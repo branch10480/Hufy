@@ -36,8 +36,8 @@ const FieldValue = admin.firestore.FieldValue;
 //     res.json({result: `User ID: ${writeResult.id} added.`});
 // });
 
-// Create Todo Group
-exports.createTodoGroup = functions.firestore
+// On create user
+exports.onCreateUser = functions.firestore
     .document('users/{userId}')
     .onCreate((snap, context) => {
         // Todoドキュメントを作成する
@@ -56,6 +56,31 @@ exports.createTodoGroup = functions.firestore
             .set({
                 id: userId
             }, {merge: true});
+
+        // ゴミの日初期データを生成する
+        const trashGroupRef = db.collection('trashDays')
+            .doc(todoGroupRef.id);
+        trashGroupRef.set({});
+        const days = [
+            "sun",
+            "mon",
+            "tue",
+            "wed",
+            "thu",
+            "fri",
+            "sat"
+        ];
+        for(var i = 0; i < 7; i++) {
+            var id = i.toString()
+            trashGroupRef.collection('days').doc(id).set({
+                id: id,
+                day: days[i],
+                isOn: false,
+                title: "",
+                inChargeOf: userId,
+                remark: ""
+            });
+        }
 
         // Userドキュメントに所属グループを登録する
         return snap.ref.update({belongingGroupId: todoGroupRef.id})

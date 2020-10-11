@@ -112,15 +112,6 @@ final class AccountManagerMock: AccountManagerProtocol {
             return Disposables.create()
         }
     }
-    
-    func invite(partnerId: String) -> Single<Void> {
-        return Single.create { observer -> Disposable in
-            DispatchQueue.global().asyncAfter(deadline: .now() + 1) {
-                observer(.success(()))
-            }
-            return Disposables.create()
-        }
-    }
 
     func join(partnerId: String, partnerTodoGroupId: String) -> Single<Void> {
         return Single.create { observer -> Disposable in

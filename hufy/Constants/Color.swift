@@ -27,6 +27,8 @@ extension UIColor {
     static let other1: UIColor = #colorLiteral(red: 0.7284123898, green: 0.9111635685, blue: 0.9082647562, alpha: 1)
     static let other2: UIColor = #colorLiteral(red: 0.9333333333, green: 0.9333333333, blue: 0.9333333333, alpha: 1)
     static let LINE: UIColor = #colorLiteral(red: 0.3067651987, green: 0.7178974748, blue: 0.2967447042, alpha: 1)
+    static let sunday = #colorLiteral(red: 1, green: 0.4830381244, blue: 0.4324739558, alpha: 1)
+    static let saturday = #colorLiteral(red: 0.3859322202, green: 0.6879526363, blue: 0.9686274529, alpha: 1)
     
     // check mark
     static let checkMarkNormal = UIColor.buttonDisabledBackground

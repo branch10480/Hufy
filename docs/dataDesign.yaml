@@ -3,13 +3,17 @@ users:
 
   id: Auth.id
   name: String
+  iconURL: String
+  partner:
+    id: Auth.id
+    name: String
+    iconURL: String
   tutorial1Done: Bool
   tutorial2Done: Bool
   tutorial3Done: Bool 
+  belongingGroupId: String
   createdAt: Timestamp
   updatedAt: Timestamp
-  belongingGroupId: String
-  partnerId: String
 
 todoGroups:
   doumentId: auto
@@ -30,9 +34,12 @@ trashDays:
   documentId: belongingGroupId
 
   days:
-    id: Int
+    documentId: String # 0, 1
+
+    id: String         # 0, 1
     day: String        # sun, mon, tue, wed, thu, fri, sat
     isOn: Bool
+    title: String
     inChargeOf: String # Auth.id(me or partner) 
     remark: String
 

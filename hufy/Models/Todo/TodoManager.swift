@@ -29,7 +29,7 @@ final class TodoManager: TodoManagerProtocol {
     }
     
     deinit {
-        listener?.remove()
+        removeTodoListener()
     }
     
     func set(todoGroupId: String) {
@@ -37,6 +37,9 @@ final class TodoManager: TodoManagerProtocol {
     }
     
     func setTodoListener() {
+        guard self.listener != nil else {
+            return
+        }
         // Subscribe
         self.listener = todoCollectioinRef.addSnapshotListener { [weak self] snap, error in
                 

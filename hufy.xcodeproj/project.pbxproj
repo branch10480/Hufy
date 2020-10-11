@@ -49,6 +49,11 @@
 		48FFF71C2532B02A00DCAB51 /* TrashDayEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48FFF71A2532B02A00DCAB51 /* TrashDayEditViewController.swift */; };
 		48FFF71D2532B02A00DCAB51 /* TrashDayEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48FFF71B2532B02A00DCAB51 /* TrashDayEditViewController.xib */; };
 		48FFF7202532B03F00DCAB51 /* TrashDayEditViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48FFF71F2532B03F00DCAB51 /* TrashDayEditViewModel.swift */; };
+		48FFF72425330DE200DCAB51 /* TrashDayManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48FFF72325330DE200DCAB51 /* TrashDayManager.swift */; };
+		48FFF72825330DF000DCAB51 /* TrashDayManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48FFF72725330DF000DCAB51 /* TrashDayManagerProtocol.swift */; };
+		48FFF72B25330E2100DCAB51 /* TrashDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48FFF72A25330E2100DCAB51 /* TrashDay.swift */; };
+		48FFF72F2533420B00DCAB51 /* TrashDayTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48FFF72D2533420B00DCAB51 /* TrashDayTableViewCell.swift */; };
+		48FFF7302533420B00DCAB51 /* TrashDayTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48FFF72E2533420B00DCAB51 /* TrashDayTableViewCell.xib */; };
 		4905659B24E121F00082B42B /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4905659924E121F00082B42B /* TabBarViewController.swift */; };
 		4905659C24E121F00082B42B /* TabBarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4905659A24E121F00082B42B /* TabBarViewController.xib */; };
 		490565A024E122110082B42B /* TutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4905659E24E122110082B42B /* TutorialViewController.swift */; };
@@ -137,6 +142,11 @@
 		48FFF71A2532B02A00DCAB51 /* TrashDayEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrashDayEditViewController.swift; sourceTree = "<group>"; };
 		48FFF71B2532B02A00DCAB51 /* TrashDayEditViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TrashDayEditViewController.xib; sourceTree = "<group>"; };
 		48FFF71F2532B03F00DCAB51 /* TrashDayEditViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrashDayEditViewModel.swift; sourceTree = "<group>"; };
+		48FFF72325330DE200DCAB51 /* TrashDayManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrashDayManager.swift; sourceTree = "<group>"; };
+		48FFF72725330DF000DCAB51 /* TrashDayManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrashDayManagerProtocol.swift; sourceTree = "<group>"; };
+		48FFF72A25330E2100DCAB51 /* TrashDay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrashDay.swift; sourceTree = "<group>"; };
+		48FFF72D2533420B00DCAB51 /* TrashDayTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrashDayTableViewCell.swift; sourceTree = "<group>"; };
+		48FFF72E2533420B00DCAB51 /* TrashDayTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TrashDayTableViewCell.xib; sourceTree = "<group>"; };
 		4905659924E121F00082B42B /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		4905659A24E121F00082B42B /* TabBarViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TabBarViewController.xib; sourceTree = "<group>"; };
 		4905659E24E122110082B42B /* TutorialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialViewController.swift; sourceTree = "<group>"; };
@@ -275,6 +285,8 @@
 				48FFF71A2532B02A00DCAB51 /* TrashDayEditViewController.swift */,
 				48FFF71B2532B02A00DCAB51 /* TrashDayEditViewController.xib */,
 				48FFF71F2532B03F00DCAB51 /* TrashDayEditViewModel.swift */,
+				48FFF72D2533420B00DCAB51 /* TrashDayTableViewCell.swift */,
+				48FFF72E2533420B00DCAB51 /* TrashDayTableViewCell.xib */,
 			);
 			path = TrashDay;
 			sourceTree = "<group>";
@@ -372,6 +384,15 @@
 			path = Setting;
 			sourceTree = "<group>";
 		};
+		48FFF72225330DC800DCAB51 /* TrashDay */ = {
+			isa = PBXGroup;
+			children = (
+				48FFF72325330DE200DCAB51 /* TrashDayManager.swift */,
+				48FFF72725330DF000DCAB51 /* TrashDayManagerProtocol.swift */,
+			);
+			path = TrashDay;
+			sourceTree = "<group>";
+		};
 		4905659824E121D70082B42B /* TabBar */ = {
 			isa = PBXGroup;
 			children = (
@@ -458,6 +479,7 @@
 			children = (
 				490565CA24E152FF0082B42B /* User.swift */,
 				481B4CCB24FA101E00793E2E /* Todo.swift */,
+				48FFF72A25330E2100DCAB51 /* TrashDay.swift */,
 			);
 			path = DataObjects;
 			sourceTree = "<group>";
@@ -603,6 +625,7 @@
 		49A3BDF124E117F70025F38F /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				48FFF72225330DC800DCAB51 /* TrashDay */,
 				481B4CC624FA0D8900793E2E /* Todo */,
 				490565C924E152D90082B42B /* DataObjects */,
 				490565A424E123D20082B42B /* Firebase */,
@@ -683,6 +706,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				490565A124E122110082B42B /* TutorialViewController.xib in Resources */,
+				48FFF7302533420B00DCAB51 /* TrashDayTableViewCell.xib in Resources */,
 				48D9F97825150DCA007BE173 /* InvitationViewController.xib in Resources */,
 				4941271C24DDA84E008768F9 /* Main.storyboard in Resources */,
 				4888085A24E8E9F3001257A4 /* Tutorial3ViewController.xib in Resources */,
@@ -790,6 +814,7 @@
 				49A3BDF524E11CDF0025F38F /* AccuntManager.swift in Sources */,
 				499E7F1624E2EBD80005FFEF /* UIImagePickerController+RxCreate.swift in Sources */,
 				481B4CC524FA0D5000793E2E /* TodoViewModel.swift in Sources */,
+				48FFF72425330DE200DCAB51 /* TrashDayManager.swift in Sources */,
 				4888085C24E8EA05001257A4 /* Tutorial3ViewModel.swift in Sources */,
 				48D9F97B25150DD8007BE173 /* InvitationViewModel.swift in Sources */,
 				481B4CC824FA0D9500793E2E /* TodoManager.swift in Sources */,
@@ -803,12 +828,14 @@
 				4905659B24E121F00082B42B /* TabBarViewController.swift in Sources */,
 				490565A024E122110082B42B /* TutorialViewController.swift in Sources */,
 				490565AD24E128130082B42B /* BaseViewController.swift in Sources */,
+				48FFF72B25330E2100DCAB51 /* TrashDay.swift in Sources */,
 				490565B824E131090082B42B /* Constant.swift in Sources */,
 				490565A824E123F30082B42B /* FirebaseManagerProtocol.swift in Sources */,
 				48FE669624F111DF003B2B87 /* UITextField+.swift in Sources */,
 				48713A1F2531EDCF001991F6 /* QRCodeReaderViewController.swift in Sources */,
 				4941271624DDA7B5008768F9 /* AppConfig.swift in Sources */,
 				48FE66A124F11CF1003B2B87 /* AnniversaryViewController.swift in Sources */,
+				48FFF72825330DF000DCAB51 /* TrashDayManagerProtocol.swift in Sources */,
 				48FFF7202532B03F00DCAB51 /* TrashDayEditViewModel.swift in Sources */,
 				48BE8B3C250E330F009B7D55 /* UIHelper.swift in Sources */,
 				49A3BDDF24E0FF3D0025F38F /* BaseViewModel.swift in Sources */,
@@ -817,6 +844,7 @@
 				48D9F97725150DCA007BE173 /* InvitationViewController.swift in Sources */,
 				48FE66A624F11D0A003B2B87 /* TodoViewController.swift in Sources */,
 				499E7F1824E2EBD80005FFEF /* UIImagePickerController+Rx.swift in Sources */,
+				48FFF72F2533420B00DCAB51 /* TrashDayTableViewCell.swift in Sources */,
 				4941271A24DDA836008768F9 /* EntryViewController.swift in Sources */,
 				48FE669D24F11CE2003B2B87 /* HomeViewController.swift in Sources */,
 				490565AB24E1264F0082B42B /* Color.swift in Sources */,

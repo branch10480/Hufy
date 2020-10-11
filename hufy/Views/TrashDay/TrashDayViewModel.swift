@@ -10,4 +10,11 @@ import Foundation
 
 class TrashDayViewModel: BaseViewModel {
     
+    private let accountManager: AccountManagerProtocol
+    
+    init(
+        accountManager: AccountManagerProtocol
+    ) {
+        self.accountManager = accountManager
+    }
 }

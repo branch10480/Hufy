@@ -26,6 +26,5 @@ protocol AccountManagerProtocol {
     func registerProfileImage(image: UIImage) -> Observable<(Int64, Int64)>
     func getProfileImageURL() -> Observable<URL?>
     func getTodoGroupId() -> Observable<String>
-    func invite(partnerId: String) -> Single<Void>
     func join(partnerId: String, partnerTodoGroupId: String) -> Single<Void>
 }

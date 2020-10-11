@@ -16,7 +16,7 @@ import FirebaseStorage
 
 final class AccountManager: AccountManagerProtocol {
     
-    static private var _userSelf: BehaviorRelay<User?> = .init(value: nil)
+    var userSelf: BehaviorRelay<User?> = .init(value: nil)
     private lazy var db = Firestore.firestore()
     private lazy var userDB = self.db.userRef
 
@@ -26,10 +26,6 @@ final class AccountManager: AccountManagerProtocol {
         } else {
             return false
         }
-    }
-    
-    var userSelf: BehaviorRelay<User?> {
-        AccountManager._userSelf
     }
     
     func firebaseAuthAnonymousLogin() -> Observable<Void> {
@@ -98,13 +94,14 @@ final class AccountManager: AccountManagerProtocol {
                 return Disposables.create()
             }
             
-            self.userDB.document(authUser.uid).getDocument { (snapshot, error) in
+            self.userDB.document(authUser.uid).getDocument { [weak self] (snapshot, error) in
+                guard let self = self else { return }
                 if let error = error {
                     observer.onError(error)
                     return
                 }
                 if let data = snapshot?.data(), let user = User(JSON: data) {
-                    AccountManager._userSelf.accept(user)
+                    self.userSelf.accept(user)
                     observer.onNext(user)
                     observer.onCompleted()
                 } else {
@@ -192,13 +189,14 @@ final class AccountManager: AccountManagerProtocol {
                 return Disposables.create()
             }
             
-            self.userDB.document(authUser.uid).getDocument { (snapshot, error) in
+            self.userDB.document(authUser.uid).getDocument { [weak self] (snapshot, error) in
+                guard let self = self else { return }
                 if let error = error {
                     observer.onError(error)
                     return
                 }
                 if let data = snapshot?.data(), let user = User(JSON: data) {
-                    AccountManager._userSelf .accept(user)
+                    self.userSelf.accept(user)
                     observer.onNext(user.belongingGroupId)
                     observer.onCompleted()
                 } else {
@@ -208,21 +206,12 @@ final class AccountManager: AccountManagerProtocol {
             return Disposables.create()
         }
     }
-    
-    func invite(partnerId: String) -> Single<Void> {
-        return Single.create { [weak self] observer -> Disposable in
-            
-            // TODO: パートナーとして登録する処理 (Function)
-            
-            return Disposables.create()
-        }
-    }
 
     func join(partnerId: String, partnerTodoGroupId: String) -> Single<Void> {
         return Single<Void>.create { [weak self] observer -> Disposable in
             
             guard let self = self,
-                  let myId = AccountManager._userSelf.value?.id else
+                  let myId = self.userSelf.value?.id else
             {
                 observer(.error(AccountManagerError.unknown))
                 return Disposables.create()
