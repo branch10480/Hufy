@@ -14,7 +14,7 @@ protocol TrashDayManagerProtocol {
     var days: BehaviorRelay<[TrashDay]> { get }
     
     func set(groupId: String)
-    func setTodoListener()
-    func removeTodoListener()
+    func setTrashDayListener()
+    func removeTrashDayListener()
     func save(_ day: TrashDay) -> Observable<Void>
 }

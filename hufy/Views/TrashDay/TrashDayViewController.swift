@@ -18,8 +18,11 @@ class TrashDayViewController: BaseViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
-    private lazy var viewModel = TrashDayViewModel()
     var accountManager: AccountManagerProtocol = AccountManager()
+    private lazy var viewModel = TrashDayViewModel(
+        accountManager: self.accountManager,
+        trashDayManager: TrashDayManager.shared
+    )
     
     lazy var dataSource = RxTableViewSectionedAnimatedDataSource<TrashDaySectionModel>(
         animationConfiguration: AnimationConfiguration(insertAnimation: .automatic, reloadAnimation: .automatic, deleteAnimation: .automatic),
@@ -41,16 +44,20 @@ class TrashDayViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        bind()
     }
     
     override func setup() {
         super.setup()
-        
+        tableView.register(UINib(nibName: "TrashDayTableViewCell", bundle: nil), forCellReuseIdentifier: TrashDayViewController.cellId)
+        tableView.tableFooterView = .init()
         title = "TabBarViewController.item5.title".localized
     }
     
     private func bind() {
-        
+        viewModel.days
+            .bind(to: tableView.rx.items(dataSource: dataSource))
+            .disposed(by: disposeBag)
     }
 }
 

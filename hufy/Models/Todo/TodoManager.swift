@@ -37,7 +37,7 @@ final class TodoManager: TodoManagerProtocol {
     }
     
     func setTodoListener() {
-        guard self.listener != nil else {
+        guard self.listener == nil else {
             return
         }
         // Subscribe

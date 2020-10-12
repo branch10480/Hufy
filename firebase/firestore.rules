@@ -56,5 +56,10 @@ service cloud.firestore {
       allow update: if isAnyAuthenticated();
       allow get: if isAnyAuthenticated();
     }
+
+    match /trashDays/{groupID}/days/{dayID} {
+      allow update: if isAnyAuthenticated();
+      allow get, list: if isAnyAuthenticated();
+    }
   }
 }

@@ -33,15 +33,15 @@ final class TrashDayManager: TrashDayManagerProtocol {
     }
     
     deinit {
-        removeTodoListener()
+        removeTrashDayListener()
     }
     
     func set(groupId: String) {
         self.groupId = groupId
     }
     
-    func setTodoListener() {
-        guard self.listener != nil else {
+    func setTrashDayListener() {
+        guard self.listener == nil else {
             return
         }
         // Subscribe
@@ -83,7 +83,7 @@ final class TrashDayManager: TrashDayManagerProtocol {
             }
     }
     
-    func removeTodoListener() {
+    func removeTrashDayListener() {
         listener?.remove()
     }
     
