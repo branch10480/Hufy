@@ -72,4 +72,16 @@ extension DayType {
         case .sat: return "Saturday".localized
         }
     }
+    
+    var longTitle: String {
+        switch self {
+        case .sun: return "Sanday.long".localized
+        case .mon: return "Monday.long".localized
+        case .tue: return "Tuesday.long".localized
+        case .wed: return "Wednesday.long".localized
+        case .thu: return "Thursday.long".localized
+        case .fri: return "Friday.long".localized
+        case .sat: return "Saturday.long".localized
+        }
+    }
 }

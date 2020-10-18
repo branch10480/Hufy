@@ -42,6 +42,13 @@
 "InvitationViewController.invitationDescriptionLabel.text" = "パートナー側のアプリ、もしくはカメラでQRコードを読み取ってください！";
 "InvitationViewController.invitationByLineButton.title" = "LINEで招待する";
 
+"TrashDayEditViewController.switchDescriptionLabel.text" = "この日はゴミの日？";
+"TrashDayEditViewController.whatTrashDayLabel.text" = "何のゴミの日？";
+"TrashDayEditViewController.inChargeOfLabel.text" = "担当";
+"TrashDayEditViewController.remarkTitleLabel.text" = "備考";
+"TrashDayEditViewController.registrationButton.title" = "保存";
+"TrashDayEditViewController.whatTrashDayTextField.placeholder" = "例）可燃ゴミ、不燃ごみ など";
+
 "QRCodeReaderViewController.title" = "招待QRを読み込む";
 
 "OR" = "または";
@@ -59,3 +66,11 @@
 "Thursday" = "木";
 "Friday" = "金";
 "Saturday" = "土";
+
+"Sanday.long" = "日曜日";
+"Monday.long" = "月曜日";
+"Tuesday.long" = "火曜日";
+"Wednesday.long" = "水曜日";
+"Thursday.long" = "木曜日";
+"Friday.long" = "金曜日";
+"Saturday.long" = "土曜日";

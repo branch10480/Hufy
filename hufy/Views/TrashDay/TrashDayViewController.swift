@@ -58,6 +58,22 @@ class TrashDayViewController: BaseViewController {
         viewModel.days
             .bind(to: tableView.rx.items(dataSource: dataSource))
             .disposed(by: disposeBag)
+        
+        tableView.rx.itemSelected.bind { [weak self] indexPath in
+            guard let self = self else { return }
+            let item = self.dataSource[indexPath]
+            switch item {
+            case .day(let trashDay):
+                self.goToEditView(trashDay)
+            }
+        }
+        .disposed(by: disposeBag)
+    }
+    
+    private func goToEditView(_ day: TrashDay) {
+        let vc = TrashDayEditViewController()
+        vc.trashDay = day
+        navigationController?.pushViewController(vc, animated: true)
     }
 }
 

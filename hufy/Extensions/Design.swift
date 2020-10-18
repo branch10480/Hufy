@@ -38,4 +38,10 @@ extension Design where Base == UIView {
         base.layer.borderColor = UIColor.other2.cgColor
         base.layer.cornerRadius = 4
     }
+    
+    func textView() {
+        base.layer.borderWidth = 2
+        base.layer.borderColor = UIColor.other2.cgColor
+        base.layer.cornerRadius = 4
+    }
 }

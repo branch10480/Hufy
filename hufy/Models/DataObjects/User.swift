@@ -29,6 +29,10 @@ struct User: Mappable, UserElementConvertible {
     var createdAt: Timestamp?
     var updatedAt: Timestamp?
     
+    var hasPartner: Bool {
+        partner != nil
+    }
+    
     init() {
     }
     

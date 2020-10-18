@@ -16,7 +16,11 @@ import FirebaseStorage
 
 final class AccountManager: AccountManagerProtocol {
     
-    var userSelf: BehaviorRelay<User?> = .init(value: nil)
+    static private let _userSelf: BehaviorRelay<User?> = .init(value: nil)
+    var userSelf: BehaviorRelay<User?> {
+        AccountManager._userSelf
+    }
+
     private lazy var db = Firestore.firestore()
     private lazy var userDB = self.db.userRef
 
@@ -101,7 +105,7 @@ final class AccountManager: AccountManagerProtocol {
                     return
                 }
                 if let data = snapshot?.data(), let user = User(JSON: data) {
-                    self.userSelf.accept(user)
+                    AccountManager._userSelf.accept(user)
                     observer.onNext(user)
                     observer.onCompleted()
                 } else {
