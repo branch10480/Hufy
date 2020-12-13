@@ -34,10 +34,11 @@ class TrashDayEditViewController: BaseViewController {
     
     var trashDay: TrashDay!
     
-    private let accountManager: AccountManagerProtocol = AccountManager()
+    private let accountManager: AccountManagerProtocol = AccountManager.shared
     private lazy var viewModel = TrashDayEditViewModel(
         trashDay: self.trashDay,
-        switchDidChange: self.switchOfEdition.rx.controlEvent(.valueChanged).withLatestFrom(self.switchOfEdition.rx.value).asObservable()
+        switchDidChange: self.switchOfEdition.rx.controlEvent(.valueChanged).withLatestFrom(self.switchOfEdition.rx.value).asObservable(),
+        accountManager: AccountManager.shared
     )
 
     override func viewDidLoad() {
@@ -80,16 +81,29 @@ class TrashDayEditViewController: BaseViewController {
         }
         .disposed(by: disposeBag)
         
+        viewModel.trashDay
+            .asObservable()
+            .withLatestFrom(
+                viewModel.userInfo,
+                resultSelector: { trashDay, userInfo in
+                    return (trashDay, userInfo.userSelf, userInfo.partner)
+                }
+            ).bind { [weak self] trashDay, userSelf, partner in
+                guard let self = self else { return }
+                self.whatTrashDayTextField.text = trashDay.title
+                self.remarkTextView.text = trashDay.remark
+            }
+            .disposed(by: disposeBag)
+
         viewModel.trashDay.bind { [weak self] day in
             guard let self = self else { return }
             self.whatTrashDayTextField.text = day.title
-            self.applyInChargeOfView(day: day, userSelf: self.accountManager.userSelf.value)
             self.remarkTextView.text = day.remark
         }
         .disposed(by: disposeBag)
     }
     
-    private func applyInChargeOfView(day: TrashDay, userSelf: User?) {
+    private func applyInChargeOfView(day: TrashDay, userSelf: User?, partner: User?) {
         guard let userSelf = userSelf else { return }
         viewOfMyPartner.isHidden = true
         viewOfInvitation.isHidden = true

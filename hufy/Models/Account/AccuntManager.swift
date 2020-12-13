@@ -15,11 +15,15 @@ import RxRelay
 import FirebaseStorage
 
 final class AccountManager: AccountManagerProtocol {
-    
-    static private let _userSelf: BehaviorRelay<User?> = .init(value: nil)
-    var userSelf: BehaviorRelay<User?> {
-        AccountManager._userSelf
-    }
+
+    static let shared = AccountManager()
+    private init() {}
+
+    var userSelf: BehaviorRelay<User?> = .init(value: nil)
+    var partner: BehaviorRelay<User?> = .init(value: nil)
+
+    var partnerAdded: PublishRelay<Void> = .init()
+    var partnerRemoved: PublishRelay<Void> = .init()
 
     private lazy var db = Firestore.firestore()
     private lazy var userDB = self.db.userRef
@@ -105,7 +109,7 @@ final class AccountManager: AccountManagerProtocol {
                     return
                 }
                 if let data = snapshot?.data(), let user = User(JSON: data) {
-                    AccountManager._userSelf.accept(user)
+                    self.userSelf.accept(user)
                     observer.onNext(user)
                     observer.onCompleted()
                 } else {

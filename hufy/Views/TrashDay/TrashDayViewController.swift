@@ -18,7 +18,7 @@ class TrashDayViewController: BaseViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
-    var accountManager: AccountManagerProtocol = AccountManager()
+    var accountManager: AccountManagerProtocol = AccountManager.shared
     private lazy var viewModel = TrashDayViewModel(
         accountManager: self.accountManager,
         trashDayManager: TrashDayManager.shared

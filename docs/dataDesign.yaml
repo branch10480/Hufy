@@ -4,10 +4,7 @@ users:
   id: Auth.id
   name: String
   iconURL: String
-  partner:
-    id: Auth.id
-    name: String
-    iconURL: String
+  partnerId: String
   tutorial1Done: Bool
   tutorial2Done: Bool
   tutorial3Done: Bool 

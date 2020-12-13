@@ -19,7 +19,7 @@ class TutorialViewController: BaseViewController {
 
     private lazy var viewModel: TutorialViewModel = TutorialViewModel(
         tapObservable: self.startButton.rx.tap.asObservable(),
-        manager: AccountManager()
+        manager: AccountManager.shared
     )
 
     override func viewDidLoad() {

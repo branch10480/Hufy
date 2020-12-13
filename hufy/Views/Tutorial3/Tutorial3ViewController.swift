@@ -22,7 +22,7 @@ class Tutorial3ViewController: BaseViewController {
     let nameText: BehaviorRelay<String> = .init(value: "")
 
     lazy var viewModel: Tutorial3ViewModel = Tutorial3ViewModel(
-        manager: AccountManager(),
+        manager: AccountManager.shared,
         profileImageUrl: self.profileImageURL,
         nameTextObservable: nameText.asObservable(),
         nextButtonTap: nextButton.rx.tap.asObservable()

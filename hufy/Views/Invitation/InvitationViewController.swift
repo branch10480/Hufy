@@ -23,7 +23,7 @@ class InvitationViewController: BaseViewController {
     lazy var viewModel: InvitationViewModel = .init(
         lineButtonTap: self.invitationByLineButton.rx.tap.asObservable(),
         linkGenerator: DynamicLinkGenerator(),
-        accountManager: AccountManager()
+        accountManager: AccountManager.shared
     )
     var qrCodeReader: QRCodeReaderProtocol = QRCodeReader()
 

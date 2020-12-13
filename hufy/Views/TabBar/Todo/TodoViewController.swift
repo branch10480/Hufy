@@ -20,7 +20,7 @@ class TodoViewController: BaseViewController {
     private static let cellId = "TodoCell"
 
     lazy var viewModel: TodoViewModel = .init(
-        accountManager: AccountManager(),
+        accountManager: AccountManager.shared,
         todoManager: TodoManager.shared,
         addButtonTap: self.addButton.rx.tap.asObservable(),
         tableViewItemDeleted: self.tableView.rx.itemDeleted.asObservable()

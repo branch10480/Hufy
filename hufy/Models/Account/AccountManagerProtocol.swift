@@ -18,6 +18,11 @@ enum AccountManagerError: Error {
 
 protocol AccountManagerProtocol {
     var userSelf: BehaviorRelay<User?> { get }
+    var partner: BehaviorRelay<User?> { get }
+
+    var partnerAdded: PublishRelay<Void> { get }
+    var partnerRemoved: PublishRelay<Void> { get }
+
     func isLiggedIn() -> Bool
     func firebaseAuthAnonymousLogin() -> Observable<Void>
     func createUser() -> Observable<Void>

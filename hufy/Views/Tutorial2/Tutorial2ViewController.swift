@@ -103,7 +103,7 @@ class Tutorial2ViewController: BaseViewController {
             pickingFromLibraryObservable: pickingFromLibraryObservable,
             subPhotoButtonObservables: buttonObservables,
             nextButtonTap: nextButton.rx.tap.asObservable(),
-            manager: AccountManager()
+            manager: AccountManager.shared
         )
     }
     

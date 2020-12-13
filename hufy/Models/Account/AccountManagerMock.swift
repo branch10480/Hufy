@@ -12,13 +12,11 @@ import RxSwift
 import RxRelay
 
 final class AccountManagerMock: AccountManagerProtocol {
-    
-    static private let _userSelf: BehaviorRelay<User?> = .init(value: nil)
-    var userSelf: BehaviorRelay<User?> {
-        AccountManagerMock._userSelf
-    }
 
-    static private var userSelf: User?
+    let userSelf: BehaviorRelay<User?> = .init(value: nil)
+    let partner: BehaviorRelay<User?> = .init(value: nil)
+    let partnerAdded: PublishRelay<Void> = .init()
+    let partnerRemoved: PublishRelay<Void> = .init()
 
     func isLiggedIn() -> Bool {
         return false

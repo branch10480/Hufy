@@ -11,7 +11,7 @@ import RxSwift
 
 class EntryViewController: BaseViewController {
     
-    private lazy var viewModel: EntryViewModel = EntryViewModel(accountManager: AccountManager())
+    private lazy var viewModel: EntryViewModel = EntryViewModel(accountManager: AccountManager.shared)
 
     override func viewDidLoad() {
         super.viewDidLoad()
