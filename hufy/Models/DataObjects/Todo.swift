@@ -18,6 +18,7 @@ struct Todo: Mappable {
     var isDone: Bool = false
     var createdAt: Timestamp
     var updatedAt: Timestamp
+    var isNew: Bool = true
     
     init() {
         self.createdAt = Timestamp(date: Date())
@@ -35,6 +36,7 @@ struct Todo: Mappable {
         isDone <- map["isDone"]
         createdAt <- map["createdAt"]
         updatedAt <- map["updatedAt"]
+        isNew = false
     }
     
     var dictionary: [String: Any] {

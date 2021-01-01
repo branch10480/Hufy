@@ -75,6 +75,11 @@ class TodoViewController: BaseViewController {
                     }
                     .disposed(by: cell.disposeBag)
                 }
+                if todo.isNew {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.3, execute: {
+                        cell.textView.becomeFirstResponder()
+                    })
+                }
                 return cell
             }
         },
@@ -145,6 +150,21 @@ class TodoViewController: BaseViewController {
             self.viewModel.todos
                 .bind(to: self.tableView.rx.items(dataSource: self.dataSource))
                 .disposed(by: self.disposeBag)
+
+            self.addButton.rx.tap
+                .subscribe(onNext: { [weak self] in
+                    DispatchQueue.main.async {
+                        guard let self = self,
+                              let firstSectionModel = self.dataSource.sectionModels.first,
+                              firstSectionModel.items.count > 0 else
+                        {
+                            return
+                        }
+                        let firstIndexPath = IndexPath(row: firstSectionModel.items.count - 1, section: 0)
+                        self.tableView.scrollToRow(at: firstIndexPath, at: .top, animated: true)
+                    }
+                })
+                .disposed(by: self.disposeBag)
         }
     }
 
@@ -190,6 +210,7 @@ enum TodoSectionItem: IdentifiableType, Equatable {
         
         return  lhs.identity == rhs.identity &&
                 lTodo.title == rTodo.title &&
-                lTodo.isDone == rTodo.isDone
+                lTodo.isDone == rTodo.isDone &&
+                lTodo.isNew == rTodo.isNew
     }
 }
