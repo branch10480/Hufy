@@ -85,12 +85,6 @@ final class TodoManager: TodoManagerProtocol {
     
     func addTodo() {
         var original = todos.value
-        guard !original.contains(where: { todo -> Bool in
-            todo.title.isEmpty
-        }) else {
-            return
-        }
-        
         original.append(Todo())
         todos.accept(original)
     }
