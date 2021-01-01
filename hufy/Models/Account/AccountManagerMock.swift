@@ -18,7 +18,7 @@ final class AccountManagerMock: AccountManagerProtocol {
     let partnerAdded: PublishRelay<Void> = .init()
     let partnerRemoved: PublishRelay<Void> = .init()
 
-    func isLiggedIn() -> Bool {
+    func isLoggedIn() -> Bool {
         return false
     }
     

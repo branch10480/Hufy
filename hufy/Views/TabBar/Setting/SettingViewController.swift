@@ -44,15 +44,17 @@ class SettingViewController: BaseViewController {
     private func bind() {
         // TableView Data Source
         let dataSource = RxTableViewSectionedReloadDataSource<SectionOfSettingData>(configureCell: { dataSource, tableView, indexPath, item in
-            let cell = UITableViewCell(style: .default, reuseIdentifier: "Cell")
+            let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "Cell")
             cell.textLabel?.numberOfLines = 0
             let item = dataSource[indexPath]
             cell.textLabel?.text = item.title
             switch item {
             case .appVersion:
                 cell.selectionStyle = .none
+                cell.detailTextLabel?.text = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String
             default:
                 cell.selectionStyle = .default
+                cell.detailTextLabel?.text = nil
             }
             return cell
         })
@@ -81,9 +83,16 @@ class SettingViewController: BaseViewController {
             case .logout:
                 break
             case .contact:
-                break
+                let subject = "Contact.email.subject".localized.jpEncoded
+                let body = "Contact.email.body".localized.jpEncoded
+                let action = "mailto:\(Constant.Contact.email)?subject=\(subject)&body=\(body)"
+                if let url = URL(string: action) {
+                    UIApplication.shared.open(url)
+                }
             case .reviewApp:
-                break
+                if let url = URL(string: "https://itunes.apple.com/jp/app/id1526846124?mt=8&action=write-review") {
+                    UIApplication.shared.open(url)
+                }
             case .privacyPolicy:
                 break
             case .termsOfUse:

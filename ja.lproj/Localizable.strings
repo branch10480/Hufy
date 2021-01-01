@@ -74,3 +74,6 @@
 "Thursday.long" = "木曜日";
 "Friday.long" = "金曜日";
 "Saturday.long" = "土曜日";
+
+"Contact.email.subject" = "【Hufy】不具合 or 機能改善";
+"Contact.email.body" = "アプリをご使用いただきありがとうございます。\nこちらにお問い合わせ内容をご記入ください！";

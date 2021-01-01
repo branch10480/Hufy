@@ -12,4 +12,9 @@ extension String {
     var localized: String {
         return NSLocalizedString(self, comment: "")
     }
+
+    var jpEncoded: String {
+        let characterSet = CharacterSet.alphanumerics.union(CharacterSet(charactersIn: "/?-._~"))
+        return self.addingPercentEncoding(withAllowedCharacters: characterSet) ?? self
+    }
 }
