@@ -14,4 +14,10 @@ enum Constant {
     enum FontName {
         static let pacifico = "Pacifico-Regular"
     }
+
+    /// Contact
+    enum Contact {
+        static let email = "hufy.s.desk@gmail.com"
+        static let body = "Contact.email.body".localized
+    }
 }

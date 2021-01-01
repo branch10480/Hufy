@@ -28,7 +28,7 @@ final class AccountManager: AccountManagerProtocol {
     private lazy var db = Firestore.firestore()
     private lazy var userDB = self.db.userRef
 
-    func isLiggedIn() -> Bool {
+    func isLoggedIn() -> Bool {
         if let _ = Auth.auth().currentUser {
             return true
         } else {

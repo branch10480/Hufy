@@ -23,7 +23,7 @@ protocol AccountManagerProtocol {
     var partnerAdded: PublishRelay<Void> { get }
     var partnerRemoved: PublishRelay<Void> { get }
 
-    func isLiggedIn() -> Bool
+    func isLoggedIn() -> Bool
     func firebaseAuthAnonymousLogin() -> Observable<Void>
     func createUser() -> Observable<Void>
     func updateUser(user: User) -> Observable<Void>
