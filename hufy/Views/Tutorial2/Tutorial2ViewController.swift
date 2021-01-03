@@ -27,6 +27,12 @@ class Tutorial2ViewController: BaseViewController {
 
     private let sideMargin: CGFloat = 32
     private let separativeMargin: CGFloat = 16
+
+    enum AppFlowType {
+        case tutorial
+        case fromSetting
+    }
+    var flowType: AppFlowType = .tutorial
     
     let images: [UIImage?] = [
         UIImage(named: "pose_pien_uruuru_man"),
@@ -52,10 +58,16 @@ class Tutorial2ViewController: BaseViewController {
     
     override func setup() {
         super.setup()
-        title = "Tutorial2VC.title".localized
+        switch flowType {
+        case .tutorial:
+            title = "Tutorial2VC.title".localized
+            nextButton.setTitle("Tutorial2VC.nextButton.title".localized, for: .normal)
+        case .fromSetting:
+            title = "Tutorial2VC.title".localized
+            nextButton.setTitle("Tutorial2VC.nextButton.title".localized, for: .normal)
+        }
         pickFromLibraryButton.setTitle("Tutorial2VC.pickFromLibraryButton.title".localized, for: .normal)
         pickFromLibraryButton.type = .defaultDesign
-        nextButton.setTitle("Tutorial2VC.nextButton.title".localized, for: .normal)
         nextButton.type = .defaultDesign
         
         setImageDesign(view: mainImageView, isMain: true)

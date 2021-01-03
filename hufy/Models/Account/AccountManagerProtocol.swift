@@ -17,9 +17,10 @@ enum AccountManagerError: Error {
 }
 
 protocol AccountManagerProtocol {
+    var myProfileImage: BehaviorRelay<URL?> { get }
+    var partnerProfileImage: BehaviorRelay<URL?> { get }
     var userSelf: BehaviorRelay<User?> { get }
     var partner: BehaviorRelay<User?> { get }
-
     var partnerAdded: PublishRelay<Void> { get }
     var partnerRemoved: PublishRelay<Void> { get }
 
@@ -29,7 +30,7 @@ protocol AccountManagerProtocol {
     func updateUser(user: User) -> Observable<Void>
     func fetchUserSelf() -> Observable<User>
     func registerProfileImage(image: UIImage) -> Observable<(Int64, Int64)>
-    func getProfileImageURL() -> Observable<URL?>
+    func getProfileImageURL(userId: String) -> Observable<URL?>
     func getTodoGroupId() -> Observable<String>
     func join(partnerId: String, partnerTodoGroupId: String) -> Single<Void>
 }

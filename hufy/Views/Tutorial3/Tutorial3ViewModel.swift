@@ -9,6 +9,7 @@
 import UIKit
 import RxSwift
 import RxRelay
+import FirebaseAuth
 
 class Tutorial3ViewModel: BaseViewModel {
     let profileImageURL: BehaviorRelay<URL?> = .init(value: nil)
@@ -34,7 +35,7 @@ class Tutorial3ViewModel: BaseViewModel {
         // この画面から始まった場合用に
         // プロフィール写真URLをフェッチ
         if profileImageURL.value == nil {
-            manager.getProfileImageURL()
+            manager.getProfileImageURL(userId: Auth.auth().currentUser?.uid ?? "")
                 .subscribe(onNext: { [weak self] url in
                     guard let self = self else { return }
                     self.profileImageURL.accept(url)
