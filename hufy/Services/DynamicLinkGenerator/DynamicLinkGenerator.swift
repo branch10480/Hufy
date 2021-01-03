@@ -23,7 +23,7 @@ final class DynamicLinkGenerator: DynamicLinkGeneratorProtocol {
             builder?.iOSParameters = .init(bundleID: Bundle.main.bundleIdentifier ?? "")
             builder?.shorten(completion: { (url, warnings, error) in
                 if let error = error {
-                    observer(.error(error))
+                    observer(.failure(error))
                     return
                 }
                 observer(.success(url))

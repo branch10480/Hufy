@@ -9,6 +9,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import Kingfisher
 
 class TrashDayEditViewController: BaseViewController {
     
@@ -31,6 +32,9 @@ class TrashDayEditViewController: BaseViewController {
     @IBOutlet weak var viewOfMe: UIView!
     @IBOutlet weak var viewOfMyPartner: UIView!
     @IBOutlet weak var viewOfInvitation: UIView!
+
+    @IBOutlet var plusViews: [UIView]!
+    
     
     var trashDay: TrashDay!
     
@@ -38,8 +42,9 @@ class TrashDayEditViewController: BaseViewController {
     private lazy var viewModel = TrashDayEditViewModel(
         trashDay: self.trashDay,
         switchDidChange: self.switchOfEdition.rx.controlEvent(.valueChanged).withLatestFrom(self.switchOfEdition.rx.value).asObservable(),
-        accountManager: AccountManager.shared
-    )
+        accountManager: AccountManager.shared,
+        registrationButtonTap: registrationButton.rx.tap.asObservable()
+)
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,9 +65,16 @@ class TrashDayEditViewController: BaseViewController {
         whatTrashDayTextField.superview?.design.textField()
         whatTrashDayTextField.setup(placeholder: "TrashDayEditViewController.whatTrashDayTextField.placeholder".localized)
         remarkTextView.superview?.design.textField()
+
+        plusViews.forEach { view in
+            view.backgroundColor = .lightGray
+        }
         
         inChargeOfStackView.arrangedSubviews.forEach { view in
             view.isHidden = true
+            view.layer.cornerRadius = 40
+            view.layer.borderWidth = 2
+            view.layer.borderColor = UIColor.other2.cgColor
         }
     }
     
@@ -92,6 +104,7 @@ class TrashDayEditViewController: BaseViewController {
                 guard let self = self else { return }
                 self.whatTrashDayTextField.text = trashDay.title
                 self.remarkTextView.text = trashDay.remark
+                self.applyInChargeOfView(day: trashDay)
             }
             .disposed(by: disposeBag)
 
@@ -101,17 +114,37 @@ class TrashDayEditViewController: BaseViewController {
             self.remarkTextView.text = day.remark
         }
         .disposed(by: disposeBag)
+
+        accountManager.myProfileImage
+            .bind { [weak self] url in
+                self?.inChargeOfMeImageView.kf.setImage(with: url)
+            }
+            .disposed(by: disposeBag)
+
+        accountManager.partnerProfileImage
+            .bind { [weak self] url in
+                self?.inChargeOfPartnerImageView.kf.setImage(with: url)
+            }
+            .disposed(by: disposeBag)
     }
     
-    private func applyInChargeOfView(day: TrashDay, userSelf: User?, partner: User?) {
-        guard let userSelf = userSelf else { return }
+    private func applyInChargeOfView(day: TrashDay) {
+        guard let userSelf = accountManager.userSelf.value else {
+            return
+        }
+        let partner = accountManager.partner.value
         viewOfMyPartner.isHidden = true
         viewOfInvitation.isHidden = true
+        let myIconURL: String = userSelf.iconURL ?? ""
+        let partnerIconURL: String = partner?.iconURL ?? ""
+        inChargeOfMeImageView.kf.setImage(with: URL(string: myIconURL))
+        inChargeOfPartnerImageView.kf.setImage(with: URL(string: partnerIconURL))
         if userSelf.hasPartner {
             viewOfMyPartner.isHidden = false
         } else {
             viewOfInvitation.isHidden = false
         }
+        viewOfMe.isHidden = false
     }
     
     private func setSelected(_ selected: Bool, meOrPartnerView: UIView) {

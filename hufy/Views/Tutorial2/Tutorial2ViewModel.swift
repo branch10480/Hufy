@@ -10,6 +10,7 @@ import UIKit
 import RxSwift
 import RxRelay
 import Kingfisher
+import FirebaseAuth
 
 class Tutorial2ViewModel: BaseViewModel {
     var mainPhoto: BehaviorRelay<UIImage?> = .init(value: nil)
@@ -82,7 +83,7 @@ class Tutorial2ViewModel: BaseViewModel {
                 self?.isLoading.accept(true)
             })
             .flatMap { _ in
-                return manager.getProfileImageURL()
+                return manager.getProfileImageURL(userId: Auth.auth().currentUser?.uid ?? "")
             }
             .delay(.seconds(1), scheduler: MainScheduler.instance)
             .flatMap { url in

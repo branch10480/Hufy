@@ -15,6 +15,16 @@ target 'hufy' do
   pod 'XCGLogger', '~> 7.0.1'
   pod 'MercariQRScanner'
   pod 'SnapKit', '~> 5.0.0'
+  pod 'Firebase/Analytics'
+  pod 'Firebase/Auth'
+  pod 'Firebase/Firestore'
+  pod 'FirebaseFirestoreSwift'
+  pod 'Firebase/Storage'
+  pod 'Firebase/Functions'
+  pod 'Firebase/Crashlytics'
+  pod 'Firebase/Performance'
+  pod 'Firebase/DynamicLinks'
+  pod 'FirebaseUI/Storage'
 
 end
 

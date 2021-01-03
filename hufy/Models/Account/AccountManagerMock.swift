@@ -13,6 +13,8 @@ import RxRelay
 
 final class AccountManagerMock: AccountManagerProtocol {
 
+    let myProfileImage: BehaviorRelay<URL?> = .init(value: nil)
+    let partnerProfileImage: BehaviorRelay<URL?> = .init(value: nil)
     let userSelf: BehaviorRelay<User?> = .init(value: nil)
     let partner: BehaviorRelay<User?> = .init(value: nil)
     let partnerAdded: PublishRelay<Void> = .init()
@@ -95,7 +97,7 @@ final class AccountManagerMock: AccountManagerProtocol {
         }
     }
     
-    func getProfileImageURL() -> Observable<URL?> {
+    func getProfileImageURL(userId: String) -> Observable<URL?> {
         return Observable<URL?>.create { observer -> Disposable in
             observer.onNext(URL(string: ""))
             observer.onCompleted()

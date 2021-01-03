@@ -21,7 +21,8 @@ class TrashDayEditViewModel: BaseViewModel {
     init(
         trashDay: TrashDay,
         switchDidChange: Observable<Bool>,
-        accountManager: AccountManagerProtocol
+        accountManager: AccountManagerProtocol,
+        registrationButtonTap: Observable<Void>
     ) {
         self.trashDay = .init(value: trashDay)
         self.trashDayToSend = trashDay
@@ -42,5 +43,14 @@ class TrashDayEditViewModel: BaseViewModel {
             self?.isTrashDay.accept(new)
         }
         .disposed(by: disposeBag)
+
+        registrationButtonTap.bind {
+            self.updateTrashDay()
+        }
+        .disposed(by: disposeBag)
+    }
+
+    private func updateTrashDay() {
+
     }
 }

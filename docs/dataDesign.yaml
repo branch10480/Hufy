@@ -7,7 +7,7 @@ users:
   partnerId: String
   tutorial1Done: Bool
   tutorial2Done: Bool
-  tutorial3Done: Bool 
+  tutorial3Done: Bool
   belongingGroupId: String
   createdAt: Timestamp
   updatedAt: Timestamp

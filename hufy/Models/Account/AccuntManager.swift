@@ -17,13 +17,40 @@ import FirebaseStorage
 final class AccountManager: AccountManagerProtocol {
 
     static let shared = AccountManager()
-    private init() {}
+    private init() {
 
-    var userSelf: BehaviorRelay<User?> = .init(value: nil)
-    var partner: BehaviorRelay<User?> = .init(value: nil)
+        userSelf.asObservable()
+            .flatMap { [weak self] user -> Observable<URL?> in
+                guard let self = self, let userId = user?.id else {
+                    return Observable.just(nil)
+                }
+                return self.getProfileImageURL(userId: userId)
+            }
+            .bind { [weak self] url in
+                self?.myProfileImage.accept(url)
+            }
+            .disposed(by: disposeBag)
 
-    var partnerAdded: PublishRelay<Void> = .init()
-    var partnerRemoved: PublishRelay<Void> = .init()
+        partner.asObservable()
+            .flatMap { [weak self] user -> Observable<URL?> in
+                guard let self = self, let userId = user?.id else {
+                    return Observable.just(nil)
+                }
+                return self.getProfileImageURL(userId: userId)
+            }
+            .bind { [weak self] url in
+                self?.partnerProfileImage.accept(url)
+            }
+            .disposed(by: disposeBag)
+    }
+
+    let disposeBag = DisposeBag()
+    let myProfileImage: BehaviorRelay<URL?> = .init(value: nil)
+    let partnerProfileImage: BehaviorRelay<URL?> = .init(value: nil)
+    let userSelf: BehaviorRelay<User?> = .init(value: nil)
+    let partner: BehaviorRelay<User?> = .init(value: nil)
+    let partnerAdded: PublishRelay<Void> = .init()
+    let partnerRemoved: PublishRelay<Void> = .init()
 
     private lazy var db = Firestore.firestore()
     private lazy var userDB = self.db.userRef
@@ -169,13 +196,9 @@ final class AccountManager: AccountManagerProtocol {
         }
     }
     
-    func getProfileImageURL() -> Observable<URL?> {
+    func getProfileImageURL(userId: String) -> Observable<URL?> {
         return Observable<URL?>.create { observer in
-            guard let currentUser = Auth.auth().currentUser else {
-                observer.onError(AccountManagerError.failToGetFirebaseAuthUser)
-                return Disposables.create()
-            }
-            let profileImageRef = Storage.storage().reference().child(currentUser.uid + "/myProfileImage.jpg")
+            let profileImageRef = Storage.storage().reference().child(userId + "/myProfileImage.jpg")
             profileImageRef.downloadURL(completion: { url, error in
                 if let error = error {
                     observer.onError(error)
@@ -221,7 +244,7 @@ final class AccountManager: AccountManagerProtocol {
             guard let self = self,
                   let myId = self.userSelf.value?.id else
             {
-                observer(.error(AccountManagerError.unknown))
+                observer(.failure(AccountManagerError.unknown))
                 return Disposables.create()
             }
             
@@ -243,7 +266,7 @@ final class AccountManager: AccountManagerProtocol {
             // バッチ書き込み
             batch.commit { error in
                 if let error = error {
-                    observer(.error(error))
+                    observer(.failure(error))
                     return
                 }
                 observer(.success(()))
