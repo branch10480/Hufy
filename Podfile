@@ -6,15 +6,15 @@ target 'hufy' do
   use_frameworks!
 
   # Pods for hufy
-  pod 'MBProgressHUD', '~> 1.2.0'
+  pod 'MBProgressHUD'
   pod 'IQKeyboardManagerSwift'
-  pod 'Kingfisher', '~> 5.0'
-  pod 'ObjectMapper', '~> 3.5'
+  pod 'Kingfisher'
+  pod 'ObjectMapper'
   pod 'RxSwift'
   pod 'RxDataSources'
-  pod 'XCGLogger', '~> 7.0.1'
+  pod 'XCGLogger'
   pod 'MercariQRScanner'
-  pod 'SnapKit', '~> 5.0.0'
+  pod 'SnapKit'
   pod 'Firebase/Analytics'
   pod 'Firebase/Auth'
   pod 'Firebase/Firestore'
@@ -28,10 +28,3 @@ target 'hufy' do
 
 end
 
-post_install do |installer|
-  installer.pods_project.targets.each do |target|
-    target.build_configurations.each do |config|
-      config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '11.0'
-    end
-  end
-end

@@ -18,6 +18,9 @@
 		481D5804250A4D0E008DA16C /* AppFlowService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 481D5803250A4D0E008DA16C /* AppFlowService.swift */; };
 		481D5806250A4D18008DA16C /* AppFlowServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 481D5805250A4D18008DA16C /* AppFlowServiceProtocol.swift */; };
 		48618BE025846F430045615C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 48618BDF25846F430045615C /* GoogleService-Info.plist */; };
+		48697767260B977100E7E8B8 /* UIImagePickerController+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48697765260B977100E7E8B8 /* UIImagePickerController+Rx.swift */; };
+		48697768260B977100E7E8B8 /* RxImagePickerDelegateProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48697766260B977100E7E8B8 /* RxImagePickerDelegateProxy.swift */; };
+		4869776B260B979700E7E8B8 /* UIImagePickerController+RxCreate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4869776A260B979700E7E8B8 /* UIImagePickerController+RxCreate.swift */; };
 		48713A1A2531E562001991F6 /* QRCodeReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48713A192531E562001991F6 /* QRCodeReader.swift */; };
 		48713A1F2531EDCF001991F6 /* QRCodeReaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48713A1D2531EDCF001991F6 /* QRCodeReaderViewController.swift */; };
 		48713A202531EDCF001991F6 /* QRCodeReaderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48713A1E2531EDCF001991F6 /* QRCodeReaderViewController.xib */; };
@@ -87,9 +90,6 @@
 		4941271624DDA7B5008768F9 /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4941271524DDA7B5008768F9 /* AppConfig.swift */; };
 		4941271A24DDA836008768F9 /* EntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4941271924DDA836008768F9 /* EntryViewController.swift */; };
 		4941271C24DDA84E008768F9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4941271B24DDA84E008768F9 /* Main.storyboard */; };
-		499E7F1624E2EBD80005FFEF /* UIImagePickerController+RxCreate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499E7F1324E2EBD70005FFEF /* UIImagePickerController+RxCreate.swift */; };
-		499E7F1724E2EBD80005FFEF /* RxImagePickerDelegateProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499E7F1424E2EBD70005FFEF /* RxImagePickerDelegateProxy.swift */; };
-		499E7F1824E2EBD80005FFEF /* UIImagePickerController+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499E7F1524E2EBD70005FFEF /* UIImagePickerController+Rx.swift */; };
 		49A3BDDF24E0FF3D0025F38F /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A3BDDE24E0FF3D0025F38F /* BaseViewModel.swift */; };
 		49A3BDF324E118F20025F38F /* EntryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A3BDF224E118F20025F38F /* EntryViewModel.swift */; };
 		49A3BDF524E11CDF0025F38F /* AccuntManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A3BDF424E11CDF0025F38F /* AccuntManager.swift */; };
@@ -112,6 +112,9 @@
 		481D5803250A4D0E008DA16C /* AppFlowService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFlowService.swift; sourceTree = "<group>"; };
 		481D5805250A4D18008DA16C /* AppFlowServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFlowServiceProtocol.swift; sourceTree = "<group>"; };
 		48618BDF25846F430045615C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		48697765260B977100E7E8B8 /* UIImagePickerController+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImagePickerController+Rx.swift"; sourceTree = "<group>"; };
+		48697766260B977100E7E8B8 /* RxImagePickerDelegateProxy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RxImagePickerDelegateProxy.swift; sourceTree = "<group>"; };
+		4869776A260B979700E7E8B8 /* UIImagePickerController+RxCreate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImagePickerController+RxCreate.swift"; sourceTree = "<group>"; };
 		48713A192531E562001991F6 /* QRCodeReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeReader.swift; sourceTree = "<group>"; };
 		48713A1D2531EDCF001991F6 /* QRCodeReaderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeReaderViewController.swift; sourceTree = "<group>"; };
 		48713A1E2531EDCF001991F6 /* QRCodeReaderViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QRCodeReaderViewController.xib; sourceTree = "<group>"; };
@@ -187,9 +190,6 @@
 		4941271524DDA7B5008768F9 /* AppConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfig.swift; sourceTree = "<group>"; };
 		4941271924DDA836008768F9 /* EntryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryViewController.swift; sourceTree = "<group>"; };
 		4941271B24DDA84E008768F9 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		499E7F1324E2EBD70005FFEF /* UIImagePickerController+RxCreate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIImagePickerController+RxCreate.swift"; path = "Carthage/Checkouts/RxSwift/RxExample/RxExample/Examples/ImagePicker/UIImagePickerController+RxCreate.swift"; sourceTree = SOURCE_ROOT; };
-		499E7F1424E2EBD70005FFEF /* RxImagePickerDelegateProxy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RxImagePickerDelegateProxy.swift; path = Carthage/Checkouts/RxSwift/RxExample/Extensions/RxImagePickerDelegateProxy.swift; sourceTree = SOURCE_ROOT; };
-		499E7F1524E2EBD70005FFEF /* UIImagePickerController+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIImagePickerController+Rx.swift"; path = "Carthage/Checkouts/RxSwift/RxExample/Extensions/UIImagePickerController+Rx.swift"; sourceTree = SOURCE_ROOT; };
 		49A3BDDE24E0FF3D0025F38F /* BaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModel.swift; sourceTree = "<group>"; };
 		49A3BDE424E10A6D0025F38F /* MBProgressHUD.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MBProgressHUD.framework; path = Carthage/Build/iOS/MBProgressHUD.framework; sourceTree = "<group>"; };
 		49A3BDE524E10A6D0025F38F /* RxCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxCocoa.framework; path = Carthage/Build/iOS/RxCocoa.framework; sourceTree = "<group>"; };
@@ -458,9 +458,9 @@
 		490565AE24E129220082B42B /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				499E7F1424E2EBD70005FFEF /* RxImagePickerDelegateProxy.swift */,
-				499E7F1524E2EBD70005FFEF /* UIImagePickerController+Rx.swift */,
-				499E7F1324E2EBD70005FFEF /* UIImagePickerController+RxCreate.swift */,
+				48697766260B977100E7E8B8 /* RxImagePickerDelegateProxy.swift */,
+				48697765260B977100E7E8B8 /* UIImagePickerController+Rx.swift */,
+				4869776A260B979700E7E8B8 /* UIImagePickerController+RxCreate.swift */,
 				490565AF24E129330082B42B /* UIButton+.swift */,
 				490565B124E129B60082B42B /* UIImage+.swift */,
 				490565BF24E132120082B42B /* String+.swift */,
@@ -795,7 +795,6 @@
 				481D5804250A4D0E008DA16C /* AppFlowService.swift in Sources */,
 				48713A4D25320A55001991F6 /* TrashDayViewModel.swift in Sources */,
 				490565CF24E194290082B42B /* Tutorial2ViewController.swift in Sources */,
-				499E7F1724E2EBD80005FFEF /* RxImagePickerDelegateProxy.swift in Sources */,
 				490565A324E1226D0082B42B /* TutorialViewModel.swift in Sources */,
 				48A558D624E6AECC00D37C61 /* BaseButton.swift in Sources */,
 				48713A4925320A38001991F6 /* TrashDayViewController.swift in Sources */,
@@ -806,11 +805,11 @@
 				487B45D925032E8F0050117A /* HapticFeedbackServiceProtocol.swift in Sources */,
 				487B45D725032E800050117A /* HapticFeedbackService.swift in Sources */,
 				49A3BDF524E11CDF0025F38F /* AccuntManager.swift in Sources */,
-				499E7F1624E2EBD80005FFEF /* UIImagePickerController+RxCreate.swift in Sources */,
 				481B4CC524FA0D5000793E2E /* TodoViewModel.swift in Sources */,
 				48FFF72425330DE200DCAB51 /* TrashDayManager.swift in Sources */,
 				4888085C24E8EA05001257A4 /* Tutorial3ViewModel.swift in Sources */,
 				48D9F97B25150DD8007BE173 /* InvitationViewModel.swift in Sources */,
+				48697767260B977100E7E8B8 /* UIImagePickerController+Rx.swift in Sources */,
 				481B4CC824FA0D9500793E2E /* TodoManager.swift in Sources */,
 				490565B224E129B60082B42B /* UIImage+.swift in Sources */,
 				481D5801250A4C38008DA16C /* DeepLinkHandleServiceProtocol.swift in Sources */,
@@ -833,11 +832,12 @@
 				48FFF7202532B03F00DCAB51 /* TrashDayEditViewModel.swift in Sources */,
 				48BE8B3C250E330F009B7D55 /* UIHelper.swift in Sources */,
 				49A3BDDF24E0FF3D0025F38F /* BaseViewModel.swift in Sources */,
+				4869776B260B979700E7E8B8 /* UIImagePickerController+RxCreate.swift in Sources */,
 				490565C524E146930082B42B /* ProgressViewService.swift in Sources */,
+				48697768260B977100E7E8B8 /* RxImagePickerDelegateProxy.swift in Sources */,
 				490565C824E146A90082B42B /* ProgressViewServiceProtocol.swift in Sources */,
 				48D9F97725150DCA007BE173 /* InvitationViewController.swift in Sources */,
 				48FE66A624F11D0A003B2B87 /* TodoViewController.swift in Sources */,
-				499E7F1824E2EBD80005FFEF /* UIImagePickerController+Rx.swift in Sources */,
 				48FFF72F2533420B00DCAB51 /* TrashDayTableViewCell.swift in Sources */,
 				4941271A24DDA836008768F9 /* EntryViewController.swift in Sources */,
 				48FE669D24F11CE2003B2B87 /* HomeViewController.swift in Sources */,
