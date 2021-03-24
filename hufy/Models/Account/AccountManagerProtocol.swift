@@ -9,6 +9,7 @@
 import UIKit
 import RxSwift
 import RxRelay
+import RxCocoa
 
 enum AccountManagerError: Error {
     case unknown
@@ -30,7 +31,9 @@ protocol AccountManagerProtocol {
     func updateUser(user: User) -> Observable<Void>
     func fetchUserSelf() -> Observable<User>
     func registerProfileImage(image: UIImage) -> Observable<(Int64, Int64)>
-    func getProfileImageURL(userId: String) -> Observable<URL?>
+    func getProfileImageURL(userId: String) -> Driver<URL?>
     func getTodoGroupId() -> Observable<String>
     func join(partnerId: String, partnerTodoGroupId: String) -> Single<Void>
+    func startToListenMySelf()
+    func stopListeningMySelf()
 }

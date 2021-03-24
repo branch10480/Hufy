@@ -12,11 +12,14 @@ import FirebaseFirestore
 import FirebaseFirestoreSwift
 import RxSwift
 import RxRelay
+import RxCocoa
 import FirebaseStorage
 
 final class AccountManager: AccountManagerProtocol {
 
     static let shared = AccountManager()
+    private var userSelfListener: ListenerRegistration?
+
     private init() {
 
         userSelf.asObservable()
@@ -24,7 +27,7 @@ final class AccountManager: AccountManagerProtocol {
                 guard let self = self, let userId = user?.id else {
                     return Observable.just(nil)
                 }
-                return self.getProfileImageURL(userId: userId)
+                return self.getProfileImageURL(userId: userId).asObservable()
             }
             .bind { [weak self] url in
                 self?.myProfileImage.accept(url)
@@ -36,7 +39,7 @@ final class AccountManager: AccountManagerProtocol {
                 guard let self = self, let userId = user?.id else {
                     return Observable.just(nil)
                 }
-                return self.getProfileImageURL(userId: userId)
+                return self.getProfileImageURL(userId: userId).asObservable()
             }
             .bind { [weak self] url in
                 self?.partnerProfileImage.accept(url)
@@ -196,7 +199,7 @@ final class AccountManager: AccountManagerProtocol {
         }
     }
     
-    func getProfileImageURL(userId: String) -> Observable<URL?> {
+    func getProfileImageURL(userId: String) -> Driver<URL?> {
         return Observable<URL?>.create { observer in
             let profileImageRef = Storage.storage().reference().child(userId + "/myProfileImage.jpg")
             profileImageRef.downloadURL(completion: { url, error in
@@ -209,6 +212,7 @@ final class AccountManager: AccountManagerProtocol {
             })
             return Disposables.create()
         }
+        .asDriver(onErrorJustReturn: nil)
     }
     
     func getTodoGroupId() -> Observable<String> {
@@ -251,14 +255,14 @@ final class AccountManager: AccountManagerProtocol {
             let batch = self.db.batch()
             
             // 自分にパートナーのID、新しいTODOグループIDを登録
-            let myRef = self.db.document(myId)
+            let myRef = self.userDB.document(myId)
             batch.updateData([
                 "partnerId": partnerId,
                 "belongingGroupId": partnerTodoGroupId
             ], forDocument: myRef)
             
             // パートナーに自分のユーザーIDをパートナーIDとして登録する
-            let partnerRef = self.db.document(partnerId)
+            let partnerRef = self.userDB.document(partnerId)
             batch.updateData([
                 "partnerId": myId
             ], forDocument: partnerRef)
@@ -274,6 +278,39 @@ final class AccountManager: AccountManagerProtocol {
 
             return Disposables.create()
         }
+    }
+
+    func startToListenMySelf() {
+        guard let uid = Auth.auth().currentUser?.uid else {
+            return
+        }
+        let userRef = self.userDB.document(uid)
+        self.userSelfListener = userRef.addSnapshotListener { (v: DocumentSnapshot?, error: Error?) in
+            guard let snapShot = v else {
+                Logger.debug(error?.localizedDescription ?? "")
+                return
+            }
+            guard let userDic = snapShot.data(), let user = User(JSON: userDic) else {
+                Logger.debug("Document is empty.")
+                return
+            }
+            Logger.debug("Partner ID is \(user.partnerId ?? "")")
+
+
+
+
+
+
+
+
+
+
+
+        }
+    }
+
+    func stopListeningMySelf() {
+        userSelfListener?.remove()
     }
 }
 

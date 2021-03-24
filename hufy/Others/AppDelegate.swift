@@ -20,7 +20,7 @@ typealias Logger = XCGLogger
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    var deepLinkHandleService: DeepLinkHandleServiceProtocol = DeepLinkHandleService(manager: AccountManagerMock())
+    var deepLinkHandleService: DeepLinkHandleServiceProtocol = DeepLinkHandleService(manager: AccountManager.shared)
     var progressViewService: ProgressViewServiceProtocol = ProgressViewService()
     var appFlowService: AppFlowServiceProtocol = AppFlowService()
     private let disposeBag = DisposeBag()
@@ -71,14 +71,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         .disposed(by: disposeBag)
         
         deepLinkHandleService.errorMessage
-            .observeOn(MainScheduler.instance)
+            .observe(on: MainScheduler.instance)
             .bind { message in
                 UIHelper.showAlert(message: message)
             }
             .disposed(by: disposeBag)
         
         deepLinkHandleService.succeededToJoin
-            .observeOn(MainScheduler.instance)
+            .observe(on: MainScheduler.instance)
             .flatMap {
                 return UIHelper.showAlertObservable(message: "SuccessMessage.Join".localized)
             }

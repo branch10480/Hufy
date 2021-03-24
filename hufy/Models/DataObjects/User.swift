@@ -21,7 +21,7 @@ struct User: Mappable, UserElementConvertible {
     var id: String = UUID().uuidString
     var name: String?
     var iconURL: String?
-    var partner: Partner?
+    var partnerId: String?
     var tutorial1Done: Bool = true
     var tutorial2Done: Bool = false
     var tutorial3Done: Bool = false
@@ -30,7 +30,10 @@ struct User: Mappable, UserElementConvertible {
     var updatedAt: Timestamp?
     
     var hasPartner: Bool {
-        partner != nil
+        guard let partnerId = partnerId else {
+            return false
+        }
+        return !partnerId.isEmpty
     }
     
     init() {
@@ -47,7 +50,7 @@ struct User: Mappable, UserElementConvertible {
         tutorial2Done <- map["tutorial2Done"]
         tutorial3Done <- map["tutorial3Done"]
         belongingGroupId <- map["belongingGroupId"]
-        partner <- map["partner"]
+        partnerId <- map["partnerId"]
         createdAt <- map["createdAt"]
         updatedAt <- map["updatedAt"]
     }
@@ -65,32 +68,6 @@ struct User: Mappable, UserElementConvertible {
             dic["createdAt"] = FirebaseFirestore.FieldValue.serverTimestamp()
         }
         dic["updatedAt"] = FirebaseFirestore.FieldValue.serverTimestamp()
-        return dic
-    }
-}
-
-struct Partner: Mappable, UserElementConvertible {
-    var id: String = UUID().uuidString
-    var name: String?
-    var iconURL: String?
-    var partnerID: String?
-    
-    init() {
-    }
-    
-    public init?(map: Map) {
-    }
-    
-    mutating public func mapping(map: Map) {
-        id <- map["id"]
-        name <- map["name"]
-        iconURL <- map["iconURL"]
-    }
-    
-    var dictionary: [String: Any] {
-        var dic: [String: Any] = ["id": id]
-        if let name         = name { dic["name"] = name }
-        if let iconURL      = iconURL { dic["iconURL"] = iconURL }
         return dic
     }
 }

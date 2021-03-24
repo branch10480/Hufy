@@ -84,19 +84,21 @@ class Tutorial2ViewModel: BaseViewModel {
             })
             .flatMap { _ in
                 return manager.getProfileImageURL(userId: Auth.auth().currentUser?.uid ?? "")
+                    .asDriver(onErrorJustReturn: nil)
+                    .asObservable()
             }
             .delay(.seconds(1), scheduler: MainScheduler.instance)
             .flatMap { url in
                 return Observable<URL?>.create { [weak self] observer -> Disposable in
                     ImageCache.default.clearMemoryCache()
-                    let prefetcher = ImagePrefetcher(urls: [url!]) {
+                    let prefetcher = ImagePrefetcher(urls: [url!], completionHandler:  {
                         skippedResources, failedResources, completedResources in
-
+                        
                         observer.onNext(url)
                         observer.onCompleted()
                         
                         self?.isLoading.accept(false)
-                    }
+                    })
                     prefetcher.start()
                     return Disposables.create()
                 }

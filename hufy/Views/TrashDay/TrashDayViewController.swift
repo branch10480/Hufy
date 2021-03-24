@@ -32,10 +32,11 @@ class TrashDayViewController: BaseViewController {
             {
                 return .init()
             }
+            let partner = self.accountManager.partner.value
             switch item {
             case .day(let day):
                 let cell = tableView.dequeueReusableCell(withIdentifier: TrashDayViewController.cellId, for: indexPath) as! TrashDayTableViewCell
-                cell.set(day, me: userSelf, partner: userSelf.partner)
+                cell.set(day, me: userSelf, partner: partner)
                 cell.selectionStyle = .none
                 return cell
             }

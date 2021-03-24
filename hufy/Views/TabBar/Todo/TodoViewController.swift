@@ -10,12 +10,17 @@ import UIKit
 import RxSwift
 import RxDataSources
 import IQKeyboardManagerSwift
+import FirebaseAuth
 
 class TodoViewController: BaseViewController {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var addButton: UIButton!
     @IBOutlet weak var viewForTableViewInsetBottom: UIView!
+
+    // for debug
+    @IBOutlet weak var debugStackView: UIStackView!
+    @IBOutlet weak var debugLabel: UILabel!
     
     private static let cellId = "TodoCell"
 
@@ -45,7 +50,7 @@ class TodoViewController: BaseViewController {
                 cell.selectionStyle = .none
                 if let self = self {
                     cell.textView.rx.didChange.asObservable()
-                        .observeOn(MainScheduler.instance)
+                        .observe(on: MainScheduler.instance)
                         .subscribe(onNext: { _ in
                             tableView.beginUpdates()
                             tableView.endUpdates()
@@ -110,7 +115,22 @@ class TodoViewController: BaseViewController {
         super.viewDidLoad()
         bind()
     }
-    
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        // Debug
+        #if DEBUG
+            debugStackView.isHidden = false
+            var debugText = ""
+            debugText += "User ID is \(Auth.auth().currentUser?.uid ?? "")\n"
+            debugText += "Partner ID is \(AccountManager.shared.partner.value?.id ?? "")\n"
+            debugLabel.text = debugText
+        #else
+            debugStackView.isHidden = true
+        #endif
+    }
+
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         tableView.contentInset.bottom = viewForTableViewInsetBottom.bounds.height - 32
@@ -122,6 +142,7 @@ class TodoViewController: BaseViewController {
     
     override func setup() {
         super.setup()
+
         title = "TodoVC.title".localized
         tableView.register(UINib(nibName: "TodoTableViewCell", bundle: nil), forCellReuseIdentifier: TodoViewController.cellId)
         tableView.rowHeight = UITableView.automaticDimension

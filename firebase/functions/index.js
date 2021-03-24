@@ -77,7 +77,7 @@ exports.onCreateUser = functions.firestore
                 day: days[i],
                 isOn: false,
                 title: "",
-                inChargeOf: userId,
+                inChargeOf: "",
                 remark: ""
             });
         }
