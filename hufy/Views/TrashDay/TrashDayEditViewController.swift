@@ -28,29 +28,38 @@ class TrashDayEditViewController: BaseViewController {
     @IBOutlet weak var registrationButton: BaseButton!
     @IBOutlet weak var middleContentsStackView: UIStackView!
     @IBOutlet weak var inChargeOfStackView: UIStackView!
-    
     @IBOutlet weak var viewOfMe: UIView!
     @IBOutlet weak var viewOfMyPartner: UIView!
     @IBOutlet weak var viewOfInvitation: UIView!
-
     @IBOutlet var plusViews: [UIView]!
-    
-    
+
     var trashDay: TrashDay!
-    
+
     private let accountManager: AccountManagerProtocol = AccountManager.shared
     private lazy var viewModel = TrashDayEditViewModel(
         trashDay: self.trashDay,
         switchDidChange: self.switchOfEdition.rx.controlEvent(.valueChanged).withLatestFrom(self.switchOfEdition.rx.value).asObservable(),
+        viewOfMeTap: inChargeOfMeButton.rx.tap.asObservable(),
+        viewOfPartnerTap: inChargeOfPartnerButton.rx.tap.asObservable(),
+        titleTextInput: whatTrashDayTextField.rx.text.asObservable(),
+        remarkTextInput: remarkTextView.rx.text.asObservable(),
         accountManager: AccountManager.shared,
-        registrationButtonTap: registrationButton.rx.tap.asObservable()
-)
+        registrationButtonTap: registrationButton.rx.tap.asObservable(),
+        trashDayManager: TrashDayManager.shared
+    )
+
+    private enum Color {
+        enum border {
+            static let normal = UIColor.other2
+            static let selected = UIColor.buttonBackground
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         bind()
     }
-    
+
     override func setup() {
         super.setup()
         title = trashDay.dayType?.longTitle
@@ -60,7 +69,7 @@ class TrashDayEditViewController: BaseViewController {
         inChargeOfLabel.text = "TrashDayEditViewController.inChargeOfLabel.text".localized
         remarkTitleLabel.text = "TrashDayEditViewController.remarkTitleLabel.text".localized
         registrationButton.setTitle("TrashDayEditViewController.registrationButton.title".localized, for: .normal)
-        
+
         registrationButton.type = .defaultDesign
         whatTrashDayTextField.superview?.design.textField()
         whatTrashDayTextField.setup(placeholder: "TrashDayEditViewController.whatTrashDayTextField.placeholder".localized)
@@ -69,21 +78,21 @@ class TrashDayEditViewController: BaseViewController {
         plusViews.forEach { view in
             view.backgroundColor = .lightGray
         }
-        
+
         inChargeOfStackView.arrangedSubviews.forEach { view in
             view.isHidden = true
             view.layer.cornerRadius = 40
-            view.layer.borderWidth = 2
+            view.layer.borderWidth = 3
             view.layer.borderColor = UIColor.other2.cgColor
         }
     }
-    
+
     private func bind() {
-        
+
         viewModel.isTrashDay
             .bind(to: switchOfEdition.rx.isOn)
             .disposed(by: disposeBag)
-        
+
         viewModel.isTrashDay.bind { [weak self] isTrashDay in
             UIView.animate(withDuration: 0.25) {
                 self?.switchOfEdition.isOn = isTrashDay
@@ -92,7 +101,7 @@ class TrashDayEditViewController: BaseViewController {
             }
         }
         .disposed(by: disposeBag)
-        
+
         viewModel.trashDay
             .asObservable()
             .withLatestFrom(
@@ -126,8 +135,21 @@ class TrashDayEditViewController: BaseViewController {
                 self?.inChargeOfPartnerImageView.kf.setImage(with: url)
             }
             .disposed(by: disposeBag)
+
+        invitationButton.rx.tap
+            .bind { [weak self] in
+                self?.showInvitationView()
+            }
+            .disposed(by: disposeBag)
+
+        viewModel.finishSaving
+            .observe(on: MainScheduler.instance)
+            .bind { [weak self] in
+                self?.navigationController?.popViewController(animated: true)
+            }
+            .disposed(by: disposeBag)
     }
-    
+
     private func applyInChargeOfView(day: TrashDay) {
         guard let userSelf = accountManager.userSelf.value else {
             return
@@ -135,19 +157,33 @@ class TrashDayEditViewController: BaseViewController {
         let partner = accountManager.partner.value
         viewOfMyPartner.isHidden = true
         viewOfInvitation.isHidden = true
-        let myIconURL: String = userSelf.iconURL ?? ""
-        let partnerIconURL: String = partner?.iconURL ?? ""
-        inChargeOfMeImageView.kf.setImage(with: URL(string: myIconURL))
-        inChargeOfPartnerImageView.kf.setImage(with: URL(string: partnerIconURL))
         if userSelf.hasPartner {
             viewOfMyPartner.isHidden = false
         } else {
             viewOfInvitation.isHidden = false
         }
         viewOfMe.isHidden = false
+
+        // who is in charge of
+        viewOfMe.layer.borderColor = Color.border.normal.cgColor
+        viewOfMyPartner.layer.borderColor = Color.border.normal.cgColor
+        if let partnerId = partner?.id, !partnerId.isEmpty, day.inChargeOf == partnerId {
+            viewOfMyPartner.layer.borderColor = Color.border.selected.cgColor
+        } else if !userSelf.id.isEmpty, day.inChargeOf == userSelf.id {
+            viewOfMe.layer.borderColor = Color.border.selected.cgColor
+        }
     }
-    
-    private func setSelected(_ selected: Bool, meOrPartnerView: UIView) {
-        
+
+    private func showInvitationView() {
+        let vc = InvitationViewController()
+        let nc = MyNavigationController(rootViewController: vc)
+        let closeButtonItem = UIBarButtonItem(title: "閉じる", style: .plain, target: self, action: #selector(didTapClose(_:)))
+        closeButtonItem.tintColor = .buttonText
+        vc.navigationItem.leftBarButtonItem = closeButtonItem
+        present(nc, animated: true)
+    }
+
+    @objc private func didTapClose(_ item: UIBarButtonItem) {
+        dismiss(animated: true)
     }
 }

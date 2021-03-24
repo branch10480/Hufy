@@ -29,8 +29,8 @@ service cloud.firestore {
 
     match /users/{userID} {
       allow create: if isUserAuthenticated(userID);
-      allow update: if isUserAuthenticated(userID);
-      allow get: if isUserAuthenticated(userID);
+      allow update: if isAnyAuthenticated();
+      allow get: if isAnyAuthenticated();
     }
 
     match /todoGroups/{groupID} {

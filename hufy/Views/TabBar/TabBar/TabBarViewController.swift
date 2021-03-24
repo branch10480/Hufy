@@ -21,6 +21,10 @@ class TabBarViewController: UITabBarController {
     private lazy var settingNC = MyNavigationController(rootViewController: settingVC)
     private lazy var trashDayNC = MyNavigationController(rootViewController: trashDayVC)
 
+    private var viewModel: TabBarViewModel = .init(
+        accountManager: AccountManager.shared
+    )
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()

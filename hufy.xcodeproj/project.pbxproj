@@ -24,6 +24,7 @@
 		48713A4925320A38001991F6 /* TrashDayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48713A4725320A38001991F6 /* TrashDayViewController.swift */; };
 		48713A4A25320A38001991F6 /* TrashDayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48713A4825320A38001991F6 /* TrashDayViewController.xib */; };
 		48713A4D25320A55001991F6 /* TrashDayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48713A4C25320A55001991F6 /* TrashDayViewModel.swift */; };
+		4877BC4325ADBCDA00311172 /* TabBarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4877BC4225ADBCDA00311172 /* TabBarViewModel.swift */; };
 		487B45D725032E800050117A /* HapticFeedbackService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 487B45D625032E800050117A /* HapticFeedbackService.swift */; };
 		487B45D925032E8F0050117A /* HapticFeedbackServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 487B45D825032E8F0050117A /* HapticFeedbackServiceProtocol.swift */; };
 		4888085924E8E9F3001257A4 /* Tutorial3ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4888085724E8E9F3001257A4 /* Tutorial3ViewController.swift */; };
@@ -119,6 +120,7 @@
 		48713A4C25320A55001991F6 /* TrashDayViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrashDayViewModel.swift; sourceTree = "<group>"; };
 		487563D225A165CA006742D9 /* firebase_commands.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = firebase_commands.md; sourceTree = "<group>"; };
 		487563D325A165CA006742D9 /* dataDesign.yaml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = dataDesign.yaml; sourceTree = "<group>"; };
+		4877BC4225ADBCDA00311172 /* TabBarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewModel.swift; sourceTree = "<group>"; };
 		487B45D625032E800050117A /* HapticFeedbackService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticFeedbackService.swift; sourceTree = "<group>"; };
 		487B45D825032E8F0050117A /* HapticFeedbackServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticFeedbackServiceProtocol.swift; sourceTree = "<group>"; };
 		4888085724E8E9F3001257A4 /* Tutorial3ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tutorial3ViewController.swift; sourceTree = "<group>"; };
@@ -300,6 +302,16 @@
 			path = docs;
 			sourceTree = "<group>";
 		};
+		4877BC4125ADBC8200311172 /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				4905659924E121F00082B42B /* TabBarViewController.swift */,
+				4905659A24E121F00082B42B /* TabBarViewController.xib */,
+				4877BC4225ADBCDA00311172 /* TabBarViewModel.swift */,
+			);
+			path = TabBar;
+			sourceTree = "<group>";
+		};
 		487B45D525032E4E0050117A /* HapticFeedback */ = {
 			isa = PBXGroup;
 			children = (
@@ -405,12 +417,11 @@
 		4905659824E121D70082B42B /* TabBar */ = {
 			isa = PBXGroup;
 			children = (
+				4877BC4125ADBC8200311172 /* TabBar */,
 				48FE669724F11C7C003B2B87 /* Home */,
 				48FE669824F11C87003B2B87 /* Anniversary */,
 				48FE669924F11CA7003B2B87 /* Todo */,
 				48FE669A24F11CB1003B2B87 /* Setting */,
-				4905659924E121F00082B42B /* TabBarViewController.swift */,
-				4905659A24E121F00082B42B /* TabBarViewController.xib */,
 			);
 			path = TabBar;
 			sourceTree = "<group>";
@@ -830,6 +841,7 @@
 				48FFF72F2533420B00DCAB51 /* TrashDayTableViewCell.swift in Sources */,
 				4941271A24DDA836008768F9 /* EntryViewController.swift in Sources */,
 				48FE669D24F11CE2003B2B87 /* HomeViewController.swift in Sources */,
+				4877BC4325ADBCDA00311172 /* TabBarViewModel.swift in Sources */,
 				490565AB24E1264F0082B42B /* Color.swift in Sources */,
 				49A3BDF324E118F20025F38F /* EntryViewModel.swift in Sources */,
 				49A3BDF724E11D6A0025F38F /* AccountManagerProtocol.swift in Sources */,

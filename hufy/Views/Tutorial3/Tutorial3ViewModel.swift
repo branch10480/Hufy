@@ -35,11 +35,14 @@ class Tutorial3ViewModel: BaseViewModel {
         // この画面から始まった場合用に
         // プロフィール写真URLをフェッチ
         if profileImageURL.value == nil {
-            manager.getProfileImageURL(userId: Auth.auth().currentUser?.uid ?? "")
+            manager
+                .getProfileImageURL(userId: Auth.auth().currentUser?.uid ?? "")
+                .asObservable()
                 .subscribe(onNext: { [weak self] url in
                     guard let self = self else { return }
                     self.profileImageURL.accept(url)
-                }).disposed(by: self.disposeBag)
+                })
+                .disposed(by: self.disposeBag)
         }
         
         let fetchUser: Observable<User> = nextButtonTap.flatMapLatest { _ in

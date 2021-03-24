@@ -10,6 +10,7 @@ import Foundation
 import FirebaseAuth
 import RxSwift
 import RxRelay
+import RxCocoa
 
 final class AccountManagerMock: AccountManagerProtocol {
 
@@ -97,12 +98,8 @@ final class AccountManagerMock: AccountManagerProtocol {
         }
     }
     
-    func getProfileImageURL(userId: String) -> Observable<URL?> {
-        return Observable<URL?>.create { observer -> Disposable in
-            observer.onNext(URL(string: ""))
-            observer.onCompleted()
-            return Disposables.create()
-        }
+    func getProfileImageURL(userId: String) -> Driver<URL?> {
+        return Driver<URL?>.just(nil)
     }
     
     func getTodoGroupId() -> Observable<String> {
@@ -120,5 +117,11 @@ final class AccountManagerMock: AccountManagerProtocol {
             }
             return Disposables.create()
         }
+    }
+
+    func startToListenMySelf() {
+    }
+
+    func stopListeningMySelf() {
     }
 }

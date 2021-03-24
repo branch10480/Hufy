@@ -37,11 +37,11 @@ final class DeepLinkHandleService: DeepLinkHandleServiceProtocol {
             isLoading.accept(true)
             accountManager
                 .join(partnerId: userId, partnerTodoGroupId: todoGroupId)
-                .observeOn(MainScheduler.instance)
+                .observe(on: MainScheduler.instance)
                 .subscribe(onSuccess: { [weak self] in
                     self?.isLoading.accept(false)
                     self?.succeededToJoin.accept(())
-                }, onError: { [weak self] error in
+                }, onFailure: { [weak self] error in
                     self?.isLoading.accept(false)
                     self?.errorMessage.accept(error.localizedDescription)
                 })
