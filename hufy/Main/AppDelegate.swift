@@ -20,8 +20,8 @@ typealias Logger = XCGLogger
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    var deepLinkHandleService: DeepLinkHandleUseCaseProtocol = Application.shared.deepLinkHandleUseCase
-    var progressViewService: ProgressViewServiceProtocol = ProgressViewService()
+    private lazy var deepLinkHandleService: DeepLinkHandleUseCaseProtocol = Application.shared.deepLinkHandleUseCase
+    private var progressViewService: ProgressViewServiceProtocol = ProgressViewService()
     private let disposeBag = DisposeBag()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -50,9 +50,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //            fileLevel: .debug               // ファイル出力のログレベル
         )
         
-        bind()
+        // Setup Initial View.
+        let window = UIWindow()
+        let sb = UIStoryboard(name: "Main", bundle: nil)
+        let rootVC = sb.instantiateInitialViewController()
+        rootVC?.view.backgroundColor = .white
+        window.rootViewController = rootVC
+        self.window = window
         
-        Application.shared.configure(with: window!)
+        Application.shared.configure(with: window)
+        
+        bind()
         
         return true
     }

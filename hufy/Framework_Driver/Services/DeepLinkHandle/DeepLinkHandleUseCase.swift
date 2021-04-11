@@ -13,18 +13,12 @@ import RxRelay
 
 final class DeepLinkHandleUseCase: DeepLinkHandleUseCaseProtocol {
     
-    private let accountGateway: AccountGatewayProtocol
+    var accountGateway: AccountGatewayProtocol!
     
     private let disposeBag = DisposeBag()
     let isLoading: BehaviorRelay<Bool> = .init(value: false)
     let errorMessage: PublishRelay<String> = .init()
     let succeededToJoin: PublishRelay<Void> = .init()
-    
-    init(
-        gateway: AccountGatewayProtocol
-    ) {
-        self.accountGateway = gateway
-    }
 
     func handle(deepLink: URL?) {
         guard let url = deepLink,

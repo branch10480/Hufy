@@ -25,8 +25,27 @@ final class Application {
         window.rootViewController = sb.instantiateInitialViewController()
     }
     
+    /// 各レイヤー（ドメイン）の組み立てを行う
     private func buildLayer() {
+        // -- Use Case --
+        let accountUseCase = AccountUseCase()
+        let deepLinkHandleUseCase = DeepLinkHandleUseCase()
         
+        // -- Interface Adapter --
+        let accountGateway = AccountGateway()
+        
+        // Use Case と Interface Adapter とのバインド
+        accountUseCase.gateway = accountGateway
+        deepLinkHandleUseCase.accountGateway = accountGateway
+        
+        // -- Framework Driver --
+        let accountDataStore = AccountDataStore.shared
+        
+        // Interface Driver と Framework Driver とのバインド
+        accountGateway.dataStore = accountDataStore
+        
+        self.accountUseCase = accountUseCase
+        self.deepLinkHandleUseCase = deepLinkHandleUseCase
     }
     
     func relaunch() {

@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		481B4CC524FA0D5000793E2E /* TodoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 481B4CC424FA0D5000793E2E /* TodoViewModel.swift */; };
-		481B4CC824FA0D9500793E2E /* TodoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 481B4CC724FA0D9500793E2E /* TodoManager.swift */; };
+		481B4CC824FA0D9500793E2E /* TodoUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 481B4CC724FA0D9500793E2E /* TodoUseCase.swift */; };
 		481B4CCC24FA101E00793E2E /* Todo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 481B4CCB24FA101E00793E2E /* Todo.swift */; };
 		481B4CCF24FA19F500793E2E /* TodoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 481B4CCD24FA19F500793E2E /* TodoTableViewCell.swift */; };
 		481B4CD024FA19F500793E2E /* TodoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 481B4CCE24FA19F500793E2E /* TodoTableViewCell.xib */; };
@@ -55,7 +55,7 @@
 		48FFF71C2532B02A00DCAB51 /* TrashDayEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48FFF71A2532B02A00DCAB51 /* TrashDayEditViewController.swift */; };
 		48FFF71D2532B02A00DCAB51 /* TrashDayEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48FFF71B2532B02A00DCAB51 /* TrashDayEditViewController.xib */; };
 		48FFF7202532B03F00DCAB51 /* TrashDayEditViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48FFF71F2532B03F00DCAB51 /* TrashDayEditViewModel.swift */; };
-		48FFF72425330DE200DCAB51 /* TrashDayManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48FFF72325330DE200DCAB51 /* TrashDayManager.swift */; };
+		48FFF72425330DE200DCAB51 /* TrashDayUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48FFF72325330DE200DCAB51 /* TrashDayUseCase.swift */; };
 		48FFF72B25330E2100DCAB51 /* TrashDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48FFF72A25330E2100DCAB51 /* TrashDay.swift */; };
 		48FFF72F2533420B00DCAB51 /* TrashDayTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48FFF72D2533420B00DCAB51 /* TrashDayTableViewCell.swift */; };
 		48FFF7302533420B00DCAB51 /* TrashDayTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48FFF72E2533420B00DCAB51 /* TrashDayTableViewCell.xib */; };
@@ -99,7 +99,7 @@
 		3D8497433C57FC67605D2E8D /* Pods-hufy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hufy.debug.xcconfig"; path = "Target Support Files/Pods-hufy/Pods-hufy.debug.xcconfig"; sourceTree = "<group>"; };
 		3F924CCDC972D1FE38942A57 /* Pods-hufy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hufy.release.xcconfig"; path = "Target Support Files/Pods-hufy/Pods-hufy.release.xcconfig"; sourceTree = "<group>"; };
 		481B4CC424FA0D5000793E2E /* TodoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoViewModel.swift; sourceTree = "<group>"; };
-		481B4CC724FA0D9500793E2E /* TodoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoManager.swift; sourceTree = "<group>"; };
+		481B4CC724FA0D9500793E2E /* TodoUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoUseCase.swift; sourceTree = "<group>"; };
 		481B4CCB24FA101E00793E2E /* Todo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Todo.swift; sourceTree = "<group>"; };
 		481B4CCD24FA19F500793E2E /* TodoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoTableViewCell.swift; sourceTree = "<group>"; };
 		481B4CCE24FA19F500793E2E /* TodoTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TodoTableViewCell.xib; sourceTree = "<group>"; };
@@ -149,7 +149,7 @@
 		48FFF71A2532B02A00DCAB51 /* TrashDayEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrashDayEditViewController.swift; sourceTree = "<group>"; };
 		48FFF71B2532B02A00DCAB51 /* TrashDayEditViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TrashDayEditViewController.xib; sourceTree = "<group>"; };
 		48FFF71F2532B03F00DCAB51 /* TrashDayEditViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrashDayEditViewModel.swift; sourceTree = "<group>"; };
-		48FFF72325330DE200DCAB51 /* TrashDayManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrashDayManager.swift; sourceTree = "<group>"; };
+		48FFF72325330DE200DCAB51 /* TrashDayUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrashDayUseCase.swift; sourceTree = "<group>"; };
 		48FFF72A25330E2100DCAB51 /* TrashDay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrashDay.swift; sourceTree = "<group>"; };
 		48FFF72D2533420B00DCAB51 /* TrashDayTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrashDayTableViewCell.swift; sourceTree = "<group>"; };
 		48FFF72E2533420B00DCAB51 /* TrashDayTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TrashDayTableViewCell.xib; sourceTree = "<group>"; };
@@ -281,8 +281,8 @@
 			isa = PBXGroup;
 			children = (
 				4869777F260CC38B00E7E8B8 /* AccountUseCase.swift */,
-				48FFF72325330DE200DCAB51 /* TrashDayManager.swift */,
-				481B4CC724FA0D9500793E2E /* TodoManager.swift */,
+				48FFF72325330DE200DCAB51 /* TrashDayUseCase.swift */,
+				481B4CC724FA0D9500793E2E /* TodoUseCase.swift */,
 			);
 			path = UseCase;
 			sourceTree = "<group>";
@@ -799,11 +799,11 @@
 				49A3BDF524E11CDF0025F38F /* AccountDataStore.swift in Sources */,
 				48697776260CC0BB00E7E8B8 /* AccountGateway.swift in Sources */,
 				481B4CC524FA0D5000793E2E /* TodoViewModel.swift in Sources */,
-				48FFF72425330DE200DCAB51 /* TrashDayManager.swift in Sources */,
+				48FFF72425330DE200DCAB51 /* TrashDayUseCase.swift in Sources */,
 				4888085C24E8EA05001257A4 /* Tutorial3ViewModel.swift in Sources */,
 				48D9F97B25150DD8007BE173 /* InvitationViewModel.swift in Sources */,
 				48697767260B977100E7E8B8 /* UIImagePickerController+Rx.swift in Sources */,
-				481B4CC824FA0D9500793E2E /* TodoManager.swift in Sources */,
+				481B4CC824FA0D9500793E2E /* TodoUseCase.swift in Sources */,
 				490565B224E129B60082B42B /* UIImage+.swift in Sources */,
 				481D5801250A4C38008DA16C /* DeepLinkHandleUseCaseProtocol.swift in Sources */,
 				481D57FF250A4C2E008DA16C /* DeepLinkHandleUseCase.swift in Sources */,
