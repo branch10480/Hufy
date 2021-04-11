@@ -69,7 +69,7 @@ class TodoViewModel: BaseViewModel {
         tableViewItemDeleted: Observable<Todo>
     ) {
         
-        todoUseCase.todos.subscribe(onNext: { [weak self] todos in
+        todoUseCase.todosObservable.subscribe(onNext: { [weak self] todos in
                 self?.setupSectionModels(todos: todos)
             })
             .disposed(by: disposeBag)

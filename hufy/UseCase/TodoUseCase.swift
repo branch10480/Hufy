@@ -17,7 +17,8 @@ enum TodoUseCaseError: Error {
 }
 
 protocol TodoUseCaseProtocol {
-    var todos: BehaviorRelay<[Todo]> { get }
+    var todos: [Todo] { get }
+    var todosObservable: Observable<[Todo]> { get }
     
     func set(todoGroupId: String)
     func setTodoListener()
@@ -32,7 +33,14 @@ final class TodoUseCase: TodoUseCaseProtocol {
     static let shared = TodoUseCase()
     private init() {}
     
-    private(set) var todos: BehaviorRelay<[Todo]> = .init(value: [])
+    var todos: [Todo] {
+        todosRelay.value
+    }
+    var todosObservable: Observable<[Todo]> {
+        todosRelay.asObservable()
+    }
+    
+    private var todosRelay: BehaviorRelay<[Todo]> = .init(value: [])
     
     private let db = Firestore.firestore()
     private var todoGroupId: String!
@@ -68,7 +76,7 @@ final class TodoUseCase: TodoUseCaseProtocol {
                 
                 snap.documentChanges.forEach { change in
                     guard let self = self else { return }
-                    var original = self.todos.value
+                    var original = self.todos
                     switch change.type {
                     case .added, .modified:
                         guard let todo = Todo(JSON: change.document.data()) else {
@@ -78,7 +86,7 @@ final class TodoUseCase: TodoUseCaseProtocol {
                             tmpTodo.id == todo.id
                         }
                         original.append(todo)
-                        self.todos.accept(original)
+                        self.todosRelay.accept(original)
                         Logger.default.debug("New todo was updated!")
                     case .removed:
                         guard let todo = Todo(JSON: change.document.data()) else {
@@ -87,7 +95,7 @@ final class TodoUseCase: TodoUseCaseProtocol {
                         original.removeAll { tmpTodo -> Bool in
                             tmpTodo.id == todo.id
                         }
-                        self.todos.accept(original)
+                        self.todosRelay.accept(original)
                         Logger.default.debug("Todo was removed!")
                     }
                 }
@@ -99,9 +107,9 @@ final class TodoUseCase: TodoUseCaseProtocol {
     }
     
     func addTodo() {
-        var original = todos.value
+        var original = todos
         original.append(Todo())
-        todos.accept(original)
+        todosRelay.accept(original)
     }
 
     func save(_ todo: Todo) -> Observable<Void> {
@@ -124,11 +132,11 @@ final class TodoUseCase: TodoUseCaseProtocol {
     }
     
     func removeTodo(_ todo: Todo) -> Observable<Void> {
-        var todos = self.todos.value
+        var todos = self.todos
         todos.removeAll { tmpTodo -> Bool in
             tmpTodo.id == todo.id
         }
-        self.todos.accept(todos)
+        self.todosRelay.accept(todos)
         return Observable<Void>.create { [weak self] observer -> Disposable in
             
             guard let self = self else {
