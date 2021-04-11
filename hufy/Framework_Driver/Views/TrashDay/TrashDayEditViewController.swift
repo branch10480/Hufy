@@ -151,10 +151,10 @@ class TrashDayEditViewController: BaseViewController {
     }
 
     private func applyInChargeOfView(day: TrashDay) {
-        guard let userSelf = accountUseCase.userSelf.value else {
+        guard let userSelf = accountUseCase.userSelf else {
             return
         }
-        let partner = accountUseCase.partner.value
+        let partner = accountUseCase.partner
         viewOfMyPartner.isHidden = true
         viewOfInvitation.isHidden = true
         if userSelf.hasPartner {

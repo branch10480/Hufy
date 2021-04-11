@@ -28,11 +28,11 @@ class TrashDayViewController: BaseViewController {
         animationConfiguration: AnimationConfiguration(insertAnimation: .automatic, reloadAnimation: .automatic, deleteAnimation: .automatic),
         configureCell: { [weak self] (dataSource, tableView, indexPath, item) -> UITableViewCell in
             guard let self = self,
-                  let userSelf = self.accountUseCase.userSelf.value else
+                  let userSelf = self.accountUseCase.userSelf else
             {
                 return .init()
             }
-            let partner = self.accountUseCase.partner.value
+            let partner = self.accountUseCase.partner
             switch item {
             case .day(let day):
                 let cell = tableView.dequeueReusableCell(withIdentifier: TrashDayViewController.cellId, for: indexPath) as! TrashDayTableViewCell

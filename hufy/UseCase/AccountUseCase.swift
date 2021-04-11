@@ -12,12 +12,14 @@ import RxRelay
 import RxCocoa
 
 protocol AccountUseCaseProtocol {
-    var myProfileImage: BehaviorRelay<URL?> { get }
-    var partnerProfileImage: BehaviorRelay<URL?> { get }
-    var userSelf: BehaviorRelay<User?> { get }
-    var partner: BehaviorRelay<User?> { get }
-    var partnerAdded: PublishRelay<Void> { get }
-    var partnerRemoved: PublishRelay<Void> { get }
+    var myProfileImage: Observable<URL?> { get }
+    var partnerProfileImage: Observable<URL?> { get }
+    var userSelf: User? { get }
+    var userSelfObservable: Observable<User?> { get }
+    var partner: User? { get }
+    var partnerObservable: Observable<User?> { get }
+    var partnerAdded: Observable<Void> { get }
+    var partnerRemoved: Observable<Void> { get }
 
     func isLoggedIn() -> Bool
     func firebaseAuthAnonymousLogin() -> Observable<Void>
@@ -36,28 +38,36 @@ final class AccountUseCase: AccountUseCaseProtocol {
     
     var gateway: AccountGatewayProtocol!
     
-    var myProfileImage: BehaviorRelay<URL?> {
-        gateway.myProfileImage
+    var myProfileImage: Observable<URL?> {
+        gateway.myProfileImage.asObservable()
     }
     
-    var partnerProfileImage: BehaviorRelay<URL?> {
-        gateway.partnerProfileImage
+    var partnerProfileImage: Observable<URL?> {
+        gateway.partnerProfileImage.asObservable()
     }
     
-    var userSelf: BehaviorRelay<User?> {
-        gateway.userSelf
+    var userSelf: User? {
+        gateway.userSelf.value
     }
     
-    var partner: BehaviorRelay<User?> {
-        gateway.partner
+    var userSelfObservable: Observable<User?> {
+        gateway.userSelf.asObservable()
     }
     
-    var partnerAdded: PublishRelay<Void> {
-        gateway.partnerAdded
+    var partner: User? {
+        gateway.partner.value
     }
     
-    var partnerRemoved: PublishRelay<Void> {
-        gateway.partnerRemoved
+    var partnerObservable: Observable<User?> {
+        gateway.partner.asObservable()
+    }
+    
+    var partnerAdded: Observable<Void> {
+        gateway.partnerAdded.asObservable()
+    }
+    
+    var partnerRemoved: Observable<Void> {
+        gateway.partnerRemoved.asObservable()
     }
     
     func isLoggedIn() -> Bool {

@@ -35,7 +35,7 @@ class InvitationViewModel: BaseViewModel {
         
         super.init()
         
-        let userObservable: Observable<User> = accountUseCase.userSelf
+        let userObservable: Observable<User> = accountUseCase.userSelfObservable
             .asObservable()
             .filter { $0 != nil }
             .map { $0! }
@@ -60,7 +60,7 @@ class InvitationViewModel: BaseViewModel {
         .disposed(by: disposeBag)
         
         // ユーザー情報が存在しない場合、フェッチ
-        if accountUseCase.userSelf.value == nil {
+        if accountUseCase.userSelf == nil {
             self.isLoading.accept(true)
             accountUseCase.fetchUserSelf().subscribe(onNext: { [weak self] user in
                 self?.isLoading.accept(false)

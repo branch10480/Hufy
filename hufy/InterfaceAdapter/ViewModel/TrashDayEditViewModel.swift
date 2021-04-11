@@ -38,8 +38,8 @@ class TrashDayEditViewModel: BaseViewModel {
         self.trashDayToSend = trashDay
         self.isTrashDay = .init(value: trashDay.isOn)
 
-        let userSelfObservable = accountUseCase.userSelf.asObservable()
-        let partnerObservable = accountUseCase.partner.asObservable()
+        let userSelfObservable = accountUseCase.userSelfObservable
+        let partnerObservable = accountUseCase.partnerObservable
         self.userInfo = Observable.combineLatest(
             userSelfObservable,
             partnerObservable,
@@ -87,7 +87,7 @@ class TrashDayEditViewModel: BaseViewModel {
     }
 
     private func makeMeInChargeOf() {
-        guard let userSelf = accountUseCase.userSelf.value else {
+        guard let userSelf = accountUseCase.userSelf else {
             return
         }
         var day = trashDay.value
@@ -100,7 +100,7 @@ class TrashDayEditViewModel: BaseViewModel {
     }
 
     private func makePartnerInChargeOf() {
-        guard let partner = accountUseCase.partner.value else {
+        guard let partner = accountUseCase.partner else {
             return
         }
         var day = trashDay.value
